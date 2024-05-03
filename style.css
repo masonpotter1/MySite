@@ -1,0 +1,11 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Four equally sized columns */
+    gap: 10px; /* Space between grid items */
+}
+.grid-item {
+    background-color: #f0f0f0; /* Light grey background */
+    border: 1px solid #ccc; /* Grey border */
+    padding: 20px; /* Padding inside each grid item */
+    text-align: center; /* Center-align text */
+}
