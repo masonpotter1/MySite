@@ -3,3 +3,6 @@ dist/
 .env
 .env.local
 npm-debug.log*
+
+# Generated at build time from VITE_SITE_URL (see vite.config.ts)
+public/sitemap.xml
