@@ -95,8 +95,7 @@ a {
   text-decoration: none;
 }
 
-.brand-mark,
-.brand {
+.brand-mark {
   align-items: center;
   background: linear-gradient(135deg, var(--gold), #8fa6bf);
   border-radius: 50%;
@@ -108,11 +107,8 @@ a {
   width: 2.4rem;
 }
 
-.brand {
-  flex: 0 0 auto;
-}
-
 .brand-mark {
+  flex: 0 0 auto;
   display: grid;
 }
 

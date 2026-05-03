@@ -68,8 +68,8 @@ export const profile = {
       href: "https://linkedin.com/in/mason-potter-515a25152",
     },
     {
-      label: "Resume",
-      href: "#resume",
+      label: "Resume highlights",
+      href: "#experience",
     },
   ] satisfies Link[],
 };
