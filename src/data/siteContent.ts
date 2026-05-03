@@ -61,35 +61,71 @@ export type Interest = {
   detail: string;
 };
 
+export type TinkeringItem = {
+  id: string;
+  label: string;
+  what: string;
+  why: string;
+};
+
 export const profile = {
   name: "Mason Potter",
   pronouns: "He/Him",
   /** Short line under name in the top bar */
-  title: "Software engineer · sabbatical",
+  title: "Software engineer",
   /** Credential line for recruiters */
   lastRoleTitle: "Software Developer III",
   lastRoleCompany: "Paycom",
   specialty: "PHP | React | Full Stack | ATS (past)",
   location: "Oklahoma City, Oklahoma",
   email: "masonpotter1@gmail.com",
-  education:
-    "Kansas State University - Computer Science, Minor in Entrepreneurship",
+  educationSchool: "Kansas State University",
+  educationMajor: "B.S. Computer Science",
+  educationMinor: "Minor in Entrepreneurship",
   graduation: "December 2022",
-  statusLine: "Sabbatical · traveling · tinkering with side projects",
+  statusLine: "Traveling, tinkering, building small things",
   headline:
-    "A highly capable full-stack engineer taking intentional time away from the corporate grind: shipping small experiments, studying markets as a hobby, and collecting miles and stories.",
+    "Full-stack engineer with enterprise-scale shipping experience—right now spending time on side projects, markets as a hobby, and miles on the map.",
   intro:
-    "I care about systems that scale, interfaces that feel intentional, and work that connects engineering to real business outcomes. Right now I am on sabbatical: not in a rush to jump back in, but still very much a builder.",
-  tinkeringIntro:
-    "Lightweight experiments and learning threads. Nothing here is a performance claim or trading advice—just architecture, data plumbing, and curiosity.",
-  tinkeringChips: [
-    "SEC filing parsing",
-    "Quant finance (hobby)",
-    "Options greeks (learning)",
-    "Python data pipelines",
-    "UI / UX craft",
-    "Horology",
-  ],
+    "I care about systems that scale, interfaces that feel intentional, and work that connects engineering to real business outcomes. I am not in a rush to optimize my calendar—but I am still building, learning, and shipping when something interesting shows up.",
+  tinkeringItems: [
+    {
+      id: "sec-parse",
+      label: "SEC filing parsing",
+      what: "Structured text extraction from long, messy regulatory documents.",
+      why: "Good practice in real-world data hygiene, normalization, and testable parsing pipelines.",
+    },
+    {
+      id: "quant-hobby",
+      label: "Quant finance (hobby)",
+      what: "Lightweight research workflows around market structure and disclosure signals.",
+      why: "A playground for probability, careful assumptions, and separating signal from story.",
+    },
+    {
+      id: "greeks",
+      label: "Options greeks (learning)",
+      what: "Studying how derivatives sensitivities behave as inputs move.",
+      why: "Builds intuition for risk, convexity, and how models behave under stress.",
+    },
+    {
+      id: "python-pipes",
+      label: "Python data pipelines",
+      what: "Small batch jobs: ingest, clean, validate, and version outputs.",
+      why: "The boring middle of data work is where reliability is won or lost.",
+    },
+    {
+      id: "uiux",
+      label: "UI / UX craft",
+      what: "Typography, spacing, motion, and interaction details on this site.",
+      why: "Polish is a forcing function for clarity—if the UI is fuzzy, the thinking probably is too.",
+    },
+    {
+      id: "horology",
+      label: "Horology",
+      what: "Mechanical watches as tiny engineered systems.",
+      why: "A reminder that constraints, tolerances, and finishing details compound into something you can feel.",
+    },
+  ] satisfies TinkeringItem[],
   aboutParagraphs: [
     {
       id: "about-okc",
@@ -116,6 +152,10 @@ export const profile = {
     {
       label: "LinkedIn",
       href: "https://www.linkedin.com/in/masonpotter-43/",
+    },
+    {
+      label: "Resume (PDF)",
+      href: "/resume.pdf",
     },
     {
       label: "Resume highlights",
@@ -162,15 +202,15 @@ export const skillGroups: SkillGroup[] = [
 export const experiences: Experience[] = [
   {
     company: "Independent",
-    role: "Sabbatical · passion projects",
+    role: "Independent projects",
     dates: "March 2026 – Present",
     summary:
-      "Intentional time away from full-time corporate work. Building small projects, studying finance as a hobby, traveling, and resetting.",
+      "Focused stretch for side projects, travel, and low-key learning—without treating it like a second job.",
     bullets: [
       "Exploring data pipelines and parsing workflows as a learning exercise (FinSignal Engine).",
       "Iterating on this portfolio site as a living playground for UI craft and structured content.",
     ],
-    tags: ["Sabbatical", "Travel", "Side projects"],
+    tags: ["Side projects", "Travel", "Learning"],
   },
   {
     company: "Paycom Payroll LLC",
