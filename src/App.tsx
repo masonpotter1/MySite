@@ -94,31 +94,34 @@ function Hero() {
           Previously {profile.lastRoleTitle} @ {profile.lastRoleCompany} · {profile.specialty}
         </p>
         <p>{profile.headline}</p>
-        <div className="hero-actions">
-          <a className="button primary" href="#projects">
-            View projects
-          </a>
-          <a className="button secondary" href="#travel">
-            Explore travel
-          </a>
-          <a className="button ghost" href={`mailto:${profile.email}`}>
-            Email me
-          </a>
-        </div>
-        <div className="chip-row" aria-label="Professional highlights">
-          {[profile.location, profile.educationSchool, profile.graduation, "Email-first contact"].map(
-            (highlight) => (
-            <span className="chip" key={highlight}>
-              {highlight}
-            </span>
-          ))}
-        </div>
-        <div className="social-links" aria-label="Contact and profile links">
-          {profile.links.map((link) => (
-            <a key={link.label} href={link.href}>
-              {link.label}
+        <div className="hero-cta-stack">
+          <div className="hero-actions">
+            <a className="button primary" href="#projects">
+              View projects
             </a>
-          ))}
+            <a className="button secondary" href="#travel">
+              Explore travel
+            </a>
+            <a className="button ghost" href={`mailto:${profile.email}`}>
+              Email me
+            </a>
+          </div>
+          <div className="chip-row" aria-label="Professional highlights">
+            {[profile.location, profile.educationSchool, profile.graduation, "Email-first contact"].map(
+              (highlight) => (
+                <span className="chip" key={highlight}>
+                  {highlight}
+                </span>
+              ),
+            )}
+          </div>
+          <div className="social-links" aria-label="Contact and profile links">
+            {profile.links.map((link) => (
+              <a key={link.label} href={link.href}>
+                {link.label}
+              </a>
+            ))}
+          </div>
         </div>
       </m.div>
 
