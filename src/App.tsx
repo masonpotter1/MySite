@@ -1,23 +1,23 @@
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import {
-  contactLinks,
   education,
-  experience,
+  experiences,
   interests,
-  navigation,
   profile,
   projects,
-  skills,
+  skillGroups,
+  stats,
   travel,
 } from "./data/siteContent";
 import "./styles.css";
 
-const fadeUp = {
+const fadeUp: Variants = {
   initial: { opacity: 0, y: 28 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.2 },
-  transition: { duration: 0.6, ease: "easeOut" },
 };
+
+const viewport = { once: true, amount: 0.2 };
+const baseTransition = { duration: 0.6, ease: "easeOut" as const };
 
 function App() {
   return (
@@ -40,6 +40,15 @@ function App() {
 }
 
 function Header() {
+  const navigation = [
+    { label: "About", href: "#about" },
+    { label: "Skills", href: "#skills" },
+    { label: "Projects", href: "#projects" },
+    { label: "Experience", href: "#experience" },
+    { label: "Travel", href: "#travel" },
+    { label: "Contact", href: "#contact" },
+  ];
+
   return (
     <header className="site-header">
       <a className="brand" href="#top" aria-label="Mason Potter home">
@@ -66,9 +75,9 @@ function Hero() {
         <p className="eyebrow">Digital passport / technical portfolio</p>
         <h1>{profile.name}</h1>
         <p className="hero-title">
-          {profile.role} @ {profile.company}
+          {profile.title} @ {profile.company}
         </p>
-        <p className="hero-summary">{profile.summary}</p>
+        <p className="hero-summary">{profile.headline}</p>
         <div className="hero-actions">
           <a className="button primary" href="#projects">
             View projects
@@ -81,7 +90,7 @@ function Hero() {
           </a>
         </div>
         <div className="hero-meta" aria-label="Professional highlights">
-          {profile.highlights.map((highlight) => (
+          {[profile.specialty, profile.location, profile.education].map((highlight) => (
             <span key={highlight}>{highlight}</span>
           ))}
         </div>
@@ -100,18 +109,12 @@ function Hero() {
           </p>
         </div>
         <div className="stat-grid">
-          <div>
-            <strong>1.6M</strong>
-            <span>expected docs / week</span>
-          </div>
-          <div>
-            <strong>100+</strong>
-            <span>medical site pages rebuilt</span>
-          </div>
-          <div>
-            <strong>3</strong>
-            <span>core project stories</span>
-          </div>
+          {stats.slice(0, 3).map((stat) => (
+            <div key={stat.label}>
+              <strong>{stat.value}</strong>
+              <span>{stat.label}</span>
+            </div>
+          ))}
         </div>
       </motion.aside>
     </section>
@@ -143,7 +146,8 @@ function About() {
           <p>
             {education.degree} - {education.graduation}
           </p>
-          <p>{education.details}</p>
+          <p>{education.gpa}</p>
+          <p>{education.highlights.join(" / ")}</p>
         </div>
       </div>
     </motion.section>
@@ -155,16 +159,17 @@ function Skills() {
     <section className="section" id="skills">
       <SectionIntro eyebrow="Technical skills" title="A practical full-stack toolbox." />
       <div className="card-grid skills-grid">
-        {skills.map((group, index) => (
+        {skillGroups.map((group, index) => (
           <motion.article
             className="skill-card glass-card"
-            key={group.category}
+            key={group.title}
             {...fadeUp}
             transition={{ delay: index * 0.05, duration: 0.55 }}
           >
-            <span className="card-label">{group.category}</span>
+            <span className="card-label">{group.title}</span>
+            <p>{group.description}</p>
             <ul>
-              {group.items.map((skill) => (
+              {group.skills.map((skill) => (
                 <li key={skill}>{skill}</li>
               ))}
             </ul>
@@ -190,12 +195,13 @@ function Projects() {
             {...fadeUp}
             transition={{ delay: index * 0.06, duration: 0.55 }}
           >
-            <div className="project-icon">{project.icon}</div>
-            <span className="pill">{project.type}</span>
+            <div className="project-icon">{project.title.slice(0, 2)}</div>
+            <span className="pill">{project.status}</span>
             <h3>{project.title}</h3>
-            <p>{project.summary}</p>
+            <p className="company">{project.subtitle}</p>
+            <p>{project.description}</p>
             <ul>
-              {project.details.map((detail) => (
+              {[project.impact].map((detail) => (
                 <li key={detail}>{detail}</li>
               ))}
             </ul>
@@ -219,18 +225,19 @@ function Experience() {
         title="A timeline of enterprise software, consulting, and business context."
       />
       <div className="timeline">
-        {experience.map((role, index) => (
+        {experiences.map((role, index) => (
           <motion.article
             className="timeline-item"
-            key={`${role.company}-${role.title}`}
+            key={`${role.company}-${role.role}`}
             {...fadeUp}
             transition={{ delay: index * 0.05, duration: 0.55 }}
           >
             <div className="timeline-marker" />
             <div className="timeline-content glass-card">
               <span className="card-label">{role.dates}</span>
-              <h3>{role.title}</h3>
+              <h3>{role.role}</h3>
               <p className="company">{role.company}</p>
+              <p>{role.summary}</p>
               <ul>
                 {role.bullets.map((bullet) => (
                   <li key={bullet}>{bullet}</li>
@@ -256,12 +263,12 @@ function Travel() {
         {travel.map((destination, index) => (
           <motion.article
             className="travel-card"
-            key={destination.place}
+            key={destination.city}
             {...fadeUp}
             transition={{ delay: index * 0.08, duration: 0.55 }}
           >
             <span className="stamp">{destination.badge}</span>
-            <h3>{destination.place}</h3>
+            <h3>{destination.city}</h3>
             <p className="country">{destination.country}</p>
             <p>{destination.story}</p>
             <div className="tag-row">
@@ -288,9 +295,8 @@ function Beyond() {
             {...fadeUp}
             transition={{ delay: index * 0.04, duration: 0.5 }}
           >
-            <span>{interest.icon}</span>
             <h3>{interest.title}</h3>
-            <p>{interest.description}</p>
+            <p>{interest.detail}</p>
           </motion.article>
         ))}
       </div>
@@ -306,7 +312,7 @@ function Contact() {
         <h2>Reach out about software roles, projects, travel, or anything interesting.</h2>
       </div>
       <div className="contact-links">
-        {contactLinks.map((link) => (
+        {profile.links.map((link) => (
           <a key={link.label} href={link.href}>
             {link.label}
           </a>

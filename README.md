@@ -1,16 +1,57 @@
-# MySite
-Overview
-Welcome to the repository for MySite, my personal website. This platform serves as a central hub where I consolidate all of my programming projects. It's designed not only to showcase my work but also to enhance my skills in maintaining a robust, actively used codebase.
+# Mason Potter Personal Site
 
---Objectives--
-Integration: Seamlessly connect all individual projects to demonstrate the breadth and depth of my technical capabilities.
+A modern React + Vite personal website that blends a recruiter-friendly technical portfolio with a fun "digital passport" travel experience.
 
-Maintenance: Commit to regular updates and optimizations to ensure the website remains efficient, secure, and reflective of the latest industry practices.
+## Tech stack
 
-Practice: Utilize this project as a continuous learning tool to improve my coding skills, project management, and understanding of web technologies.
-Contributions
+- React
+- TypeScript
+- Vite
+- Framer Motion
+- CSS custom properties
 
-While this is a personal project, I am open to suggestions, feedback, and contributions from other developers. If you wish to contribute, please feel free to fork this repository or contact me directly to discuss any significant changes or enhancements.
+## Local development
 
-License
-This project is licensed under the MIT License - see the LICENSE.md file for details.
+Use Node 22 or newer.
+
+```bash
+npm install
+npm run dev
+```
+
+## Production build
+
+```bash
+npm run build
+npm run preview
+```
+
+## Updating site content
+
+Most editable content lives in:
+
+```text
+src/data/siteContent.ts
+```
+
+Update this file to change:
+
+- Profile headline, email, and links
+- Resume-backed experience
+- Skills
+- Projects
+- Travel destinations
+- Beyond-the-code interests
+- Education details
+
+The UI components read from this file, so routine updates should not require editing the layout.
+
+## Deploying to Vercel
+
+Recommended Vercel settings:
+
+- Framework preset: Vite
+- Install command: `npm install`
+- Build command: `npm run build`
+- Output directory: `dist`
+- Node version: 22.x
