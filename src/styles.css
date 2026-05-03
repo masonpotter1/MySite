@@ -31,6 +31,7 @@ html {
 body {
   margin: 0;
   min-width: 320px;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at top left, rgba(76, 105, 135, 0.44), transparent 34rem),
     radial-gradient(circle at 85% 12%, rgba(212, 181, 106, 0.18), transparent 24rem),
@@ -49,7 +50,7 @@ a {
 
 .app {
   min-height: 100vh;
-  overflow: hidden;
+  overflow-x: clip;
   position: relative;
 }
 
@@ -65,7 +66,8 @@ a {
   position: fixed;
 }
 
-.topbar {
+.topbar,
+.site-header {
   align-items: center;
   backdrop-filter: blur(22px);
   background: rgba(10, 17, 24, 0.76);
@@ -93,7 +95,8 @@ a {
   text-decoration: none;
 }
 
-.brand-mark {
+.brand-mark,
+.brand {
   align-items: center;
   background: linear-gradient(135deg, var(--gold), #8fa6bf);
   border-radius: 50%;
@@ -103,6 +106,14 @@ a {
   height: 2.4rem;
   place-items: center;
   width: 2.4rem;
+}
+
+.brand {
+  flex: 0 0 auto;
+}
+
+.brand-mark {
+  display: grid;
 }
 
 .brand-name {
@@ -116,14 +127,17 @@ a {
   font-size: 0.76rem;
 }
 
-.nav-links {
+.nav-links,
+.site-header nav {
   display: flex;
   flex-wrap: wrap;
   gap: 0.25rem;
   justify-content: flex-end;
 }
 
-.nav-links a {
+.nav-links a,
+.site-header nav a,
+.header-cta {
   border-radius: 999px;
   color: var(--muted);
   font-size: 0.86rem;
@@ -134,8 +148,19 @@ a {
     color 160ms ease;
 }
 
+.header-cta {
+  border: 1px solid rgba(212, 181, 106, 0.3);
+  color: var(--gold-strong);
+  font-weight: 800;
+  min-width: max-content;
+}
+
 .nav-links a:hover,
-.nav-links a:focus-visible {
+.nav-links a:focus-visible,
+.site-header nav a:hover,
+.site-header nav a:focus-visible,
+.header-cta:hover,
+.header-cta:focus-visible {
   background: rgba(255, 255, 255, 0.08);
   color: var(--text);
   outline: none;
@@ -195,14 +220,32 @@ h1 {
   max-width: 62ch;
 }
 
+.hero-title {
+  color: #d9e1e7;
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  font-weight: 800;
+  margin-bottom: 0.8rem;
+}
+
+.hero-summary {
+  max-width: 60ch;
+}
+
 .hero-actions,
 .social-links,
 .chip-row,
+.hero-meta,
+.tag-row,
 .card-grid,
 .filter-row {
   display: flex;
   flex-wrap: wrap;
   gap: 0.8rem;
+}
+
+.hero-meta,
+.tag-row {
+  margin-top: 1rem;
 }
 
 .button {
@@ -251,7 +294,9 @@ h1 {
   color: var(--gold-strong);
 }
 
-.chip {
+.chip,
+.hero-meta span,
+.tag-row span {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: 999px;
@@ -267,8 +312,10 @@ h1 {
 }
 
 .profile-card,
+.hero-card,
 .metric-card,
 .panel,
+.glass-card,
 .project-card,
 .travel-card,
 .interest-card,
@@ -279,11 +326,17 @@ h1 {
   box-shadow: var(--shadow);
 }
 
-.profile-card {
+.profile-card,
+.hero-card {
   border-radius: var(--radius-xl);
   overflow: hidden;
   padding: 1.1rem;
   position: relative;
+}
+
+.hero-card {
+  display: grid;
+  gap: 1.1rem;
 }
 
 .profile-banner {
@@ -326,24 +379,28 @@ h1 {
   line-height: 1.6;
 }
 
-.metric-grid {
+.metric-grid,
+.stat-grid {
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(3, 1fr);
 }
 
-.metric-card {
+.metric-card,
+.stat-grid div {
   border-radius: var(--radius-lg);
   padding: 1.2rem;
 }
 
-.metric-card strong {
+.metric-card strong,
+.stat-grid strong {
   color: var(--gold-strong);
   display: block;
   font-size: clamp(1.5rem, 4vw, 2.2rem);
 }
 
-.metric-card span {
+.metric-card span,
+.stat-grid span {
   color: var(--muted);
   font-size: 0.9rem;
 }
@@ -353,7 +410,9 @@ h1 {
   scroll-margin-top: 6rem;
 }
 
-.section-heading {
+.section-heading,
+.section-intro,
+.split {
   align-items: end;
   display: grid;
   gap: 1rem;
@@ -361,16 +420,54 @@ h1 {
   margin-bottom: 1.6rem;
 }
 
-.section-heading h2 {
+.section-heading h2,
+.section-intro h2,
+.split h2 {
   font-size: clamp(2.2rem, 5vw, 4.5rem);
   letter-spacing: -0.06em;
   line-height: 0.95;
   margin-bottom: 0;
 }
 
-.section-heading p {
+.section-heading p,
+.section-intro p,
+.copy-stack p {
   color: var(--muted);
   line-height: 1.7;
+}
+
+.section-intro {
+  margin-bottom: 1.6rem;
+}
+
+.copy-stack {
+  display: grid;
+  gap: 1rem;
+}
+
+.education-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  padding: 1.1rem;
+}
+
+.education-card span,
+.card-label,
+.company,
+.country {
+  color: var(--muted);
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.35rem;
+  text-transform: uppercase;
+}
+
+.education-card strong,
+.company {
+  color: var(--gold-strong);
 }
 
 .panel {
@@ -422,7 +519,8 @@ h1 {
   padding: 1rem;
 }
 
-.skill-card h3 {
+.skill-card h3,
+.skill-card .card-label {
   color: var(--gold-strong);
   margin-bottom: 0.8rem;
 }
@@ -466,10 +564,20 @@ h1 {
   padding: 0.6rem 0.9rem;
 }
 
-.filter-button.active {
+.filter-button.active,
+.pill {
   background: rgba(212, 181, 106, 0.18);
   border-color: rgba(212, 181, 106, 0.48);
   color: var(--gold-strong);
+}
+
+.pill {
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 0.78rem;
+  font-weight: 800;
+  margin-bottom: 0.8rem;
+  padding: 0.35rem 0.55rem;
 }
 
 .project-grid {
@@ -481,6 +589,7 @@ h1 {
 .project-card {
   border-radius: var(--radius-lg);
   overflow: hidden;
+  padding: 1.25rem;
 }
 
 .project-card summary {
@@ -501,6 +610,20 @@ h1 {
 .project-card p {
   color: var(--muted);
   line-height: 1.65;
+}
+
+.project-icon {
+  align-items: center;
+  background: linear-gradient(135deg, rgba(212, 181, 106, 0.35), rgba(143, 166, 191, 0.22));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  color: var(--gold-strong);
+  display: grid;
+  font-weight: 900;
+  height: 3.2rem;
+  margin-bottom: 1rem;
+  place-items: center;
+  width: 3.2rem;
 }
 
 .project-meta {
@@ -571,10 +694,16 @@ h1 {
   color: var(--muted);
 }
 
-.travel-layout {
+.travel-layout,
+.passport-shell {
   display: grid;
   gap: 1rem;
   grid-template-columns: 0.78fr 1.22fr;
+}
+
+.passport-shell {
+  grid-template-columns: repeat(3, 1fr);
+  position: relative;
 }
 
 .passport-map {
@@ -650,7 +779,8 @@ h1 {
   margin-bottom: 0.8rem;
 }
 
-.interest-grid {
+.interest-grid,
+.interest-strip {
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(3, 1fr);
@@ -677,6 +807,23 @@ h1 {
   gap: 1rem;
   grid-template-columns: 1fr auto;
   padding: clamp(1.5rem, 4vw, 2.4rem);
+}
+
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+
+.contact-links a {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  color: var(--gold-strong);
+  font-weight: 800;
+  padding: 0.8rem 1rem;
+  text-decoration: none;
 }
 
 .contact-panel h2 {
@@ -710,7 +857,8 @@ h1 {
 }
 
 @media (max-width: 980px) {
-  .topbar {
+  .topbar,
+  .site-header {
     align-items: flex-start;
     border-radius: 24px;
     flex-direction: column;
@@ -718,8 +866,11 @@ h1 {
 
   .hero,
   .section-heading,
+  .section-intro,
+  .split,
   .about-grid,
   .travel-layout,
+  .passport-shell,
   .contact-panel {
     grid-template-columns: 1fr;
   }
@@ -730,20 +881,35 @@ h1 {
 
   .skills-grid,
   .project-grid,
-  .interest-grid {
+  .interest-grid,
+  .interest-strip {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 680px) {
-  .nav-links {
+  .topbar,
+  .site-header {
+    left: 0.75rem;
+    right: 0.75rem;
+    top: 0.75rem;
+    transform: none;
+    width: auto;
+  }
+
+  .brand-name,
+  .brand-role,
+  .header-cta,
+  .nav-links,
+  .site-header nav {
     display: none;
   }
 
   .hero {
     min-height: auto;
     padding-bottom: 5rem;
-    padding-top: 6rem;
+    padding-inline: 1rem;
+    padding-top: 5.5rem;
   }
 
   h1 {
@@ -751,10 +917,34 @@ h1 {
   }
 
   .metric-grid,
+  .stat-grid,
   .skills-grid,
   .project-grid,
-  .interest-grid {
+  .interest-grid,
+  .interest-strip {
     grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding-inline: 1rem;
+  }
+
+  .hero-actions .button,
+  .contact-links a {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .route-line {
+    height: 9rem;
+    left: 8%;
+    opacity: 0.45;
+    top: 12%;
+    width: 14rem;
+  }
+
+  .passport-map {
+    min-height: 18rem;
   }
 
   .section {

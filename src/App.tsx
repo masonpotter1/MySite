@@ -50,20 +50,21 @@ function Header() {
   ];
 
   return (
-    <header className="site-header">
+    <header className="topbar">
       <a className="brand" href="#top" aria-label="Mason Potter home">
-        MP
+        <span className="brand-mark">MP</span>
+        <span>
+          <span className="brand-name">{profile.name}</span>
+          <span className="brand-role">{profile.title}</span>
+        </span>
       </a>
-      <nav aria-label="Primary navigation">
+      <nav className="nav-links" aria-label="Primary navigation">
         {navigation.map((item) => (
           <a key={item.href} href={item.href}>
             {item.label}
           </a>
         ))}
       </nav>
-      <a className="header-cta" href={`mailto:${profile.email}`}>
-        Contact
-      </a>
     </header>
   );
 }
@@ -71,13 +72,13 @@ function Header() {
 function Hero() {
   return (
     <section className="hero section" id="top">
-      <motion.div className="hero-copy" {...fadeUp}>
+      <motion.div className="hero-copy" {...fadeUp} viewport={viewport} transition={baseTransition}>
         <p className="eyebrow">Digital passport / technical portfolio</p>
         <h1>{profile.name}</h1>
-        <p className="hero-title">
+        <p className="hero-subtitle">
           {profile.title} @ {profile.company}
         </p>
-        <p className="hero-summary">{profile.headline}</p>
+        <p>{profile.headline}</p>
         <div className="hero-actions">
           <a className="button primary" href="#projects">
             View projects
@@ -89,28 +90,45 @@ function Hero() {
             Email me
           </a>
         </div>
-        <div className="hero-meta" aria-label="Professional highlights">
+        <div className="chip-row" aria-label="Professional highlights">
           {[profile.specialty, profile.location, profile.education].map((highlight) => (
-            <span key={highlight}>{highlight}</span>
+            <span className="chip" key={highlight}>
+              {highlight}
+            </span>
+          ))}
+        </div>
+        <div className="social-links" aria-label="Contact and profile links">
+          {profile.links.map((link) => (
+            <a key={link.label} href={link.href}>
+              {link.label}
+            </a>
           ))}
         </div>
       </motion.div>
 
-      <motion.aside className="hero-card" {...fadeUp} transition={{ delay: 0.1, duration: 0.6 }}>
-        <div className="avatar" aria-hidden="true">
-          <span>MP</span>
+      <motion.aside
+        className="hero-visual"
+        {...fadeUp}
+        viewport={viewport}
+        transition={{ ...baseTransition, delay: 0.1 }}
+      >
+        <div className="profile-card">
+          <div className="profile-banner" />
+          <div className="avatar" aria-hidden="true">
+            MP
+          </div>
+          <div className="profile-card-content">
+            <p className="eyebrow">Currently</p>
+            <h2>Building enterprise recruiting software</h2>
+            <p>
+              Full-stack ATS work, scalable document workflows, regression test
+              optimization, and polished web experiences.
+            </p>
+          </div>
         </div>
-        <div>
-          <p className="card-label">Currently</p>
-          <h2>Building enterprise recruiting software</h2>
-          <p>
-            Full-stack ATS work, scalable document workflows, regression test
-            optimization, and polished web experiences.
-          </p>
-        </div>
-        <div className="stat-grid">
+        <div className="metric-grid">
           {stats.slice(0, 3).map((stat) => (
-            <div key={stat.label}>
+            <div className="metric-card" key={stat.label}>
               <strong>{stat.value}</strong>
               <span>{stat.label}</span>
             </div>
@@ -123,34 +141,49 @@ function Hero() {
 
 function About() {
   return (
-    <motion.section className="section split" id="about" {...fadeUp}>
-      <div>
-        <p className="eyebrow">About</p>
-        <h2>Professional enough for recruiters. Personal enough to remember.</h2>
-      </div>
-      <div className="copy-stack">
-        <p>
-          I am a full-stack software developer based in Oklahoma City, currently
-          working on Applicant Tracking System software at Paycom. I enjoy
-          building reliable business tools, clean user experiences, and systems
-          that make complicated workflows easier to manage.
-        </p>
-        <p>
-          My background spans enterprise recruiting software, healthcare web
-          operations, financial services, small-business consulting, and hands-on
-          projects across mobile, database, and web development.
-        </p>
-        <div className="education-card">
-          <span>Education</span>
-          <strong>{education.school}</strong>
+    <section className="section" id="about">
+      <SectionIntro
+        eyebrow="About"
+        title="Professional enough for recruiters. Personal enough to remember."
+        body={profile.intro}
+      />
+      <motion.div
+        className="about-grid"
+        {...fadeUp}
+        viewport={viewport}
+        transition={baseTransition}
+      >
+        <div className="panel">
           <p>
-            {education.degree} - {education.graduation}
+            I am a full-stack software developer based in Oklahoma City, currently
+            working on Applicant Tracking System software at Paycom. I enjoy
+            building reliable business tools, clean user experiences, and systems
+            that make complicated workflows easier to manage.
           </p>
-          <p>{education.gpa}</p>
-          <p>{education.highlights.join(" / ")}</p>
+          <p>
+            My background spans enterprise recruiting software, healthcare web
+            operations, financial services, small-business consulting, and hands-on
+            projects across mobile, database, and web development.
+          </p>
         </div>
-      </div>
-    </motion.section>
+        <div className="panel highlight-list">
+          <div className="highlight">
+            <strong>{education.school}</strong>
+            <span>
+              {education.degree} - {education.graduation}
+            </span>
+          </div>
+          <div className="highlight">
+            <strong>{education.gpa}</strong>
+            <span>{education.highlights.join(" / ")}</span>
+          </div>
+          <div className="highlight">
+            <strong>Advanced coursework</strong>
+            <span>{education.courses.join(" / ")}</span>
+          </div>
+        </div>
+      </motion.div>
+    </section>
   );
 }
 
@@ -164,9 +197,10 @@ function Skills() {
             className="skill-card glass-card"
             key={group.title}
             {...fadeUp}
+            viewport={viewport}
             transition={{ delay: index * 0.05, duration: 0.55 }}
           >
-            <span className="card-label">{group.title}</span>
+            <h3>{group.title}</h3>
             <p>{group.description}</p>
             <ul>
               {group.skills.map((skill) => (
@@ -190,26 +224,35 @@ function Projects() {
       <div className="card-grid project-grid">
         {projects.map((project, index) => (
           <motion.article
-            className="project-card glass-card"
+            className="project-card"
             key={project.title}
             {...fadeUp}
+            viewport={viewport}
             transition={{ delay: index * 0.06, duration: 0.55 }}
           >
-            <div className="project-icon">{project.title.slice(0, 2)}</div>
-            <span className="pill">{project.status}</span>
-            <h3>{project.title}</h3>
-            <p className="company">{project.subtitle}</p>
-            <p>{project.description}</p>
-            <ul>
-              {[project.impact].map((detail) => (
-                <li key={detail}>{detail}</li>
-              ))}
-            </ul>
-            <div className="tag-row">
-              {project.tech.map((tech) => (
-                <span key={tech}>{tech}</span>
-              ))}
-            </div>
+            <details>
+              <summary>
+                <div className="project-meta">
+                  <span className="tag">{project.status}</span>
+                  <span>{project.title.slice(0, 2)}</span>
+                </div>
+                <h3>{project.title}</h3>
+                <p>{project.subtitle}</p>
+                <p>{project.description}</p>
+              </summary>
+              <div className="project-details">
+                <ul className="project-detail-list">
+                  <li>{project.impact}</li>
+                </ul>
+                <div className="chip-row">
+                  {project.tech.map((tech) => (
+                    <span className="chip" key={tech}>
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </details>
           </motion.article>
         ))}
       </div>
@@ -230,14 +273,25 @@ function Experience() {
             className="timeline-item"
             key={`${role.company}-${role.role}`}
             {...fadeUp}
+            viewport={viewport}
             transition={{ delay: index * 0.05, duration: 0.55 }}
           >
-            <div className="timeline-marker" />
-            <div className="timeline-content glass-card">
-              <span className="card-label">{role.dates}</span>
-              <h3>{role.role}</h3>
-              <p className="company">{role.company}</p>
-              <p>{role.summary}</p>
+            <div className="timeline-top">
+              <div>
+                <h3>{role.role}</h3>
+                <span>{role.company}</span>
+              </div>
+              <time>{role.dates}</time>
+            </div>
+            <p>{role.summary}</p>
+            <div className="chip-row">
+              {role.tags.map((tag) => (
+                <span className="chip" key={tag}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <div className="project-details">
               <ul>
                 {role.bullets.map((bullet) => (
                   <li key={bullet}>{bullet}</li>
@@ -258,26 +312,40 @@ function Travel() {
         eyebrow="Digital passport"
         title="Travel stories that make the site feel human."
       />
-      <div className="passport-shell">
-        <div className="route-line" aria-hidden="true" />
-        {travel.map((destination, index) => (
-          <motion.article
-            className="travel-card"
-            key={destination.city}
-            {...fadeUp}
-            transition={{ delay: index * 0.08, duration: 0.55 }}
-          >
-            <span className="stamp">{destination.badge}</span>
-            <h3>{destination.city}</h3>
-            <p className="country">{destination.country}</p>
-            <p>{destination.story}</p>
-            <div className="tag-row">
-              {destination.tags.map((tag) => (
-                <span key={tag}>{tag}</span>
-              ))}
-            </div>
-          </motion.article>
-        ))}
+      <div className="travel-layout">
+        <motion.div
+          className="passport-map"
+          {...fadeUp}
+          viewport={viewport}
+          transition={baseTransition}
+        >
+          <span className="stamp">Numerous countries</span>
+          <div className="route-line" aria-hidden="true" />
+          <h3>Digital Passport</h3>
+        </motion.div>
+        <div className="travel-grid">
+          {travel.map((destination, index) => (
+            <motion.article
+              className="travel-card"
+              key={destination.city}
+              {...fadeUp}
+              viewport={viewport}
+              transition={{ delay: index * 0.08, duration: 0.55 }}
+            >
+              <span className="tag">{destination.badge}</span>
+              <h3>{destination.city}</h3>
+              <p>{destination.country}</p>
+              <p>{destination.story}</p>
+              <div className="chip-row">
+                {destination.tags.map((tag) => (
+                  <span className="chip" key={tag}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </motion.article>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -287,12 +355,13 @@ function Beyond() {
   return (
     <section className="section" id="beyond">
       <SectionIntro eyebrow="Beyond the code" title="Interests that shape the work." />
-      <div className="interest-strip">
+      <div className="interest-grid">
         {interests.map((interest, index) => (
           <motion.article
             className="interest-card"
             key={interest.title}
             {...fadeUp}
+            viewport={viewport}
             transition={{ delay: index * 0.04, duration: 0.5 }}
           >
             <h3>{interest.title}</h3>
@@ -306,14 +375,20 @@ function Beyond() {
 
 function Contact() {
   return (
-    <motion.section className="section contact-panel" id="contact" {...fadeUp}>
+    <motion.section
+      className="section contact-panel"
+      id="contact"
+      {...fadeUp}
+      viewport={viewport}
+      transition={baseTransition}
+    >
       <div>
         <p className="eyebrow">Contact</p>
         <h2>Reach out about software roles, projects, travel, or anything interesting.</h2>
       </div>
-      <div className="contact-links">
+      <div className="hero-actions">
         {profile.links.map((link) => (
-          <a key={link.label} href={link.href}>
+          <a className="button secondary" key={link.label} href={link.href}>
             {link.label}
           </a>
         ))}
@@ -322,11 +397,27 @@ function Contact() {
   );
 }
 
-function SectionIntro({ eyebrow, title }: { eyebrow: string; title: string }) {
+function SectionIntro({
+  eyebrow,
+  title,
+  body,
+}: {
+  eyebrow: string;
+  title: string;
+  body?: string;
+}) {
   return (
-    <motion.div className="section-intro" {...fadeUp}>
-      <p className="eyebrow">{eyebrow}</p>
-      <h2>{title}</h2>
+    <motion.div
+      className="section-heading"
+      {...fadeUp}
+      viewport={viewport}
+      transition={baseTransition}
+    >
+      <div>
+        <p className="eyebrow">{eyebrow}</p>
+        <h2>{title}</h2>
+      </div>
+      {body ? <p>{body}</p> : null}
     </motion.div>
   );
 }
