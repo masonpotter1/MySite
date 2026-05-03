@@ -7,7 +7,7 @@ import {
   projects,
   skillGroups,
   stats,
-  travel,
+  travelChapters,
 } from "./data/siteContent";
 import "./styles.css";
 
@@ -19,6 +19,7 @@ const fadeUp: Variants = {
 const viewport = { once: true, amount: 0.2 };
 const baseTransition = { duration: 0.6, ease: "easeOut" as const };
 const navigation = [
+  { label: "Tinkering", href: "#tinkering" },
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
@@ -39,6 +40,7 @@ function App() {
         <Header />
         <main id="main-content" tabIndex={-1}>
           <Hero />
+          <Tinkering />
           <About />
           <Skills />
           <Projects />
@@ -82,8 +84,9 @@ function Hero() {
       <m.div className="hero-copy" {...fadeUp} viewport={viewport} transition={baseTransition}>
         <p className="eyebrow">Digital passport / technical portfolio</p>
         <h1>{profile.name}</h1>
-        <p className="hero-subtitle">
-          {profile.title} @ {profile.company}
+        <p className="hero-subtitle">{profile.statusLine}</p>
+        <p className="hero-credential">
+          Previously {profile.lastRoleTitle} @ {profile.lastRoleCompany} · {profile.specialty}
         </p>
         <p>{profile.headline}</p>
         <div className="hero-actions">
@@ -98,7 +101,7 @@ function Hero() {
           </a>
         </div>
         <div className="chip-row" aria-label="Professional highlights">
-          {[profile.specialty, profile.location, profile.education].map((highlight) => (
+          {[profile.location, profile.education, "Email-first contact"].map((highlight) => (
             <span className="chip" key={highlight}>
               {highlight}
             </span>
@@ -125,11 +128,12 @@ function Hero() {
             MP
           </div>
           <div className="profile-card-content">
-            <p className="eyebrow">Currently</p>
-            <h2>Building enterprise recruiting software</h2>
+            <p className="eyebrow">Snapshot</p>
+            <h2>Engineering credibility, slower pace</h2>
             <p>
-              Full-stack ATS work, scalable document workflows, regression test
-              optimization, and polished web experiences.
+              Recent enterprise ATS work at scale, a long consulting arc through
+              CloutSites, and a portfolio of projects that span mobile, data, web,
+              and this site itself.
             </p>
           </div>
         </div>
@@ -146,12 +150,31 @@ function Hero() {
   );
 }
 
+function Tinkering() {
+  return (
+    <section className="section tinkering-section" id="tinkering">
+      <m.div {...fadeUp} viewport={viewport} transition={baseTransition}>
+        <p className="eyebrow">What I am tinkering with</p>
+        <h2 className="tinkering-title">Small experiments, sharp curiosity.</h2>
+        <p className="tinkering-copy">{profile.tinkeringIntro}</p>
+        <div className="chip-row" aria-label="Current tinkering topics">
+          {profile.tinkeringChips.map((chip) => (
+            <span className="chip tinkering-chip" key={chip}>
+              {chip}
+            </span>
+          ))}
+        </div>
+      </m.div>
+    </section>
+  );
+}
+
 function About() {
   return (
     <section className="section" id="about">
       <SectionIntro
         eyebrow="About"
-        title="Professional enough for recruiters. Personal enough to remember."
+        title="A capable engineer, intentionally unhurried."
         body={profile.intro}
       />
       <m.div
@@ -161,17 +184,9 @@ function About() {
         transition={baseTransition}
       >
         <div className="panel">
-          <p>
-            I am a full-stack software developer based in Oklahoma City, currently
-            working on Applicant Tracking System software at Paycom. I enjoy
-            building reliable business tools, clean user experiences, and systems
-            that make complicated workflows easier to manage.
-          </p>
-          <p>
-            My background spans enterprise recruiting software, healthcare web
-            operations, financial services, small-business consulting, and hands-on
-            projects across mobile, database, and web development.
-          </p>
+          {profile.aboutParagraphs.map((paragraph) => (
+            <p key={paragraph.id}>{paragraph.text}</p>
+          ))}
         </div>
         <div className="panel highlight-list">
           <div className="highlight">
@@ -246,12 +261,18 @@ function Projects() {
                 <h3>{project.title}</h3>
                 <p>{project.subtitle}</p>
                 <p>{project.description}</p>
+                <p className="project-teaser">{project.teaser}</p>
                 <span className="details-hint">View details</span>
               </summary>
               <div className="project-details">
-                <ul className="project-detail-list">
-                  <li>{project.impact}</li>
-                </ul>
+                <dl className="detail-grid">
+                  {project.details.map((block) => (
+                    <div className="detail-block" key={block.label}>
+                      <dt>{block.label}</dt>
+                      <dd>{block.body}</dd>
+                    </div>
+                  ))}
+                </dl>
                 <div className="chip-row">
                   {project.tech.map((tech) => (
                     <span className="chip" key={tech}>
@@ -273,7 +294,7 @@ function Experience() {
     <section className="section" id="experience">
       <SectionIntro
         eyebrow="Experience"
-        title="A timeline of enterprise software, consulting, and business context."
+        title="From enterprise scale to independent work—and a sabbatical reset."
       />
       <div className="timeline">
         {experiences.map((role, index) => (
@@ -318,7 +339,7 @@ function Travel() {
     <section className="section travel-section" id="travel">
       <SectionIntro
         eyebrow="Digital passport"
-        title="Travel stories that make the site feel human."
+        title="Travel chapters: cities, coastlines, and design-shaped memories."
       />
       <div className="travel-layout">
         <m.div
@@ -327,28 +348,47 @@ function Travel() {
           viewport={viewport}
           transition={baseTransition}
         >
-          <span className="stamp">Numerous countries</span>
+          <span className="stamp">Chapters, not checklists</span>
           <div className="route-line" aria-hidden="true" />
           <h3>Digital Passport</h3>
         </m.div>
-        <div className="travel-grid">
-          {travel.map((destination, index) => (
+        <div className="travel-chapters">
+          {travelChapters.map((chapter, index) => (
             <m.article
-              className="travel-card"
-              key={destination.city}
+              className="travel-chapter"
+              key={chapter.id}
+              style={{ borderTop: `3px solid ${chapter.accent}` }}
               {...fadeUp}
               viewport={viewport}
-              transition={{ delay: index * 0.08, duration: 0.55 }}
+              transition={{ delay: index * 0.06, duration: 0.55 }}
             >
-              <span className="tag">{destination.badge}</span>
-              <h3>{destination.city}</h3>
-              <p>{destination.country}</p>
-              <p>{destination.story}</p>
+              <div className="travel-chapter-head">
+                <span className="tag">{chapter.badge}</span>
+                <span className="travel-when">{chapter.when}</span>
+              </div>
+              <h3>{chapter.title}</h3>
+              <p className="travel-where">{chapter.where}</p>
+              <p>{chapter.story}</p>
+              <p className="travel-highlights-label">Highlights</p>
+              <ul className="travel-highlight-list">
+                {chapter.highlights.map((spot) => (
+                  <li key={spot}>{spot}</li>
+                ))}
+              </ul>
               <div className="chip-row">
-                {destination.tags.map((tag) => (
+                {chapter.tags.map((tag) => (
                   <span className="chip" key={tag}>
                     {tag}
                   </span>
+                ))}
+              </div>
+              <div className="photo-masonry" aria-label="Travel photo placeholders">
+                {chapter.images.map((img) => (
+                  <figure className="photo-placeholder" key={img.label}>
+                    <figcaption>{img.label}</figcaption>
+                    <span aria-hidden="true">Photo soon</span>
+                    <span className="sr-only">{img.alt}</span>
+                  </figure>
                 ))}
               </div>
             </m.article>
