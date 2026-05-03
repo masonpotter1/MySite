@@ -1,3 +1,4 @@
+import { useRef, type MutableRefObject } from "react";
 import { LazyMotion, domAnimation, m, type Variants } from "framer-motion";
 import {
   education,
@@ -19,12 +20,12 @@ const fadeUp: Variants = {
 const viewport = { once: true, amount: 0.2 };
 const baseTransition = { duration: 0.6, ease: "easeOut" as const };
 const navigation = [
-  { label: "Tinkering", href: "#tinkering" },
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
   { label: "Travel", href: "#travel" },
+  { label: "Curiosities", href: "#tinkering" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -40,13 +41,13 @@ function App() {
         <Header />
         <main id="main-content" tabIndex={-1}>
           <Hero />
-          <Tinkering />
           <About />
           <Skills />
           <Projects />
           <Experience />
           <Travel />
           <Beyond />
+          <Tinkering />
           <Contact />
         </main>
         <footer className="footer">
@@ -83,6 +84,10 @@ function Hero() {
     <section className="hero section" id="top">
       <m.div className="hero-copy" {...fadeUp} viewport={viewport} transition={baseTransition}>
         <p className="eyebrow">Digital passport / technical portfolio</p>
+        <div className="hero-edu-badges" aria-label="Education">
+          <span className="chip chip-edu-major">{profile.educationMajor}</span>
+          <span className="chip chip-edu-minor">{profile.educationMinor}</span>
+        </div>
         <h1>{profile.name}</h1>
         <p className="hero-subtitle">{profile.statusLine}</p>
         <p className="hero-credential">
@@ -101,7 +106,8 @@ function Hero() {
           </a>
         </div>
         <div className="chip-row" aria-label="Professional highlights">
-          {[profile.location, profile.education, "Email-first contact"].map((highlight) => (
+          {[profile.location, profile.educationSchool, profile.graduation, "Email-first contact"].map(
+            (highlight) => (
             <span className="chip" key={highlight}>
               {highlight}
             </span>
@@ -154,14 +160,24 @@ function Tinkering() {
   return (
     <section className="section tinkering-section" id="tinkering">
       <m.div {...fadeUp} viewport={viewport} transition={baseTransition}>
-        <p className="eyebrow">What I am tinkering with</p>
-        <h2 className="tinkering-title">Small experiments, sharp curiosity.</h2>
-        <p className="tinkering-copy">{profile.tinkeringIntro}</p>
-        <div className="chip-row" aria-label="Current tinkering topics">
-          {profile.tinkeringChips.map((chip) => (
-            <span className="chip tinkering-chip" key={chip}>
-              {chip}
-            </span>
+        <p className="eyebrow">Curiosities</p>
+        <h2 className="tinkering-title">Small threads I keep pulling on.</h2>
+        <p className="tinkering-lede">
+          Not a roadmap—just focused experiments. Nothing here is trading advice or a performance claim.
+        </p>
+        <div className="tinkering-grid">
+          {profile.tinkeringItems.map((item) => (
+            <article className="tinkering-card" key={item.id}>
+              <h3>{item.label}</h3>
+              <p className="tinkering-what">
+                <span className="tinkering-kicker">What</span>
+                {item.what}
+              </p>
+              <p className="tinkering-why">
+                <span className="tinkering-kicker">Why</span>
+                {item.why}
+              </p>
+            </article>
           ))}
         </div>
       </m.div>
@@ -174,7 +190,7 @@ function About() {
     <section className="section" id="about">
       <SectionIntro
         eyebrow="About"
-        title="A capable engineer, intentionally unhurried."
+        title="Engineering depth, human pace."
         body={profile.intro}
       />
       <m.div
@@ -192,7 +208,7 @@ function About() {
           <div className="highlight">
             <strong>{education.school}</strong>
             <span>
-              {education.degree} - {education.graduation}
+              {education.degree} · {education.graduation}
             </span>
           </div>
           <div className="highlight">
@@ -237,6 +253,8 @@ function Skills() {
 }
 
 function Projects() {
+  const openProjectRef = useRef<string | null>(null);
+
   return (
     <section className="section" id="projects">
       <SectionIntro
@@ -245,47 +263,89 @@ function Projects() {
       />
       <div className="card-grid project-grid">
         {projects.map((project, index) => (
-          <m.article
-            className="project-card"
+          <ProjectCard
             key={project.title}
-            {...fadeUp}
-            viewport={viewport}
-            transition={{ delay: index * 0.06, duration: 0.55 }}
-          >
-            <details>
-              <summary aria-label={`Toggle details for ${project.title}`}>
-                <div className="project-meta">
-                  <span className="tag">{project.status}</span>
-                  <span>{project.title.slice(0, 2)}</span>
-                </div>
-                <h3>{project.title}</h3>
-                <p>{project.subtitle}</p>
-                <p>{project.description}</p>
-                <p className="project-teaser">{project.teaser}</p>
-                <span className="details-hint">View details</span>
-              </summary>
-              <div className="project-details">
-                <dl className="detail-grid">
-                  {project.details.map((block) => (
-                    <div className="detail-block" key={block.label}>
-                      <dt>{block.label}</dt>
-                      <dd>{block.body}</dd>
-                    </div>
-                  ))}
-                </dl>
-                <div className="chip-row">
-                  {project.tech.map((tech) => (
-                    <span className="chip" key={tech}>
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </details>
-          </m.article>
+            project={project}
+            index={index}
+            openProjectRef={openProjectRef}
+          />
         ))}
       </div>
     </section>
+  );
+}
+
+function ProjectCard({
+  project,
+  index,
+  openProjectRef,
+}: {
+  project: (typeof projects)[number];
+  index: number;
+  openProjectRef: MutableRefObject<string | null>;
+}) {
+  const detailsRef = useRef<HTMLDetailsElement>(null);
+
+  return (
+    <m.article
+      className="project-card"
+      {...fadeUp}
+      viewport={viewport}
+      transition={{ delay: index * 0.06, duration: 0.55 }}
+    >
+      <details
+        ref={detailsRef}
+        className="project-details-root"
+        onToggle={(event) => {
+          const el = event.currentTarget;
+          if (!el.open) {
+            if (openProjectRef.current === project.title) {
+              openProjectRef.current = null;
+            }
+            return;
+          }
+          if (openProjectRef.current && openProjectRef.current !== project.title) {
+            document
+              .querySelectorAll<HTMLDetailsElement>("details.project-details-root[open]")
+              .forEach((other) => {
+                if (other !== el) {
+                  other.open = false;
+                }
+              });
+          }
+          openProjectRef.current = project.title;
+        }}
+      >
+        <summary aria-label={`Toggle details for ${project.title}`}>
+          <div className="project-meta">
+            <span className="tag">{project.status}</span>
+            <span>{project.title.slice(0, 2)}</span>
+          </div>
+          <h3>{project.title}</h3>
+          <p>{project.subtitle}</p>
+          <p>{project.description}</p>
+          <p className="project-teaser">{project.teaser}</p>
+          <span className="details-hint" data-open-label="View less" data-closed-label="View details" />
+        </summary>
+        <div className="project-details">
+          <dl className="detail-grid">
+            {project.details.map((block) => (
+              <div className="detail-block" key={block.label}>
+                <dt>{block.label}</dt>
+                <dd>{block.body}</dd>
+              </div>
+            ))}
+          </dl>
+          <div className="chip-row">
+            {project.tech.map((tech) => (
+              <span className="chip" key={tech}>
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      </details>
+    </m.article>
   );
 }
 
@@ -294,7 +354,7 @@ function Experience() {
     <section className="section" id="experience">
       <SectionIntro
         eyebrow="Experience"
-        title="From enterprise scale to independent work—and a sabbatical reset."
+        title="From enterprise scale to independent work—with room to explore."
       />
       <div className="timeline">
         {experiences.map((role, index) => (

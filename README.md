@@ -37,6 +37,7 @@ src/data/siteContent.ts
 Update this file to change:
 
 - Profile headline, email, and links
+- Curiosities / tinkering items (what + why for each)
 - Resume-backed experience
 - Skills
 - Projects
@@ -45,6 +46,16 @@ Update this file to change:
 - Education details
 
 The UI components read from this file, so routine updates should not require editing the layout.
+
+## Resume PDF
+
+The site links to:
+
+```text
+public/resume.pdf
+```
+
+Replace that file to update the downloadable resume. A copy may also exist under `docs/` for source tracking.
 
 ## Deploying to Vercel
 
