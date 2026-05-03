@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0c141c" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
     <meta
       name="description"
       content="Mason Potter is a full-stack software engineer with past Paycom ATS work at scale, independent consulting through CloutSites, and a portfolio spanning data, web, mobile, and travel."
@@ -14,27 +17,14 @@
     />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="canonical" href="https://masonpotter.dev/" />
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Mason Potter",
-        "jobTitle": "Software Engineer",
-        "email": "masonpotter1@gmail.com",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Oklahoma City",
-          "addressRegion": "OK",
-          "addressCountry": "US"
-        },
-        "alumniOf": {
-          "@type": "CollegeOrUniversity",
-          "name": "Kansas State University"
-        },
-        "sameAs": ["https://www.linkedin.com/in/masonpotter-43/"]
-      }
-    </script>
+    <% if (VITE_SITE_URL) { %>
+    <link rel="canonical" href="<%= VITE_SITE_URL.replace(/\/$/, '') %>/" />
+    <meta property="og:url" content="<%= VITE_SITE_URL.replace(/\/$/, '') %>/" />
+    <meta name="twitter:url" content="<%= VITE_SITE_URL.replace(/\/$/, '') %>/" />
+    <meta property="og:image" content="<%= VITE_SITE_URL.replace(/\/$/, '') %>/og-image.png" />
+    <meta name="twitter:image" content="<%= VITE_SITE_URL.replace(/\/$/, '') %>/og-image.png" />
+    <% } %>
+    <script type="application/ld+json"><%- personJsonLd %></script>
     <title>Mason Potter | Software Developer</title>
   </head>
   <body>

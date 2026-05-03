@@ -13,15 +13,18 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
+    "framer-motion": "latest",
     "react": "latest",
-    "react-dom": "latest",
-    "framer-motion": "latest"
+    "react-dom": "latest"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "latest",
+    "@types/node": "^25.6.0",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "@vitejs/plugin-react": "latest",
     "typescript": "latest",
-    "vite": "latest"
+    "vite": "latest",
+    "vite-plugin-html": "^3.2.2"
   }
 }

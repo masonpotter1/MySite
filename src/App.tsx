@@ -51,7 +51,12 @@ function App() {
           <Contact />
         </main>
         <footer className="footer">
-          Built with React, TypeScript, and Vite. Content is structured for quick updates.
+          <span>Built with React, TypeScript, and Vite.</span>
+          <span className="footer-meta">
+            <a href="/privacy.html">Privacy</a>
+            <span aria-hidden="true">·</span>
+            <span>Vercel Web Analytics (when deployed on Vercel)</span>
+          </span>
         </footer>
       </div>
     </LazyMotion>
