@@ -48,6 +48,32 @@ a {
   color: inherit;
 }
 
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 3px solid rgba(244, 212, 123, 0.85);
+  outline-offset: 4px;
+}
+
+.skip-link {
+  background: var(--gold-strong);
+  border-radius: 999px;
+  color: #101820;
+  font-weight: 900;
+  left: 1rem;
+  padding: 0.75rem 1rem;
+  position: fixed;
+  text-decoration: none;
+  top: 1rem;
+  transform: translateY(-150%);
+  transition: transform 160ms ease;
+  z-index: 20;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 .app {
   min-height: 100vh;
   overflow-x: clip;
@@ -272,7 +298,6 @@ h1 {
 .button:hover,
 .button:focus-visible {
   box-shadow: 0 14px 38px rgba(212, 181, 106, 0.18);
-  outline: none;
   transform: translateY(-2px);
 }
 
@@ -608,6 +633,15 @@ h1 {
   line-height: 1.65;
 }
 
+.project-card details[open] .expand-indicator {
+  background: rgba(212, 181, 106, 0.22);
+  color: var(--gold-strong);
+}
+
+.project-card details[open] .expand-indicator::after {
+  content: " open";
+}
+
 .project-icon {
   align-items: center;
   background: linear-gradient(135deg, rgba(212, 181, 106, 0.35), rgba(143, 166, 191, 0.22));
@@ -629,6 +663,15 @@ h1 {
   margin-bottom: 0.75rem;
 }
 
+.expand-indicator {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 900;
+  padding: 0.35rem 0.6rem;
+}
+
 .tag {
   background: rgba(212, 181, 106, 0.14);
   border: 1px solid rgba(212, 181, 106, 0.28);
@@ -642,7 +685,8 @@ h1 {
 
 .project-details {
   border-top: 1px solid rgba(255, 255, 255, 0.09);
-  padding: 0 1.25rem 1.25rem;
+  margin-top: 0.5rem;
+  padding: 1rem 1.25rem 1.25rem;
 }
 
 .timeline {
@@ -832,6 +876,11 @@ h1 {
   color: var(--muted);
   line-height: 1.7;
   max-width: 62ch;
+}
+
+section:not(.hero) {
+  content-visibility: auto;
+  contain-intrinsic-size: 900px;
 }
 
 .footer {

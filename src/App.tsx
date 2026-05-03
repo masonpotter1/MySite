@@ -1,4 +1,4 @@
-import { motion, type Variants } from "framer-motion";
+import { LazyMotion, domAnimation, m, type Variants } from "framer-motion";
 import {
   education,
   experiences,
@@ -18,37 +18,44 @@ const fadeUp: Variants = {
 
 const viewport = { once: true, amount: 0.2 };
 const baseTransition = { duration: 0.6, ease: "easeOut" as const };
+const navigation = [
+  { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
+  { label: "Projects", href: "#projects" },
+  { label: "Experience", href: "#experience" },
+  { label: "Travel", href: "#travel" },
+  { label: "Contact", href: "#contact" },
+];
 
 function App() {
   return (
-    <div className="app">
-      <div className="ambient ambient-one" />
-      <div className="ambient ambient-two" />
-      <Header />
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Travel />
-        <Beyond />
-        <Contact />
-      </main>
-    </div>
+    <LazyMotion features={domAnimation} strict>
+      <div className="app">
+        <a className="skip-link" href="#main-content">
+          Skip to content
+        </a>
+        <div className="ambient ambient-one" />
+        <div className="ambient ambient-two" />
+        <Header />
+        <main id="main-content" tabIndex={-1}>
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Experience />
+          <Travel />
+          <Beyond />
+          <Contact />
+        </main>
+        <footer className="footer">
+          Built with React, TypeScript, and Vite. Content is structured for quick updates.
+        </footer>
+      </div>
+    </LazyMotion>
   );
 }
 
 function Header() {
-  const navigation = [
-    { label: "About", href: "#about" },
-    { label: "Skills", href: "#skills" },
-    { label: "Projects", href: "#projects" },
-    { label: "Experience", href: "#experience" },
-    { label: "Travel", href: "#travel" },
-    { label: "Contact", href: "#contact" },
-  ];
-
   return (
     <header className="topbar">
       <a className="brand" href="#top" aria-label="Mason Potter home">
@@ -72,7 +79,7 @@ function Header() {
 function Hero() {
   return (
     <section className="hero section" id="top">
-      <motion.div className="hero-copy" {...fadeUp} viewport={viewport} transition={baseTransition}>
+      <m.div className="hero-copy" {...fadeUp} viewport={viewport} transition={baseTransition}>
         <p className="eyebrow">Digital passport / technical portfolio</p>
         <h1>{profile.name}</h1>
         <p className="hero-subtitle">
@@ -104,9 +111,9 @@ function Hero() {
             </a>
           ))}
         </div>
-      </motion.div>
+      </m.div>
 
-      <motion.aside
+      <m.aside
         className="hero-visual"
         {...fadeUp}
         viewport={viewport}
@@ -134,7 +141,7 @@ function Hero() {
             </div>
           ))}
         </div>
-      </motion.aside>
+      </m.aside>
     </section>
   );
 }
@@ -147,7 +154,7 @@ function About() {
         title="Professional enough for recruiters. Personal enough to remember."
         body={profile.intro}
       />
-      <motion.div
+      <m.div
         className="about-grid"
         {...fadeUp}
         viewport={viewport}
@@ -182,7 +189,7 @@ function About() {
             <span>{education.courses.join(" / ")}</span>
           </div>
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 }
@@ -193,7 +200,7 @@ function Skills() {
       <SectionIntro eyebrow="Technical skills" title="A practical full-stack toolbox." />
       <div className="card-grid skills-grid">
         {skillGroups.map((group, index) => (
-          <motion.article
+          <m.article
             className="skill-card glass-card"
             key={group.title}
             {...fadeUp}
@@ -207,7 +214,7 @@ function Skills() {
                 <li key={skill}>{skill}</li>
               ))}
             </ul>
-          </motion.article>
+          </m.article>
         ))}
       </div>
     </section>
@@ -223,7 +230,7 @@ function Projects() {
       />
       <div className="card-grid project-grid">
         {projects.map((project, index) => (
-          <motion.article
+          <m.article
             className="project-card"
             key={project.title}
             {...fadeUp}
@@ -231,7 +238,7 @@ function Projects() {
             transition={{ delay: index * 0.06, duration: 0.55 }}
           >
             <details>
-              <summary>
+              <summary aria-label={`Toggle details for ${project.title}`}>
                 <div className="project-meta">
                   <span className="tag">{project.status}</span>
                   <span>{project.title.slice(0, 2)}</span>
@@ -239,6 +246,7 @@ function Projects() {
                 <h3>{project.title}</h3>
                 <p>{project.subtitle}</p>
                 <p>{project.description}</p>
+                <span className="details-hint">View details</span>
               </summary>
               <div className="project-details">
                 <ul className="project-detail-list">
@@ -253,7 +261,7 @@ function Projects() {
                 </div>
               </div>
             </details>
-          </motion.article>
+          </m.article>
         ))}
       </div>
     </section>
@@ -269,7 +277,7 @@ function Experience() {
       />
       <div className="timeline">
         {experiences.map((role, index) => (
-          <motion.article
+          <m.article
             className="timeline-item"
             key={`${role.company}-${role.role}`}
             {...fadeUp}
@@ -298,7 +306,7 @@ function Experience() {
                 ))}
               </ul>
             </div>
-          </motion.article>
+          </m.article>
         ))}
       </div>
     </section>
@@ -313,7 +321,7 @@ function Travel() {
         title="Travel stories that make the site feel human."
       />
       <div className="travel-layout">
-        <motion.div
+        <m.div
           className="passport-map"
           {...fadeUp}
           viewport={viewport}
@@ -322,10 +330,10 @@ function Travel() {
           <span className="stamp">Numerous countries</span>
           <div className="route-line" aria-hidden="true" />
           <h3>Digital Passport</h3>
-        </motion.div>
+        </m.div>
         <div className="travel-grid">
           {travel.map((destination, index) => (
-            <motion.article
+            <m.article
               className="travel-card"
               key={destination.city}
               {...fadeUp}
@@ -343,7 +351,7 @@ function Travel() {
                   </span>
                 ))}
               </div>
-            </motion.article>
+            </m.article>
           ))}
         </div>
       </div>
@@ -357,7 +365,7 @@ function Beyond() {
       <SectionIntro eyebrow="Beyond the code" title="Interests that shape the work." />
       <div className="interest-grid">
         {interests.map((interest, index) => (
-          <motion.article
+          <m.article
             className="interest-card"
             key={interest.title}
             {...fadeUp}
@@ -366,7 +374,7 @@ function Beyond() {
           >
             <h3>{interest.title}</h3>
             <p>{interest.detail}</p>
-          </motion.article>
+          </m.article>
         ))}
       </div>
     </section>
@@ -375,7 +383,7 @@ function Beyond() {
 
 function Contact() {
   return (
-    <motion.section
+    <m.section
       className="section contact-panel"
       id="contact"
       {...fadeUp}
@@ -393,7 +401,7 @@ function Contact() {
           </a>
         ))}
       </div>
-    </motion.section>
+    </m.section>
   );
 }
 
@@ -407,7 +415,7 @@ function SectionIntro({
   body?: string;
 }) {
   return (
-    <motion.div
+    <m.div
       className="section-heading"
       {...fadeUp}
       viewport={viewport}
@@ -418,7 +426,7 @@ function SectionIntro({
         <h2>{title}</h2>
       </div>
       {body ? <p>{body}</p> : null}
-    </motion.div>
+    </m.div>
   );
 }
 
