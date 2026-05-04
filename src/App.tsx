@@ -403,6 +403,13 @@ function Experience() {
 }
 
 function Travel() {
+  const regionCount = travelRegions.length;
+  const countryCount = travelRegions.reduce((sum, r) => sum + r.countries.length, 0);
+  const spotCount = travelRegions.reduce(
+    (sum, r) => sum + r.countries.reduce((s, c) => s + c.spots.length, 0),
+    0,
+  );
+
   return (
     <section className="section travel-section" id="travel">
       <SectionIntro
@@ -410,20 +417,58 @@ function Travel() {
         title="By region: USA, Europe, Asia—then cities and stories inside."
       />
       <div className="travel-layout">
-        <m.div
-          className="passport-map"
-          {...fadeUp}
-          viewport={viewport}
-          transition={baseTransition}
-        >
-          <span className="stamp">Regions first</span>
-          <div className="route-line" aria-hidden="true" />
-          <h3>Digital Passport</h3>
-        </m.div>
+        <aside className="passport-panel" aria-label="Travel overview">
+          <div className="passport-panel-inner">
+            <span className="stamp">Digital passport</span>
+            <h3 className="passport-title">Travel, organized like a filing system with better lighting.</h3>
+            <p className="passport-lede">
+              Each region is a container. Inside: countries, then city cards with the story, tags, and photo
+              placeholders.
+            </p>
+
+            <div className="passport-stats" aria-label="Travel section stats">
+              <div>
+                <strong>{regionCount}</strong>
+                <span>regions</span>
+              </div>
+              <div>
+                <strong>{countryCount}</strong>
+                <span>countries</span>
+              </div>
+              <div>
+                <strong>{spotCount}</strong>
+                <span>stops</span>
+              </div>
+            </div>
+
+            <div className="passport-divider" aria-hidden="true" />
+
+            <p className="passport-kicker">Jump to a region</p>
+            <nav className="passport-nav" aria-label="Jump to travel regions">
+              {travelRegions.map((region) => (
+                <a key={region.id} className="passport-nav-link" href={`#travel-region-${region.id}`}>
+                  <span className="passport-nav-dot" style={{ background: region.accent }} aria-hidden="true" />
+                  {region.title}
+                </a>
+              ))}
+            </nav>
+
+            <div className="passport-divider" aria-hidden="true" />
+
+            <div className="passport-foot">
+              <p className="passport-kicker">Home base</p>
+              <p className="passport-footline">{profile.location}</p>
+              <p className="passport-note">Photos are placeholders for now—swap them in when you curate the set.</p>
+            </div>
+
+            <div className="route-line" aria-hidden="true" />
+          </div>
+        </aside>
         <div className="travel-region-stack">
           {travelRegions.map((region, regionIndex) => (
             <m.section
               className="travel-region"
+              id={`travel-region-${region.id}`}
               key={region.id}
               style={{ borderTop: `3px solid ${region.accent}` }}
               {...fadeUp}

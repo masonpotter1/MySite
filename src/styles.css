@@ -914,30 +914,150 @@ h1 {
   position: relative;
 }
 
-.passport-map {
+.travel-section {
+  content-visibility: visible;
+}
+
+.passport-panel {
+  align-self: start;
+  position: sticky;
+  top: 6.5rem;
+}
+
+.passport-panel-inner {
   background:
-    radial-gradient(circle at 22% 20%, rgba(212, 181, 106, 0.3), transparent 2rem),
-    radial-gradient(circle at 76% 52%, rgba(143, 166, 191, 0.32), transparent 2rem),
-    linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
-  border: 1px solid rgba(255, 255, 255, 0.1);
+    radial-gradient(circle at 18% 18%, rgba(212, 181, 106, 0.22), transparent 46%),
+    radial-gradient(circle at 88% 12%, rgba(143, 166, 191, 0.22), transparent 40%),
+    linear-gradient(165deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-xl);
-  min-height: 28rem;
+  box-shadow: var(--shadow);
+  min-height: 22rem;
   overflow: hidden;
-  padding: 1.3rem;
+  padding: 1.35rem 1.25rem 1.5rem;
   position: relative;
 }
 
+.passport-title {
+  font-size: clamp(1.35rem, 2.6vw, 1.85rem);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin: 0.85rem 0 0.65rem;
+}
+
+.passport-lede {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  margin: 0 0 1.1rem;
+}
+
+.passport-stats {
+  display: grid;
+  gap: 0.65rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.passport-stats div {
+  background: rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: 0.65rem 0.55rem;
+  text-align: center;
+}
+
+.passport-stats strong {
+  color: var(--gold-strong);
+  display: block;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.passport-stats span {
+  color: var(--muted);
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  margin-top: 0.15rem;
+  text-transform: uppercase;
+}
+
+.passport-divider {
+  background: rgba(255, 255, 255, 0.08);
+  height: 1px;
+  margin: 1.1rem 0;
+}
+
+.passport-kicker {
+  color: var(--gold-strong);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  margin: 0 0 0.55rem;
+  text-transform: uppercase;
+}
+
+.passport-nav {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.passport-nav-link {
+  align-items: center;
+  border-radius: 999px;
+  color: #dce5eb;
+  display: flex;
+  font-size: 0.88rem;
+  font-weight: 800;
+  gap: 0.55rem;
+  padding: 0.45rem 0.55rem;
+  text-decoration: none;
+  transition:
+    background 160ms ease,
+    color 160ms ease;
+}
+
+.passport-nav-link:hover,
+.passport-nav-link:focus-visible {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  outline: none;
+}
+
+.passport-nav-dot {
+  border-radius: 999px;
+  flex: 0 0 auto;
+  height: 0.55rem;
+  width: 0.55rem;
+}
+
+.passport-footline {
+  color: #dce5eb;
+  font-weight: 800;
+  margin: 0 0 0.45rem;
+}
+
+.passport-note {
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
 .route-line {
-  border: 2px dashed rgba(212, 181, 106, 0.5);
+  border: 2px dashed rgba(212, 181, 106, 0.45);
   border-bottom: 0;
   border-left: 0;
   border-radius: 50%;
-  height: 17rem;
-  left: 16%;
+  height: 11rem;
+  opacity: 0.55;
+  pointer-events: none;
   position: absolute;
-  top: 24%;
-  transform: rotate(-16deg);
-  width: 22rem;
+  right: -3.5rem;
+  top: 42%;
+  transform: rotate(-18deg);
+  width: 14rem;
 }
 
 .stamp {
@@ -952,14 +1072,6 @@ h1 {
   position: relative;
   text-transform: uppercase;
   transform: rotate(-8deg);
-}
-
-.passport-map h3 {
-  bottom: 1.4rem;
-  font-size: 2.3rem;
-  left: 1.4rem;
-  letter-spacing: -0.06em;
-  position: absolute;
 }
 
 .travel-grid {
@@ -983,6 +1095,7 @@ h1 {
   border-radius: var(--radius-xl);
   border-top: 3px solid rgba(212, 181, 106, 0.55);
   padding: 1.35rem 1.25rem 1.5rem;
+  scroll-margin-top: 7rem;
 }
 
 .travel-region-head {
@@ -1286,6 +1399,11 @@ section:not(.hero) {
     grid-template-columns: 1fr;
   }
 
+  .passport-panel {
+    position: static;
+    top: auto;
+  }
+
   .hero {
     padding-top: 10rem;
   }
@@ -1367,15 +1485,11 @@ section:not(.hero) {
   }
 
   .route-line {
-    height: 9rem;
-    left: 8%;
-    opacity: 0.45;
-    top: 12%;
-    width: 14rem;
+    display: none;
   }
 
-  .passport-map {
-    min-height: 18rem;
+  .passport-panel-inner {
+    min-height: 0;
   }
 
   .section {
