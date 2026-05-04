@@ -26,6 +26,7 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -259,8 +260,6 @@ h1 {
 }
 
 .tinkering-section {
-  content-visibility: auto;
-  contain-intrinsic-size: 520px;
   padding-bottom: 4rem;
 }
 
@@ -904,6 +903,7 @@ h1 {
 
 .travel-layout,
 .passport-shell {
+  align-items: stretch;
   display: grid;
   gap: 1rem;
   grid-template-columns: 0.78fr 1.22fr;
@@ -919,7 +919,10 @@ h1 {
 }
 
 .passport-panel {
-  align-self: start;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
   position: sticky;
   top: 6.5rem;
 }
@@ -932,6 +935,9 @@ h1 {
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow);
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
   min-height: 22rem;
   overflow: hidden;
   padding: 1.35rem 1.25rem 1.5rem;
@@ -1043,6 +1049,11 @@ h1 {
   font-size: 0.86rem;
   line-height: 1.55;
   margin: 0;
+}
+
+.passport-spacer {
+  flex: 1 1 auto;
+  min-height: 1.25rem;
 }
 
 .route-line {
@@ -1335,11 +1346,6 @@ h1 {
   color: var(--muted);
   line-height: 1.7;
   max-width: 62ch;
-}
-
-section:not(.hero) {
-  content-visibility: auto;
-  contain-intrinsic-size: 900px;
 }
 
 .footer {
