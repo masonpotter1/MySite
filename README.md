@@ -113,4 +113,4 @@ Recommended Vercel settings:
 - Environment variable: `VITE_SITE_URL` = your final origin (set when domain is chosen)
 - Enable **Vercel Web Analytics** in the Vercel dashboard for the project
 
-The repo includes `vercel.json` with SPA routing that **serves real static files first** (for example `/privacy.html` and `/resume.pdf`), then falls back to `index.html` for client-side routes—plus a few conservative security headers.
+The repo includes `vercel.json` with a catch-all rewrite to `index.html` for client-side routing. Files in `public/` (for example `/privacy.html` and `/resume.pdf`) are emitted into the build output and are **served as static files** by Vercel; they are not swallowed by the SPA rewrite when the file exists. A few conservative security headers are included as well.
