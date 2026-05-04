@@ -461,19 +461,17 @@ function Travel() {
               <p className="passport-note">Photos are placeholders for now—swap them in when you curate the set.</p>
             </div>
 
+            <div className="passport-spacer" aria-hidden="true" />
             <div className="route-line" aria-hidden="true" />
           </div>
         </aside>
         <div className="travel-region-stack">
-          {travelRegions.map((region, regionIndex) => (
-            <m.section
+          {travelRegions.map((region) => (
+            <section
               className="travel-region"
               id={`travel-region-${region.id}`}
               key={region.id}
               style={{ borderTop: `3px solid ${region.accent}` }}
-              {...fadeUp}
-              viewport={viewport}
-              transition={{ delay: regionIndex * 0.05, duration: 0.55 }}
             >
               <header className="travel-region-head">
                 <span className="tag">{region.label}</span>
@@ -529,7 +527,7 @@ function Travel() {
                   </div>
                 ))}
               </div>
-            </m.section>
+            </section>
           ))}
         </div>
       </div>
