@@ -903,7 +903,7 @@ h1 {
 
 .travel-layout,
 .passport-shell {
-  align-items: stretch;
+  align-items: start;
   display: grid;
   gap: 1rem;
   grid-template-columns: 0.78fr 1.22fr;
@@ -919,10 +919,7 @@ h1 {
 }
 
 .passport-panel {
-  align-self: stretch;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
+  align-self: start;
   position: sticky;
   top: 6.5rem;
 }
@@ -935,9 +932,6 @@ h1 {
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow);
-  display: flex;
-  flex: 1 1 auto;
-  flex-direction: column;
   min-height: 22rem;
   overflow: hidden;
   padding: 1.35rem 1.25rem 1.5rem;
@@ -1049,11 +1043,6 @@ h1 {
   font-size: 0.86rem;
   line-height: 1.55;
   margin: 0;
-}
-
-.passport-spacer {
-  flex: 1 1 auto;
-  min-height: 1.25rem;
 }
 
 .route-line {

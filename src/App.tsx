@@ -461,7 +461,6 @@ function Travel() {
               <p className="passport-note">Photos are placeholders for now—swap them in when you curate the set.</p>
             </div>
 
-            <div className="passport-spacer" aria-hidden="true" />
             <div className="route-line" aria-hidden="true" />
           </div>
         </aside>
