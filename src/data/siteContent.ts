@@ -41,19 +41,32 @@ export type TravelImagePlaceholder = {
   alt: string;
 };
 
-export type TravelChapter = {
+export type TravelSpot = {
   id: string;
-  title: string;
-  /** e.g. "Summer 2022" */
-  when: string;
-  where: string;
-  badge: string;
+  name: string;
+  when?: string;
   story: string;
   tags: string[];
-  accent: string;
-  /** Cities or sub-places mentioned in the chapter */
-  highlights: string[];
+  highlights?: string[];
   images: TravelImagePlaceholder[];
+};
+
+export type TravelCountry = {
+  id: string;
+  name: string;
+  flag?: string;
+  when?: string;
+  intro?: string;
+  spots: TravelSpot[];
+};
+
+export type TravelRegion = {
+  id: string;
+  label: string;
+  title: string;
+  intro: string;
+  accent: string;
+  countries: TravelCountry[];
 };
 
 export type Interest = {
@@ -401,76 +414,214 @@ export const projects: Project[] = [
   },
 ];
 
-export const travelChapters: TravelChapter[] = [
+export const travelRegions: TravelRegion[] = [
   {
-    id: "florence-2022",
-    title: "The Florence chapter",
-    when: "June 2022 – August 2022",
-    where: "Florence, Italy",
-    badge: "Study abroad",
-    story:
-      "Two months at Florence University of the Arts (FUA), with hands-on time at FLY (Fashion Loves You), FUA's creative retail space and lab. It was a structured look at textiles, garment construction, and the architecture of clothing—studied in the middle of a city that treats design like infrastructure.",
-    tags: ["FUA", "FLY lab", "fashion", "design", "Italy"],
-    accent: "#9fd08f",
-    highlights: [
-      "Monterosso (coast)",
-      "Amalfi Coast",
-      "Venice",
-      "Florence",
-      "Pisa",
-    ],
-    images: [
-      { label: "FLY lab moment", alt: "Placeholder for a photo from the FLY lab" },
-      { label: "Florence street texture", alt: "Placeholder for a Florence street photo" },
-      { label: "Coastal Italy", alt: "Placeholder for a Mediterranean coastline photo" },
-    ],
-  },
-  {
-    id: "us-west-2026",
-    title: "American west & sandstone scale",
-    when: "Spring 2026",
-    where: "Utah · Colorado",
-    badge: "Outdoors",
-    story:
-      "A stretch of trips built around massive natural scale: long hikes, big walls of stone, and the kind of scenery that resets your sense of size.",
-    tags: ["hiking", "national parks", "landscape"],
+    id: "north-america",
+    label: "Region",
+    title: "USA & nearby",
+    intro:
+      "A lot of miles close to home: Kansas roots, big national parks, quick city hops, and a few warm-water detours.",
     accent: "#d9a875",
-    highlights: ["Zion National Park, UT", "Garden of the Gods, CO"],
-    images: [
-      { label: "Zion red rock", alt: "Placeholder for a Zion National Park photo" },
-      { label: "Garden of the Gods", alt: "Placeholder for a Garden of the Gods photo" },
+    countries: [
+      {
+        id: "usa",
+        name: "United States",
+        flag: "🇺🇸",
+        intro: "Highlights across the Lower 48—outdoors first, cities when the schedule allows.",
+        spots: [
+          {
+            id: "usa-mhk",
+            name: "Manhattan, KS (MHK)",
+            story: "Skydiving out of MHK: a ridiculous amount of fun, a clean horizon, and a good reminder that adrenaline pairs well with small-town runways.",
+            tags: ["skydiving", "K-State country", "friends"],
+            images: [{ label: "Drop zone", alt: "Placeholder for skydiving / MHK photo" }],
+          },
+          {
+            id: "usa-parks",
+            name: "National parks & sandstone",
+            when: "Spring 2026",
+            story:
+              "Utah and Colorado at full scale: Zion for towering red walls, Garden of the Gods for surreal rock geometry, and the kind of hiking days that feel like resetting the OS.",
+            tags: ["Zion", "Garden of the Gods", "hiking", "landscape"],
+            highlights: ["Zion National Park, UT", "Garden of the Gods, CO"],
+            images: [
+              { label: "Zion", alt: "Placeholder for Zion National Park photo" },
+              { label: "Garden of the Gods", alt: "Placeholder for Garden of the Gods photo" },
+            ],
+          },
+          {
+            id: "usa-cities",
+            name: "City hops",
+            story: "Quick domestic runs when you want energy without a passport: Miami heat and humidity, Dallas sprawl and steakhouse logistics, both good for people-watching.",
+            tags: ["Miami", "Dallas", "city energy"],
+            images: [
+              { label: "Miami", alt: "Placeholder for Miami photo" },
+              { label: "Dallas", alt: "Placeholder for Dallas photo" },
+            ],
+          },
+        ],
+      },
+      {
+        id: "mexico-caribbean",
+        name: "Mexico & the Caribbean",
+        flag: "🇲🇽",
+        intro: "Warm water, slower clocks, and coastlines that look edited even in real life.",
+        spots: [
+          {
+            id: "mx-mahahual",
+            name: "Mahahual, Mexico",
+            story: "Tropical coastlines and relaxed beach-town energy—good tacos, easy snorkeling, and the kind of blue water that makes you stop checking your phone.",
+            tags: ["beach", "Mexico", "slow travel"],
+            images: [{ label: "Mahahual coast", alt: "Placeholder for Mahahual beach photo" }],
+          },
+          {
+            id: "sxm",
+            name: "St. Martin / Sint Maarten",
+            story: "Island hopping energy: vivid blue water, coastal roads, and the small delight of two cultures sharing one rock.",
+            tags: ["Caribbean", "island", "coast"],
+            images: [{ label: "Caribbean water", alt: "Placeholder for St. Martin / Sint Maarten photo" }],
+          },
+        ],
+      },
     ],
   },
   {
-    id: "korea-2025",
-    title: "The South Korea loop",
-    when: "Early 2025",
-    where: "South Korea",
-    badge: "City energy",
-    story:
-      "A trip built on contrast: neon density and fast urban rhythm in Seoul, then slower coastal sprawl and markets in Busan. Great food, great trains, and a lot of walking.",
-    tags: ["Seoul", "Busan", "food", "transit"],
-    accent: "#75c6d9",
-    highlights: ["Seoul", "Busan"],
-    images: [
-      { label: "Seoul night scene", alt: "Placeholder for a Seoul city photo" },
-      { label: "Busan coastline", alt: "Placeholder for a Busan photo" },
-    ],
-  },
-  {
-    id: "europe-2024",
-    title: "European autumn",
-    when: "Fall 2024",
-    where: "Netherlands · France",
-    badge: "Cities",
-    story:
-      "A classic autumn circuit: Amsterdam's canals and bike-forward street life, then Paris for architecture, cafés, and wandering with friends.",
-    tags: ["Amsterdam", "Paris", "architecture", "cafés"],
+    id: "europe",
+    label: "Region",
+    title: "Europe",
+    intro:
+      "Study-abroad depth in Italy, then later trips for autumn cities and canal light. The through-line is architecture, food, and learning how different places solve beauty.",
     accent: "#c7b8e8",
-    highlights: ["Amsterdam, Netherlands", "Paris, France"],
-    images: [
-      { label: "Amsterdam canals", alt: "Placeholder for an Amsterdam canals photo" },
-      { label: "Paris streets", alt: "Placeholder for a Paris photo" },
+    countries: [
+      {
+        id: "italy",
+        name: "Italy",
+        flag: "🇮🇹",
+        when: "Summer 2022",
+        intro:
+          "Florence as a home base while studying at FUA and working in the FLY lab—then weekends that turned into a greatest-hits loop across Italy.",
+        spots: [
+          {
+            id: "it-florence",
+            name: "Florence",
+            story:
+              "Renaissance streets as daily context: studying fashion at Florence University of the Arts (FUA) and spending real time in FLY (Fashion Loves You), FUA's creative retail space and lab.",
+            tags: ["FUA", "FLY lab", "Renaissance", "fashion"],
+            images: [
+              { label: "FLY lab", alt: "Placeholder for FLY lab photo" },
+              { label: "Florence streets", alt: "Placeholder for Florence street photo" },
+            ],
+          },
+          {
+            id: "it-rome",
+            name: "Rome",
+            story: "Classic historic weight: big monuments, busy piazzas, and the kind of scale that makes you feel small in the best way.",
+            tags: ["Colosseum", "history", "architecture"],
+            images: [{ label: "Rome", alt: "Placeholder for Rome photo" }],
+          },
+          {
+            id: "it-pisa",
+            name: "Pisa",
+            story: "The quintessential leaning tower shot—and the silly joy of watching everyone do the same pose from slightly different angles.",
+            tags: ["Pisa", "icons", "travel comedy"],
+            images: [{ label: "Leaning Tower", alt: "Placeholder for Pisa photo" }],
+          },
+          {
+            id: "it-coast",
+            name: "Coastlines: Amalfi & Cinque Terre",
+            story:
+              "Amalfi for sweeping drops and drama, Cinque Terre (Monterosso) for cliffside color and tight coastal trails—Italy doing what Italy does best.",
+            tags: ["Amalfi Coast", "Cinque Terre", "Monterosso", "coast"],
+            images: [
+              { label: "Amalfi", alt: "Placeholder for Amalfi Coast photo" },
+              { label: "Cinque Terre", alt: "Placeholder for Cinque Terre photo" },
+            ],
+          },
+          {
+            id: "it-venice",
+            name: "Venice",
+            story: "Canals as infrastructure: tight alleys, vaporetto logistics, and golden light bouncing off brick and water.",
+            tags: ["Venice", "canals", "light"],
+            images: [{ label: "Venice canals", alt: "Placeholder for Venice canal photo" }],
+          },
+        ],
+      },
+      {
+        id: "france",
+        name: "France",
+        flag: "🇫🇷",
+        when: "Fall 2024",
+        spots: [
+          {
+            id: "fr-paris",
+            name: "Paris",
+            story:
+              "Classic Parisian architecture and heavy-hitters like the Eiffel Tower and Arc de Triomphe—plus the smaller moments: cafés, late walks, and the rhythm of a city built for flaneuring.",
+            tags: ["Paris", "architecture", "cafés"],
+            images: [
+              { label: "Eiffel Tower", alt: "Placeholder for Eiffel Tower photo" },
+              { label: "Paris streets", alt: "Placeholder for Paris street photo" },
+            ],
+          },
+        ],
+      },
+      {
+        id: "netherlands",
+        name: "The Netherlands",
+        flag: "🇳🇱",
+        when: "Fall 2024",
+        spots: [
+          {
+            id: "nl-amsterdam",
+            name: "Amsterdam",
+            story:
+              "Biking culture, historic brick buildings, and golden sunsets reflecting off canal skylines—movement and texture everywhere you look.",
+            tags: ["Amsterdam", "canals", "bikes", "golden hour"],
+            images: [{ label: "Amsterdam canals", alt: "Placeholder for Amsterdam canals photo" }],
+          },
+          {
+            id: "nl-rotterdam",
+            name: "Rotterdam",
+            story:
+              "A sharp architectural shift from Amsterdam: modern rebuilt skyline, maritime energy, and a city that feels intentionally future-forward.",
+            tags: ["Rotterdam", "architecture", "harbor"],
+            images: [{ label: "Rotterdam skyline", alt: "Placeholder for Rotterdam photo" }],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "asia",
+    label: "Region",
+    title: "Asia",
+    intro: "High-energy cities, deep tradition, and food worth planning a day around.",
+    accent: "#75c6d9",
+    countries: [
+      {
+        id: "korea",
+        name: "South Korea",
+        flag: "🇰🇷",
+        when: "Early 2025",
+        intro: "A loop built on contrast: neon density and temples, then slower coastal sprawl.",
+        spots: [
+          {
+            id: "kr-seoul",
+            name: "Seoul",
+            story:
+              "High-energy cityscapes, vibrant streets, and striking historic temples set against a modern skyline—tradition and tech culture in the same frame.",
+            tags: ["Seoul", "temples", "night city"],
+            images: [{ label: "Seoul", alt: "Placeholder for Seoul photo" }],
+          },
+          {
+            id: "kr-busan",
+            name: "Busan",
+            story: "Sprawling coastal views and relaxed seaside energy—markets, ocean air, and a slower gear after Seoul.",
+            tags: ["Busan", "coast", "markets"],
+            images: [{ label: "Busan", alt: "Placeholder for Busan coastline photo" }],
+          },
+        ],
+      },
     ],
   },
 ];

@@ -8,7 +8,7 @@ import {
   projects,
   skillGroups,
   stats,
-  travelChapters,
+  travelRegions,
 } from "./data/siteContent";
 import "./styles.css";
 
@@ -407,7 +407,7 @@ function Travel() {
     <section className="section travel-section" id="travel">
       <SectionIntro
         eyebrow="Digital passport"
-        title="Travel chapters: cities, coastlines, and design-shaped memories."
+        title="By region: USA, Europe, Asia—then cities and stories inside."
       />
       <div className="travel-layout">
         <m.div
@@ -416,50 +416,75 @@ function Travel() {
           viewport={viewport}
           transition={baseTransition}
         >
-          <span className="stamp">Chapters, not checklists</span>
+          <span className="stamp">Regions first</span>
           <div className="route-line" aria-hidden="true" />
           <h3>Digital Passport</h3>
         </m.div>
-        <div className="travel-chapters">
-          {travelChapters.map((chapter, index) => (
-            <m.article
-              className="travel-chapter"
-              key={chapter.id}
-              style={{ borderTop: `3px solid ${chapter.accent}` }}
+        <div className="travel-region-stack">
+          {travelRegions.map((region, regionIndex) => (
+            <m.section
+              className="travel-region"
+              key={region.id}
+              style={{ borderTop: `3px solid ${region.accent}` }}
               {...fadeUp}
               viewport={viewport}
-              transition={{ delay: index * 0.06, duration: 0.55 }}
+              transition={{ delay: regionIndex * 0.05, duration: 0.55 }}
             >
-              <div className="travel-chapter-head">
-                <span className="tag">{chapter.badge}</span>
-                <span className="travel-when">{chapter.when}</span>
-              </div>
-              <h3>{chapter.title}</h3>
-              <p className="travel-where">{chapter.where}</p>
-              <p>{chapter.story}</p>
-              <p className="travel-highlights-label">Highlights</p>
-              <ul className="travel-highlight-list">
-                {chapter.highlights.map((spot) => (
-                  <li key={spot}>{spot}</li>
+              <header className="travel-region-head">
+                <span className="tag">{region.label}</span>
+                <h3>{region.title}</h3>
+                <p>{region.intro}</p>
+              </header>
+              <div className="travel-country-stack">
+                {region.countries.map((country) => (
+                  <div className="travel-country" key={country.id}>
+                    <h4 className="travel-country-title">
+                      {country.flag ? <span aria-hidden="true">{country.flag} </span> : null}
+                      {country.name}
+                      {country.when ? <span className="travel-when"> · {country.when}</span> : null}
+                    </h4>
+                    {country.intro ? <p className="travel-country-intro">{country.intro}</p> : null}
+                    <div className="travel-spot-grid">
+                      {country.spots.map((spot) => (
+                        <article className="travel-spot-card" key={spot.id}>
+                          <div className="travel-spot-head">
+                            <h5>{spot.name}</h5>
+                            {spot.when ? <span className="travel-when">{spot.when}</span> : null}
+                          </div>
+                          <p>{spot.story}</p>
+                          {spot.highlights?.length ? (
+                            <>
+                              <p className="travel-highlights-label">Highlights</p>
+                              <ul className="travel-highlight-list">
+                                {spot.highlights.map((h) => (
+                                  <li key={h}>{h}</li>
+                                ))}
+                              </ul>
+                            </>
+                          ) : null}
+                          <div className="chip-row">
+                            {spot.tags.map((tag) => (
+                              <span className="chip" key={tag}>
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                          <div className="photo-masonry" aria-label="Travel photo placeholders">
+                            {spot.images.map((img) => (
+                              <figure className="photo-placeholder" key={img.label}>
+                                <figcaption>{img.label}</figcaption>
+                                <span aria-hidden="true">Photo soon</span>
+                                <span className="sr-only">{img.alt}</span>
+                              </figure>
+                            ))}
+                          </div>
+                        </article>
+                      ))}
+                    </div>
+                  </div>
                 ))}
-              </ul>
-              <div className="chip-row">
-                {chapter.tags.map((tag) => (
-                  <span className="chip" key={tag}>
-                    {tag}
-                  </span>
-                ))}
               </div>
-              <div className="photo-masonry" aria-label="Travel photo placeholders">
-                {chapter.images.map((img) => (
-                  <figure className="photo-placeholder" key={img.label}>
-                    <figcaption>{img.label}</figcaption>
-                    <span aria-hidden="true">Photo soon</span>
-                    <span className="sr-only">{img.alt}</span>
-                  </figure>
-                ))}
-              </div>
-            </m.article>
+            </m.section>
           ))}
         </div>
       </div>
