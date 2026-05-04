@@ -1,116 +1,123 @@
-# Mason Potter Personal Site
+# Mason Potter — Personal Website
 
-A modern React + Vite personal website that blends a recruiter-friendly technical portfolio with a fun "digital passport" travel experience.
+This repository powers **masonpotter.dev** (and the Vercel deployment behind it): a personal website that works as both a **recruiter-ready portfolio** and a **more human “digital passport”**—projects, experience, skills, travel, and interests in one place.
+
+If you are a **recruiter or hiring manager**, start with the live site (linked from the GitHub repo description or your deployment URL). This README explains what you are looking at in the codebase and how the content is maintained.
+
+---
+
+## What this site is
+
+A single-page **React** experience that presents:
+
+- **Professional identity** — role history, skills, and resume-backed highlights  
+- **Projects** — expandable case-study style cards (problem, approach, outcomes where appropriate)  
+- **Experience** — timeline of roles with concrete bullets  
+- **Travel** — region → country → place cards (stories, tags, photo placeholders)  
+- **Curiosities** — short “what / why” cards for topics Mason is exploring outside day-to-day work  
+- **Contact** — email and LinkedIn; resume PDF download  
+
+The tone is intentionally **credible for hiring** while still feeling **personal** enough to share with friends.
+
+---
+
+## Why it is built this way (for technical readers)
+
+- **Content-driven:** most copy and structure live in one module so updates do not require hunting through UI files.  
+- **Fast to ship:** static output, modern tooling, minimal backend surface area.  
+- **Deploy-friendly:** Vercel + Vite, with sensible defaults for SPA routing and static assets.
+
+---
 
 ## Tech stack
 
-- React
-- TypeScript
-- Vite
-- Framer Motion
-- CSS custom properties
-- Vercel Web Analytics (`@vercel/analytics`)
+| Layer | Choice |
+| --- | --- |
+| UI | React 18 |
+| Language | TypeScript |
+| Build | Vite |
+| Motion | Framer Motion |
+| Styling | Plain CSS (design tokens + responsive layout) |
+| Hosting | Vercel (recommended) |
+| Analytics | Vercel Web Analytics (`@vercel/analytics`) when enabled in the Vercel project |
 
-## Local development
+**Runtime:** Node **22.x** (see `package.json` `engines`).
 
-Use Node 22 or newer.
+---
 
-Copy env template (optional for local dev):
+## Repository layout (where to look)
+
+| Path | Purpose |
+| --- | --- |
+| `src/App.tsx` | Page sections, layout, interactions |
+| `src/data/siteContent.ts` | **Primary content source** — profile, experience, projects, travel, interests |
+| `src/styles.css` | Global styles and responsive rules |
+| `public/resume.pdf` | Downloadable resume (replace this file to update) |
+| `public/privacy.html` | Short privacy note (linked from footer) |
+| `public/og-image.png`, `public/favicon.png` | Social preview + favicon (replace with branded assets when ready) |
+| `vercel.json` | SPA fallback rewrite + security headers |
+| `vite.config.ts` | Build-time HTML injection for SEO when `VITE_SITE_URL` is set; generates `public/sitemap.xml` at build |
+
+---
+
+## For recruiters: how content gets updated
+
+1. Edit **`src/data/siteContent.ts`** for narrative, bullets, travel, links, and project detail blocks.  
+2. Replace **`public/resume.pdf`** when the resume changes.  
+3. Redeploy (Vercel deploys from `main` on push, depending on your Git integration).
+
+No CMS is required for day-to-day updates; the site is intentionally **simple to maintain**.
+
+---
+
+## For developers: run locally
+
+Requires **Node 22+**.
 
 ```bash
-cp .env.example .env.local
-```
-
-Set `VITE_SITE_URL` when you pick a domain (see **Environment** below). Without it, canonical/OG absolute URLs and the sitemap are omitted until the first production build with the variable set.
-
-```bash
+cp .env.example .env.local   # optional
 npm install
 npm run dev
 ```
 
-## Production build
+Optional: set `VITE_SITE_URL` in `.env.local` to match production while testing SEO output.
 
 ```bash
 npm run build
 npm run preview
 ```
 
-## Environment
+---
 
-Set in Vercel **Project → Settings → Environment Variables** (and in `.env.local` for local testing):
+## Deployment (Vercel)
+
+**Project settings**
+
+- Framework: **Vite**  
+- Install: `npm install`  
+- Build: `npm run build`  
+- Output: `dist`  
+- Node: **22.x**  
+- Enable **Web Analytics** in the Vercel dashboard if you want traffic metrics  
+
+**Environment variable (recommended once the domain is final)**
 
 | Name | Example | Purpose |
 | --- | --- | --- |
-| `VITE_SITE_URL` | `https://yourdomain.com` | Canonical URL, Open Graph/Twitter image URLs, JSON-LD `url`/`image`, generated `public/sitemap.xml` at build time |
+| `VITE_SITE_URL` | `https://masonpotter.dev` | Canonical URL, Open Graph / Twitter image URLs, JSON-LD, build-time `sitemap.xml` |
 
-No trailing slash.
+Use **HTTPS** and **no trailing slash**.
 
-## Updating site content
+---
 
-Most editable content lives in:
+## Privacy & static assets
 
-```text
-src/data/siteContent.ts
-```
+- **Privacy:** `public/privacy.html` — linked from the site footer.  
+- **Resume:** `public/resume.pdf` — linked as “Resume (PDF)”.  
+- **Routing:** `vercel.json` sends unknown paths to `index.html` for the SPA; existing files under `public/` are still served as static files when present.
 
-Update this file to change:
+---
 
-- Profile headline, email, and links
-- Curiosities / tinkering items (what + why for each)
-- Resume-backed experience
-- Skills
-- Projects
-- Travel destinations
-- Beyond-the-code interests
-- Education details
+## License
 
-The UI components read from this file, so routine updates should not require editing the layout.
-
-## Resume PDF
-
-The site links to:
-
-```text
-public/resume.pdf
-```
-
-Replace that file to update the downloadable resume. A copy may also exist under `docs/` for source tracking.
-
-## Analytics
-
-The app includes **Vercel Web Analytics** (`<Analytics />` in `src/main.tsx`). It is a no-op locally and activates automatically when the site runs on Vercel with Analytics enabled for the project.
-
-## Social preview image
-
-Default files:
-
-```text
-public/og-image.png
-public/favicon.png
-```
-
-Replace `og-image.png` with a 1200×630 (or similar) branded image when you want a custom link preview.
-
-## Privacy
-
-Static page:
-
-```text
-public/privacy.html
-```
-
-Linked from the site footer.
-
-## Deploying to Vercel
-
-Recommended Vercel settings:
-
-- Framework preset: Vite
-- Install command: `npm install`
-- Build command: `npm run build`
-- Output directory: `dist`
-- Node version: 22.x
-- Environment variable: `VITE_SITE_URL` = your final origin (set when domain is chosen)
-- Enable **Vercel Web Analytics** in the Vercel dashboard for the project
-
-The repo includes `vercel.json` with a catch-all rewrite to `index.html` for client-side routing. Files in `public/` (for example `/privacy.html` and `/resume.pdf`) are emitted into the build output and are **served as static files** by Vercel; they are not swallowed by the SPA rewrite when the file exists. A few conservative security headers are included as well.
+This project is intended for personal use. If you fork or reuse portions, respect the original author’s content and branding.
