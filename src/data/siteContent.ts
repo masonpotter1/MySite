@@ -633,9 +633,9 @@ export const interests: Interest[] = [
       "Systems thinking outside of software: performance, constraints, and clean builds.",
   },
   {
-    title: "Mid-Century Industrial Design",
+    title: "Hiking & National Parks",
     detail:
-      "A design language that balances function, materials, and timeless visual taste.",
+      "Long days on sandstone and ridgelines—Zion, Angels Landing, Garden of the Gods, and the kind of trails where exposure and payoff show up in the same mile.",
   },
   {
     title: "Quantitative Research",
@@ -643,9 +643,9 @@ export const interests: Interest[] = [
       "A natural overlap between finance, data, probability, and better decisions.",
   },
   {
-    title: "Fashion & Personal Style",
+    title: "PC Gaming & Hardware Modding",
     detail:
-      "The same attention to detail that makes interfaces feel intentional.",
+      "Competitive matches, survival games, and the endless side quest of tuning a rig—thermal headroom, clean cable runs, and small upgrades that make everything feel snappier.",
   },
 ];
 
