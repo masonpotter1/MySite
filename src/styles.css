@@ -397,6 +397,12 @@ h1 {
   color: var(--text);
 }
 
+.button.ghost {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.22);
+  color: var(--text);
+}
+
 .button:hover,
 .button:focus-visible {
   box-shadow: 0 14px 38px rgba(212, 181, 106, 0.18);
@@ -966,6 +972,97 @@ h1 {
   gap: 1.25rem;
 }
 
+.travel-region-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.travel-region {
+  background: rgba(255, 255, 255, 0.035);
+  border-radius: var(--radius-xl);
+  border-top: 3px solid rgba(212, 181, 106, 0.55);
+  padding: 1.35rem 1.25rem 1.5rem;
+}
+
+.travel-region-head {
+  margin-bottom: 1.25rem;
+}
+
+.travel-region-head h3 {
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  letter-spacing: -0.03em;
+  margin: 0.5rem 0 0.6rem;
+}
+
+.travel-region-head p {
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 0;
+  max-width: 72ch;
+}
+
+.travel-country-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.travel-country-title {
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+}
+
+.travel-country-title .travel-when {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  margin-left: 0.15rem;
+  text-transform: uppercase;
+}
+
+.travel-country-intro {
+  color: #d0dbe3;
+  line-height: 1.7;
+  margin: 0 0 1rem;
+  max-width: 72ch;
+}
+
+.travel-spot-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.travel-spot-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--radius-lg);
+  padding: 1.1rem 1.15rem 1.2rem;
+}
+
+.travel-spot-head {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  justify-content: space-between;
+  margin-bottom: 0.55rem;
+}
+
+.travel-spot-head h5 {
+  font-size: 1.08rem;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.travel-spot-card > p {
+  color: #d6e0e7;
+  line-height: 1.65;
+  margin: 0 0 0.85rem;
+}
+
 .travel-chapter {
   border-radius: var(--radius-lg);
   border-top: 3px solid rgba(212, 181, 106, 0.55);
@@ -1197,7 +1294,8 @@ section:not(.hero) {
   .project-grid,
   .interest-grid,
   .interest-strip,
-  .tinkering-grid {
+  .tinkering-grid,
+  .travel-spot-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -1253,7 +1351,8 @@ section:not(.hero) {
   .project-grid,
   .interest-grid,
   .interest-strip,
-  .tinkering-grid {
+  .tinkering-grid,
+  .travel-spot-grid {
     grid-template-columns: 1fr;
   }
 
