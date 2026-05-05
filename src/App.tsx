@@ -4,11 +4,13 @@ import {
   education,
   experiences,
   interests,
+  passportSidebarCopy,
   profile,
   projects,
   skillGroups,
   stats,
   travelRegions,
+  travelSectionIntro,
 } from "./data/siteContent";
 import "./styles.css";
 
@@ -24,7 +26,7 @@ const navigation = [
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
-  { label: "Travel", href: "#travel" },
+  { label: "Travel log", href: "#travel" },
   { label: "Curiosities", href: "#tinkering" },
   { label: "Contact", href: "#contact" },
 ];
@@ -51,7 +53,7 @@ function App() {
           <Contact />
         </main>
         <footer className="footer">
-          <span>Built with React, TypeScript, and Vite.</span>
+          <span>Built with React, TypeScript, and Vite · Source for masonpotter.dev</span>
           <span className="footer-meta">
             <a href="/privacy.html">Privacy</a>
             <span aria-hidden="true">·</span>
@@ -88,7 +90,7 @@ function Hero() {
   return (
     <section className="hero section" id="top">
       <m.div className="hero-copy" {...fadeUp} viewport={viewport} transition={baseTransition}>
-        <p className="eyebrow">Digital passport / technical portfolio</p>
+        <p className="eyebrow">Portfolio · engineer · traveler</p>
         <div className="hero-edu-badges" aria-label="Education">
           <span className="chip chip-edu-major">{profile.educationMajor}</span>
           <span className="chip chip-edu-minor">{profile.educationMinor}</span>
@@ -105,14 +107,14 @@ function Hero() {
               View projects
             </a>
             <a className="button secondary" href="#travel">
-              Explore travel
+              Travel log
             </a>
             <a className="button ghost" href={`mailto:${profile.email}`}>
               Email me
             </a>
           </div>
           <div className="chip-row" aria-label="Professional highlights">
-            {[profile.location, profile.educationSchool, profile.graduation, "Email-first contact"].map(
+            {[profile.location, profile.educationSchool, profile.graduation, "Email preferred"].map(
               (highlight) => (
                 <span className="chip" key={highlight}>
                   {highlight}
@@ -142,12 +144,12 @@ function Hero() {
             MP
           </div>
           <div className="profile-card-content">
-            <p className="eyebrow">Snapshot</p>
-            <h2>Engineering credibility, slower pace</h2>
+            <p className="eyebrow">At a glance</p>
+            <h2>Enterprise-scale delivery, independent streak</h2>
             <p>
-              Recent enterprise ATS work at scale, a long consulting arc through
-              CloutSites, and a portfolio of projects that span mobile, data, web,
-              and this site itself.
+              Recent applicant-tracking systems work at serious throughput, years of
+              end-to-end consulting through CloutSites, and projects spanning mobile,
+              data, the web, and this portfolio.
             </p>
           </div>
         </div>
@@ -169,9 +171,10 @@ function Tinkering() {
     <section className="section tinkering-section" id="tinkering">
       <m.div {...fadeUp} viewport={viewport} transition={baseTransition}>
         <p className="eyebrow">Curiosities</p>
-        <h2 className="tinkering-title">Small threads I keep pulling on.</h2>
+        <h2 className="tinkering-title">Side experiments & ongoing learning</h2>
         <p className="tinkering-lede">
-          Not a roadmap—just focused experiments. Nothing here is trading advice or a performance claim.
+          Informal R&D—not a product roadmap or role requirement. Nothing here is trading advice or a
+          performance claim.
         </p>
         <div className="tinkering-grid">
           {profile.tinkeringItems.map((item) => (
@@ -198,7 +201,7 @@ function About() {
     <section className="section" id="about">
       <SectionIntro
         eyebrow="About"
-        title="Engineering depth, human pace."
+        title="Background recruiters care about—plus the human context."
         body={profile.intro}
       />
       <m.div
@@ -236,7 +239,10 @@ function About() {
 function Skills() {
   return (
     <section className="section" id="skills">
-      <SectionIntro eyebrow="Technical skills" title="A practical full-stack toolbox." />
+      <SectionIntro
+        eyebrow="Technical skills"
+        title="Languages, stacks, and practices from shipped work."
+      />
       <div className="card-grid skills-grid">
         {skillGroups.map((group, index) => (
           <m.article
@@ -267,7 +273,7 @@ function Projects() {
     <section className="section" id="projects">
       <SectionIntro
         eyebrow="Featured projects"
-        title="Work that connects code, business, and usability."
+        title="Selected work—pipelines, products, and production sites."
       />
       <div className="card-grid project-grid">
         {projects.map((project, index) => (
@@ -362,7 +368,7 @@ function Experience() {
     <section className="section" id="experience">
       <SectionIntro
         eyebrow="Experience"
-        title="From enterprise scale to independent work—with room to explore."
+        title="Roles and outcomes—most recent first."
       />
       <div className="timeline">
         {experiences.map((role, index) => (
@@ -413,18 +419,16 @@ function Travel() {
   return (
     <section className="section travel-section" id="travel">
       <SectionIntro
-        eyebrow="Digital passport"
-        title="By region: USA, Europe, Asia—then cities and stories inside."
+        eyebrow={travelSectionIntro.eyebrow}
+        title={travelSectionIntro.title}
+        body={travelSectionIntro.body}
       />
       <div className="travel-layout">
         <aside className="passport-panel" aria-label="Travel overview">
           <div className="passport-panel-inner">
-            <span className="stamp">Digital passport</span>
-            <h3 className="passport-title">Travel, organized like a filing system with better lighting.</h3>
-            <p className="passport-lede">
-              Each region is a container. Inside: countries, then city cards with the story, tags, and photo
-              placeholders.
-            </p>
+            <span className="stamp">{passportSidebarCopy.stampLabel}</span>
+            <h3 className="passport-title">{passportSidebarCopy.sidebarTitle}</h3>
+            <p className="passport-lede">{passportSidebarCopy.sidebarLede}</p>
 
             <div className="passport-stats" aria-label="Travel section stats">
               <div>
@@ -443,7 +447,7 @@ function Travel() {
 
             <div className="passport-divider" aria-hidden="true" />
 
-            <p className="passport-kicker">Jump to a region</p>
+            <p className="passport-kicker">{passportSidebarCopy.jumpLabel}</p>
             <nav className="passport-nav" aria-label="Jump to travel regions">
               {travelRegions.map((region) => (
                 <a key={region.id} className="passport-nav-link" href={`#travel-region-${region.id}`}>
@@ -456,9 +460,9 @@ function Travel() {
             <div className="passport-divider" aria-hidden="true" />
 
             <div className="passport-foot">
-              <p className="passport-kicker">Home base</p>
+              <p className="passport-kicker">{passportSidebarCopy.homeBaseLabel}</p>
               <p className="passport-footline">{profile.location}</p>
-              <p className="passport-note">Photos are placeholders for now—swap them in when you curate the set.</p>
+              <p className="passport-note">{passportSidebarCopy.photoNote}</p>
             </div>
 
             <div className="route-line" aria-hidden="true" />
@@ -537,7 +541,7 @@ function Travel() {
 function Beyond() {
   return (
     <section className="section" id="beyond">
-      <SectionIntro eyebrow="Beyond the code" title="Interests that shape the work." />
+      <SectionIntro eyebrow="Beyond the code" title="What rounds out the engineer behind the résumé." />
       <div className="interest-grid">
         {interests.map((interest, index) => (
           <m.article
@@ -567,7 +571,7 @@ function Contact() {
     >
       <div>
         <p className="eyebrow">Contact</p>
-        <h2>Reach out about software roles, projects, travel, or anything interesting.</h2>
+        <h2>Open to conversation about roles, collaborations, or ideas worth a reply.</h2>
       </div>
       <div className="hero-actions">
         {profile.links.map((link) => (

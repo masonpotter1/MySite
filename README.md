@@ -13,7 +13,7 @@ A single-page **React** experience that presents:
 - **Professional identity** — role history, skills, and resume-backed highlights  
 - **Projects** — expandable case-study style cards (problem, approach, outcomes where appropriate)  
 - **Experience** — timeline of roles with concrete bullets  
-- **Travel** — region → country → place cards (stories, tags, photo placeholders)  
+- **Travel log** — region → country → place cards (stories, tags, photo placeholders); main heading and sidebar copy live next to travel data in `siteContent.ts`  
 - **Curiosities** — short “what / why” cards for topics Mason is exploring outside day-to-day work  
 - **Contact** — email and LinkedIn; resume PDF download  
 
@@ -50,7 +50,7 @@ The tone is intentionally **credible for hiring** while still feeling **personal
 | Path | Purpose |
 | --- | --- |
 | `src/App.tsx` | Page sections, layout, interactions |
-| `src/data/siteContent.ts` | **Primary content source** — profile, experience, projects, travel, interests |
+| `src/data/siteContent.ts` | **Primary content source** — profile, experience, projects, travel, interests, plus `travelSectionIntro` / `passportSidebarCopy` for travel headings |
 | `src/styles.css` | Global styles and responsive rules |
 | `public/resume.pdf` | Downloadable resume (replace this file to update) |
 | `public/privacy.html` | Short privacy note (linked from footer) |
