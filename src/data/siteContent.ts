@@ -96,11 +96,11 @@ export const profile = {
   educationMajor: "B.S. Computer Science",
   educationMinor: "Minor in Entrepreneurship",
   graduation: "December 2022",
-  statusLine: "Traveling, tinkering, building small things",
+  statusLine: "Building, learning, traveling—at an intentional pace",
   headline:
-    "Full-stack engineer with enterprise-scale shipping experience—right now spending time on side projects, markets as a hobby, and miles on the map.",
+    "Full-stack engineer with enterprise-scale delivery experience; currently focused on personal projects, lightweight quantitative finance exploration, and travel.",
   intro:
-    "I care about systems that scale, interfaces that feel intentional, and work that connects engineering to real business outcomes. I am not in a rush to optimize my calendar—but I am still building, learning, and shipping when something interesting shows up.",
+    "I care about systems that scale, interfaces that feel intentional, and engineering tied to real business outcomes. I am taking time away from a traditional schedule—still coding, still curious, and open to the right conversation when it aligns.",
   tinkeringItems: [
     {
       id: "sec-parse",
@@ -171,17 +171,35 @@ export const profile = {
       href: "/resume.pdf",
     },
     {
-      label: "Resume highlights",
+      label: "Experience (on-page)",
       href: "#experience",
     },
   ] satisfies Link[],
 } as const;
 
 export const stats = [
-  { value: "1.6M", label: "weekly doc throughput (ATS web apps, past)" },
-  { value: "Hours → min", label: "Selenium regression runtime (past)" },
-  { value: "100+", label: "page healthcare site rebuild (past)" },
+  { value: "1.6M", label: "weekly documents processed (ATS apps, past role)" },
+  { value: "Hours → min", label: "Selenium regression runs shortened (past)" },
+  { value: "100+", label: "healthcare site pages modernized (past)" },
 ];
+
+/** Travel section headings + sidebar—edit here to match README tone */
+export const travelSectionIntro = {
+  eyebrow: "Travel log",
+  title: "Places that shaped perspective—study abroad, cities, and trails.",
+  body:
+    "For recruiters: quick proof of adaptability, curiosity, and follow-through outside the office. For everyone else: stories behind the stamps.",
+} as const;
+
+export const passportSidebarCopy = {
+  stampLabel: "Travel log",
+  sidebarTitle: "How this section is organized",
+  sidebarLede:
+    "Broad regions first, then countries and stops. Each card blends notes with photo placeholders you can replace anytime.",
+  jumpLabel: "Jump to a region",
+  homeBaseLabel: "Home base",
+  photoNote: "Photos are placeholders—swap them in when you curate the set.",
+} as const;
 
 export const skillGroups: SkillGroup[] = [
   {
@@ -218,10 +236,10 @@ export const experiences: Experience[] = [
     role: "Independent projects",
     dates: "March 2026 – Present",
     summary:
-      "Focused stretch for side projects, travel, and low-key learning—without treating it like a second job.",
+      "Dedicated stretch for independent builds, travel, and structured learning—not a second full-time job.",
     bullets: [
-      "Exploring data pipelines and parsing workflows as a learning exercise (FinSignal Engine).",
-      "Iterating on this portfolio site as a living playground for UI craft and structured content.",
+      "Exploring document parsing and data pipelines as an engineering exercise (FinSignal Engine—personal).",
+      "Shipping and refining this portfolio as a living codebase for UI craft and maintainable content.",
     ],
     tags: ["Side projects", "Travel", "Learning"],
   },
@@ -391,9 +409,9 @@ export const projects: Project[] = [
   },
   {
     title: "Personal Site",
-    subtitle: "Digital Passport Meets Technical Portfolio",
+    subtitle: "Portfolio & travel log (this site)",
     description:
-      "This site: a modern, interactive portfolio designed to show software work, resume credibility, travel, and personality.",
+      "A modern single-page portfolio: engineering highlights, résumé-adjacent credibility, travel context, and personality—easy to update from structured content.",
     teaser: "Structured content + React + motion, optimized for quick updates and clean deploys.",
     details: [
       {
@@ -417,10 +435,10 @@ export const projects: Project[] = [
 export const travelRegions: TravelRegion[] = [
   {
     id: "north-america",
-    label: "Region",
-    title: "USA & nearby",
+    label: "Focus",
+    title: "United States & nearby",
     intro:
-      "A lot of miles close to home: Kansas roots, big national parks, quick city hops, and a few warm-water detours.",
+      "Trips close to home: Kansas roots, national parks, domestic city stops, and occasional warm-water escapes.",
     accent: "#d9a875",
     countries: [
       {
@@ -487,10 +505,10 @@ export const travelRegions: TravelRegion[] = [
   },
   {
     id: "europe",
-    label: "Region",
+    label: "Focus",
     title: "Europe",
     intro:
-      "Study-abroad depth in Italy, then later trips for autumn cities and canal light. The through-line is architecture, food, and learning how different places solve beauty.",
+      "Study abroad in Italy, then return trips for autumn cities and canal skylines—architecture, food, and how different cultures approach craft.",
     accent: "#c7b8e8",
     countries: [
       {
@@ -593,9 +611,10 @@ export const travelRegions: TravelRegion[] = [
   },
   {
     id: "asia",
-    label: "Region",
+    label: "Focus",
     title: "Asia",
-    intro: "High-energy cities, deep tradition, and food worth planning a day around.",
+    intro:
+      "High-energy cities, deep tradition, and meals worth building an itinerary around.",
     accent: "#75c6d9",
     countries: [
       {
