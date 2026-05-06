@@ -447,8 +447,7 @@ h1 {
 .project-card,
 .travel-card,
 .interest-card,
-.contact-panel,
-.ats-paycom-shell {
+.contact-panel {
   backdrop-filter: blur(24px);
   background: var(--panel);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1301,12 +1300,33 @@ h1 {
 }
 
 .contact-panel {
-  align-items: center;
+  align-items: stretch;
   border-radius: var(--radius-xl);
   display: grid;
-  gap: 1rem;
-  grid-template-columns: 1fr auto;
+  gap: 1.25rem;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.46fr);
+  overflow: hidden;
   padding: clamp(1.5rem, 4vw, 2.4rem);
+  position: relative;
+}
+
+.contact-panel::after {
+  border: 1px solid rgba(212, 181, 106, 0.24);
+  border-radius: 999px;
+  content: "";
+  height: 14rem;
+  opacity: 0.55;
+  pointer-events: none;
+  position: absolute;
+  right: -5rem;
+  top: -5rem;
+  width: 14rem;
+}
+
+.contact-copy,
+.contact-action-card {
+  position: relative;
+  z-index: 1;
 }
 
 .contact-links {
@@ -1326,75 +1346,24 @@ h1 {
   text-decoration: none;
 }
 
-.contact-panel h2 {
+.contact-copy h2 {
   font-size: clamp(2.2rem, 5vw, 4.4rem);
   letter-spacing: -0.06em;
   margin-bottom: 0.6rem;
 }
 
-.contact-panel p {
+.contact-copy p,
+.contact-action-card p {
   color: var(--muted);
   line-height: 1.7;
   max-width: 62ch;
 }
 
-.ats-paycom-section {
-  padding-bottom: 3rem;
+.contact-copy p {
+  font-size: 1.02rem;
 }
 
-.ats-paycom-shell {
-  background:
-    radial-gradient(circle at 18% 24%, rgba(212, 181, 106, 0.2), transparent 34%),
-    radial-gradient(circle at 88% 10%, rgba(117, 198, 217, 0.18), transparent 38%),
-    linear-gradient(145deg, rgba(23, 35, 45, 0.94), rgba(16, 28, 39, 0.82));
-  border: 1px solid rgba(255, 255, 255, 0.11);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow);
-  display: grid;
-  gap: 1.25rem;
-  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
-  overflow: hidden;
-  padding: clamp(1.35rem, 4vw, 2.5rem);
-  position: relative;
-}
-
-.ats-paycom-shell::after {
-  border: 1px solid rgba(212, 181, 106, 0.24);
-  border-radius: 999px;
-  content: "";
-  height: 15rem;
-  opacity: 0.55;
-  pointer-events: none;
-  position: absolute;
-  right: -6rem;
-  top: -6rem;
-  width: 15rem;
-}
-
-.ats-paycom-copy,
-.ats-paycom-card {
-  position: relative;
-  z-index: 1;
-}
-
-.ats-paycom-copy h2 {
-  font-size: clamp(2.25rem, 5vw, 4.25rem);
-  letter-spacing: -0.06em;
-  line-height: 0.98;
-  margin-bottom: 1rem;
-}
-
-.ats-paycom-copy p,
-.ats-paycom-card p {
-  color: #d6e0e7;
-  line-height: 1.75;
-}
-
-.ats-paycom-copy p {
-  max-width: 72ch;
-}
-
-.ats-paycom-card {
+.contact-action-card {
   align-self: stretch;
   background: rgba(255, 255, 255, 0.07);
   border: 1px solid rgba(255, 255, 255, 0.11);
@@ -1402,17 +1371,20 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 1.25rem;
+  padding: 1.2rem;
 }
 
-.ats-paycom-card h3 {
-  font-size: clamp(1.45rem, 3vw, 2.1rem);
-  letter-spacing: -0.03em;
-  margin: 0.9rem 0 0.7rem;
+.contact-action-card .hero-actions {
+  margin-top: 1rem;
 }
 
-.ats-paycom-card .chip-row {
-  margin-top: 0.45rem;
+.contact-action-label {
+  color: var(--gold-strong);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  margin: 0;
+  text-transform: uppercase;
 }
 
 .footer {
@@ -1468,8 +1440,7 @@ h1 {
   .about-grid,
   .travel-layout,
   .passport-shell,
-  .contact-panel,
-  .ats-paycom-shell {
+  .contact-panel {
     grid-template-columns: 1fr;
   }
 
