@@ -565,16 +565,35 @@ function Contact() {
       viewport={viewport}
       transition={baseTransition}
     >
-      <div>
+      <div className="contact-copy">
         <p className="eyebrow">Contact</p>
-        <h2>Reach out about software roles, projects, travel, or anything interesting.</h2>
+        <h2>Got a fun or genuinely interesting opportunity?</h2>
+        <p>
+          I am most interested in conversations with people building useful products,
+          sharp tools, weird experiments, or teams where curiosity is part of the work.
+          If there is a role, project, collaboration, or idea worth kicking around,
+          send it my way.
+        </p>
       </div>
-      <div className="hero-actions">
-        {profile.links.map((link) => (
-          <a className="button secondary" key={link.label} href={link.href}>
-            {link.label}
+      <div className="contact-action-card">
+        <p className="contact-action-label">Best starting points</p>
+        <div className="hero-actions">
+          <a className="button primary" href={`mailto:${profile.email}?subject=Interesting%20opportunity`}>
+            Email me
           </a>
-        ))}
+          <a className="button secondary" href={profile.links.find((link) => link.label === "LinkedIn")?.href}>
+            LinkedIn
+          </a>
+          <a className="button ghost" href="#projects">
+            See projects
+          </a>
+        </div>
+        <div className="chip-row" aria-label="Opportunity interests">
+          <span className="chip">Product-minded engineering</span>
+          <span className="chip">Full-stack work</span>
+          <span className="chip">Data-heavy ideas</span>
+          <span className="chip">Unusual problems</span>
+        </div>
       </div>
     </m.section>
   );
