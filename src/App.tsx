@@ -49,6 +49,7 @@ function App() {
           <Beyond />
           <Tinkering />
           <Contact />
+          <PaycomAts />
         </main>
         <footer className="footer">
           <span>Built with React, TypeScript, and Vite.</span>
@@ -575,6 +576,53 @@ function Contact() {
             {link.label}
           </a>
         ))}
+      </div>
+    </m.section>
+  );
+}
+
+function PaycomAts() {
+  return (
+    <m.section
+      className="section ats-paycom-section"
+      aria-labelledby="ats-paycom-title"
+      {...fadeUp}
+      viewport={viewport}
+      transition={baseTransition}
+    >
+      <div className="ats-paycom-shell">
+        <div className="ats-paycom-copy">
+          <p className="eyebrow">For the ATS people</p>
+          <h2 id="ats-paycom-title">One last Paycom ATS nod.</h2>
+          <p>
+            Applicant tracking systems are where tiny workflow decisions become
+            real operational leverage: candidate document intake, requisition
+            movement, recruiter handoffs, compliance-sensitive status changes,
+            regression coverage, and the full-stack glue that keeps high-volume
+            hiring software understandable.
+          </p>
+          <p>
+            Paycom sharpened that muscle for me. The work was specific, practical,
+            and built around ATS details that only feel small until thousands of
+            candidates, hiring managers, and documents are moving through the
+            same paths every week.
+          </p>
+        </div>
+        <div className="ats-paycom-card" aria-label="Coworker shout outs">
+          <span className="tag">Paycom ATS</span>
+          <h3>Shout out to James and Nick.</h3>
+          <p>
+            Two coworkers who made the ATS work better: James for the steady
+            engineering judgment, Nick for keeping the problem-solving sharp, and
+            both for making enterprise recruiting software feel like a team sport.
+          </p>
+          <div className="chip-row">
+            <span className="chip">Applicant Tracking Systems</span>
+            <span className="chip">Recruiting Workflows</span>
+            <span className="chip">PHP + React</span>
+            <span className="chip">Team Wins</span>
+          </div>
+        </div>
       </div>
     </m.section>
   );
