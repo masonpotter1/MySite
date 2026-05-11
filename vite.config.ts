@@ -1,8 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
-import { defineConfig, loadEnv } from "vite";
+import { loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 import { createHtmlPlugin } from "vite-plugin-html";
+import { defineConfig } from "vitest/config";
 
 function normalizeSiteUrl(url: string): string {
   const trimmed = url.replace(/\/+$/, "");
@@ -39,6 +40,7 @@ function writeSitemap(siteUrl: string) {
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
   const viteSiteUrl = normalizeSiteUrl(env.VITE_SITE_URL?.trim() ?? "");
+  const siteRoot = viteSiteUrl || "https://cloutsites.com";
 
   return {
     plugins: [
@@ -53,33 +55,49 @@ export default defineConfig(({ mode }) => {
         inject: {
           data: {
             VITE_SITE_URL: viteSiteUrl,
-            personJsonLd: JSON.stringify({
+            organizationJsonLd: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Mason Potter",
-              jobTitle: "Software Engineer",
-              email: "masonpotter1@gmail.com",
-              ...(viteSiteUrl
-                ? {
-                    url: `${viteSiteUrl.replace(/\/$/, "")}/`,
-                    image: `${viteSiteUrl.replace(/\/$/, "")}/og-image.png`,
-                  }
-                : { image: "/og-image.png" }),
+              "@type": "ProfessionalService",
+              name: "Cloutsites",
+              url: siteRoot,
+              description:
+                "Oklahoma City custom software, cloud consulting, legacy modernization, and high-performance web application development.",
+              areaServed: {
+                "@type": "AdministrativeArea",
+                name: "Oklahoma",
+              },
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Oklahoma City",
                 addressRegion: "OK",
                 addressCountry: "US",
               },
-              alumniOf: {
-                "@type": "CollegeOrUniversity",
-                name: "Kansas State University",
-              },
-              sameAs: ["https://www.linkedin.com/in/masonpotter-43/"],
+              knowsAbout: [
+                "OKC Custom Software",
+                "Oklahoma Cloud Consulting",
+                "Full-Stack Development Oklahoma City",
+                "Legacy System Modernization",
+                "React Application Development",
+                "Docker",
+                "Kubernetes",
+                "Datadog",
+                "Selenium",
+              ],
+              serviceType: [
+                "Enterprise modernization",
+                "Cloud-native software development",
+                "React web application development",
+                "Automated quality assurance",
+              ],
             }),
           },
         },
       }),
     ],
+    test: {
+      environment: "jsdom",
+      setupFiles: "./src/test/setup.ts",
+      globals: true,
+    },
   };
 });

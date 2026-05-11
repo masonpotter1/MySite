@@ -1,17 +1,18 @@
-import { useRef, type MutableRefObject } from "react";
+import { useMemo, useState } from "react";
 import { LazyMotion, domAnimation, m, type Variants } from "framer-motion";
 import {
-  education,
-  experiences,
-  interests,
-  passportSidebarCopy,
-  profile,
-  projects,
-  skillGroups,
-  stats,
-  travelRegions,
-  travelSectionIntro,
-} from "./data/siteContent";
+  caseStudies,
+  company,
+  intakeOptions,
+  navigation,
+  processSteps,
+  proofStats,
+  reliabilityChecks,
+  serviceTracks,
+  specReview,
+  techStack,
+  type IntakeOptionId,
+} from "./data/cloutsitesContent";
 import "./styles.css";
 
 const fadeUp: Variants = {
@@ -20,16 +21,7 @@ const fadeUp: Variants = {
 };
 
 const viewport = { once: true, amount: 0.2 };
-const baseTransition = { duration: 0.6, ease: "easeOut" as const };
-const navigation = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
-  { label: "Travel log", href: "#travel" },
-  { label: "Curiosities", href: "#tinkering" },
-  { label: "Contact", href: "#contact" },
-];
+const baseTransition = { duration: 0.58, ease: "easeOut" as const };
 
 function App() {
   return (
@@ -38,28 +30,21 @@ function App() {
         <a className="skip-link" href="#main-content">
           Skip to content
         </a>
-        <div className="ambient ambient-one" />
-        <div className="ambient ambient-two" />
+        <div className="industrial-grid" aria-hidden="true" />
+        <div className="glow glow-teal" aria-hidden="true" />
+        <div className="glow glow-orange" aria-hidden="true" />
         <Header />
         <main id="main-content" tabIndex={-1}>
           <Hero />
-          <About />
-          <Skills />
-          <Projects />
-          <Experience />
-          <Travel />
-          <Beyond />
-          <Tinkering />
-          <Contact />
+          <Services />
+          <Reliability />
+          <TechStack />
+          <CaseStudies />
+          <Process />
+          <SpecReview />
+          <IntakePortal />
         </main>
-        <footer className="footer">
-          <span>Built with React, TypeScript, and Vite · Source for masonpotter.dev</span>
-          <span className="footer-meta">
-            <a href="/privacy.html">Privacy</a>
-            <span aria-hidden="true">·</span>
-            <span>Vercel Web Analytics (when deployed on Vercel)</span>
-          </span>
-        </footer>
+        <Footer />
       </div>
     </LazyMotion>
   );
@@ -68,11 +53,11 @@ function App() {
 function Header() {
   return (
     <header className="topbar">
-      <a className="brand" href="#top" aria-label="Mason Potter home">
-        <span className="brand-mark">MP</span>
+      <a className="brand" href="#top" aria-label="Cloutsites home">
+        <span className="brand-mark">CS</span>
         <span>
-          <span className="brand-name">{profile.name}</span>
-          <span className="brand-role">{profile.title}</span>
+          <span className="brand-name">{company.name}</span>
+          <span className="brand-role">{company.descriptor}</span>
         </span>
       </a>
       <nav className="nav-links" aria-label="Primary navigation">
@@ -82,6 +67,9 @@ function Header() {
           </a>
         ))}
       </nav>
+      <a className="header-cta" href="#intake">
+        Start intake
+      </a>
     </header>
   );
 }
@@ -90,74 +78,53 @@ function Hero() {
   return (
     <section className="hero section" id="top">
       <m.div className="hero-copy" {...fadeUp} viewport={viewport} transition={baseTransition}>
-        <p className="eyebrow">Portfolio · engineer · traveler</p>
-        <div className="hero-edu-badges" aria-label="Education">
-          <span className="chip chip-edu-major">{profile.educationMajor}</span>
-          <span className="chip chip-edu-minor">{profile.educationMinor}</span>
+        <p className="eyebrow">Oklahoma software systems studio</p>
+        <h1>{company.tagline}</h1>
+        <p className="hero-subtitle">{company.heroSubtitle}</p>
+        <p className="value-prop">{company.valueProposition}</p>
+        <div className="hero-actions">
+          <a className="button primary" href="#intake">
+            Scope a project
+          </a>
+          <a className="button secondary" href="#services">
+            Compare services
+          </a>
         </div>
-        <h1>{profile.name}</h1>
-        <p className="hero-subtitle">{profile.statusLine}</p>
-        <p className="hero-credential">
-          Previously {profile.lastRoleTitle} @ {profile.lastRoleCompany} · {profile.specialty}
-        </p>
-        <p>{profile.headline}</p>
-        <div className="hero-cta-stack">
-          <div className="hero-actions">
-            <a className="button primary" href="#projects">
-              View projects
-            </a>
-            <a className="button secondary" href="#travel">
-              Travel log
-            </a>
-            <a className="button ghost" href={`mailto:${profile.email}`}>
-              Email me
-            </a>
-          </div>
-          <div className="chip-row" aria-label="Professional highlights">
-            {[profile.location, profile.educationSchool, profile.graduation, "Email preferred"].map(
-              (highlight) => (
-                <span className="chip" key={highlight}>
-                  {highlight}
-                </span>
-              ),
-            )}
-          </div>
-          <div className="social-links" aria-label="Contact and profile links">
-            {profile.links.map((link) => (
-              <a key={link.label} href={link.href}>
-                {link.label}
-              </a>
-            ))}
-          </div>
+        <div className="chip-row" aria-label="Search positioning">
+          {company.seoKeywords.slice(0, 3).map((keyword) => (
+            <span className="chip" key={keyword}>
+              {keyword}
+            </span>
+          ))}
         </div>
       </m.div>
 
       <m.aside
-        className="hero-visual"
+        className="hero-terminal"
+        aria-label="Cloutsites delivery telemetry"
         {...fadeUp}
         viewport={viewport}
-        transition={{ ...baseTransition, delay: 0.1 }}
+        transition={{ ...baseTransition, delay: 0.12 }}
       >
-        <div className="profile-card">
-          <div className="profile-banner" />
-          <div className="avatar" aria-hidden="true">
-            MP
-          </div>
-          <div className="profile-card-content">
-            <p className="eyebrow">At a glance</p>
-            <h2>Enterprise-scale delivery, independent streak</h2>
-            <p>
-              Recent applicant-tracking systems work at serious throughput, years of
-              end-to-end consulting through CloutSites, and projects spanning mobile,
-              data, the web, and this portfolio.
-            </p>
-          </div>
+        <div className="terminal-bar">
+          <span />
+          <span />
+          <span />
+          <strong>delivery.pipeline</strong>
         </div>
-        <div className="metric-grid">
-          {stats.slice(0, 3).map((stat) => (
-            <div className="metric-card" key={stat.label}>
+        <div className="code-stream" aria-hidden="true">
+          <code>scan legacy-debt --map business-risk</code>
+          <code>containerize services --target repeatable</code>
+          <code>deploy preview --stack react vercel</code>
+          <code>observe production --datadog dashboards</code>
+          <code>qa regression --selenium critical-paths</code>
+        </div>
+        <div className="signal-grid">
+          {proofStats.map((stat) => (
+            <div className="signal-card" key={stat.label}>
               <strong>{stat.value}</strong>
               <span>{stat.label}</span>
+              <p>{stat.detail}</p>
             </div>
           ))}
         </div>
@@ -166,99 +133,38 @@ function Hero() {
   );
 }
 
-function Tinkering() {
+function Services() {
   return (
-    <section className="section tinkering-section" id="tinkering">
-      <m.div {...fadeUp} viewport={viewport} transition={baseTransition}>
-        <p className="eyebrow">Curiosities</p>
-        <h2 className="tinkering-title">Side experiments & ongoing learning</h2>
-        <p className="tinkering-lede">
-          Informal R&D—not a product roadmap or role requirement. Nothing here is trading advice or a
-          performance claim.
-        </p>
-        <div className="tinkering-grid">
-          {profile.tinkeringItems.map((item) => (
-            <article className="tinkering-card" key={item.id}>
-              <h3>{item.label}</h3>
-              <p className="tinkering-what">
-                <span className="tinkering-kicker">What</span>
-                {item.what}
-              </p>
-              <p className="tinkering-why">
-                <span className="tinkering-kicker">Why</span>
-                {item.why}
-              </p>
-            </article>
-          ))}
-        </div>
-      </m.div>
-    </section>
-  );
-}
-
-function About() {
-  return (
-    <section className="section" id="about">
+    <section className="section" id="services">
       <SectionIntro
-        eyebrow="About"
-        title="Background recruiters care about—plus the human context."
-        body={profile.intro}
+        eyebrow="Dual-track services"
+        title="One partner for old systems that need discipline and new products that need speed."
+        body="The original spec was right to split the offer. Buyers with technical debt and buyers with a new product idea need different discovery questions, risk controls, and proof."
       />
-      <m.div
-        className="about-grid"
-        {...fadeUp}
-        viewport={viewport}
-        transition={baseTransition}
-      >
-        <div className="panel">
-          {profile.aboutParagraphs.map((paragraph) => (
-            <p key={paragraph.id}>{paragraph.text}</p>
-          ))}
-        </div>
-        <div className="panel highlight-list">
-          <div className="highlight">
-            <strong>{education.school}</strong>
-            <span>
-              {education.degree} · {education.graduation}
-            </span>
-          </div>
-          <div className="highlight">
-            <strong>{education.gpa}</strong>
-            <span>{education.highlights.join(" / ")}</span>
-          </div>
-          <div className="highlight">
-            <strong>Advanced coursework</strong>
-            <span>{education.courses.join(" / ")}</span>
-          </div>
-        </div>
-      </m.div>
-    </section>
-  );
-}
-
-function Skills() {
-  return (
-    <section className="section" id="skills">
-      <SectionIntro
-        eyebrow="Technical skills"
-        title="Languages, stacks, and practices from shipped work."
-      />
-      <div className="card-grid skills-grid">
-        {skillGroups.map((group, index) => (
+      <div className="track-grid">
+        {serviceTracks.map((track, index) => (
           <m.article
-            className="skill-card glass-card"
-            key={group.title}
+            className="track-card"
+            key={track.id}
             {...fadeUp}
             viewport={viewport}
-            transition={{ delay: index * 0.05, duration: 0.55 }}
+            transition={{ ...baseTransition, delay: index * 0.08 }}
           >
-            <h3>{group.title}</h3>
-            <p>{group.description}</p>
-            <ul>
-              {group.skills.map((skill) => (
-                <li key={skill}>{skill}</li>
+            <p className="track-eyebrow">{track.eyebrow}</p>
+            <h3>{track.title}</h3>
+            <p>{track.summary}</p>
+            <ul className="outcome-list">
+              {track.outcomes.map((outcome) => (
+                <li key={outcome}>{outcome}</li>
               ))}
             </ul>
+            <div className="chip-row">
+              {track.diagnostics.map((item) => (
+                <span className="chip" key={item}>
+                  {item}
+                </span>
+              ))}
+            </div>
           </m.article>
         ))}
       </div>
@@ -266,362 +172,262 @@ function Skills() {
   );
 }
 
-function Projects() {
-  const openProjectRef = useRef<string | null>(null);
-
+function Reliability() {
   return (
-    <section className="section" id="projects">
+    <section className="section reliability-panel" id="reliability">
+      <m.div className="reliability-copy" {...fadeUp} viewport={viewport} transition={baseTransition}>
+        <p className="eyebrow">Automated quality assurance</p>
+        <h2>Production-ready is a release system, not a slogan.</h2>
+        <p>
+          Cloutsites treats QA, monitoring, and rollback planning as part of the build. Selenium
+          tests cover critical paths, performance budgets keep pages fast, and Datadog visibility
+          gives operators a real signal after launch.
+        </p>
+      </m.div>
+      <m.div
+        className="release-checklist"
+        {...fadeUp}
+        viewport={viewport}
+        transition={{ ...baseTransition, delay: 0.1 }}
+      >
+        {reliabilityChecks.map((check, index) => (
+          <div className="check-row" key={check}>
+            <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+            <p>{check}</p>
+          </div>
+        ))}
+      </m.div>
+    </section>
+  );
+}
+
+function TechStack() {
+  return (
+    <section className="section" id="stack">
       <SectionIntro
-        eyebrow="Featured projects"
-        title="Selected work—pipelines, products, and production sites."
+        eyebrow="Interactive stack map"
+        title="A practical stack for modernization, web products, and operating discipline."
+        body="The launch version uses a lightweight grid instead of heavy icon libraries. That keeps the page fast and leaves room to add brand-approved SVGs later."
       />
-      <div className="card-grid project-grid">
-        {projects.map((project, index) => (
-          <ProjectCard
-            key={project.title}
-            project={project}
-            index={index}
-            openProjectRef={openProjectRef}
-          />
+      <div className="stack-grid">
+        {techStack.map((tech, index) => (
+          <m.article
+            className="stack-card"
+            key={tech.name}
+            {...fadeUp}
+            viewport={viewport}
+            transition={{ duration: 0.45, delay: index * 0.035 }}
+          >
+            <span>{tech.category}</span>
+            <h3>{tech.name}</h3>
+            <p>{tech.description}</p>
+          </m.article>
         ))}
       </div>
     </section>
   );
 }
 
-function ProjectCard({
-  project,
-  index,
-  openProjectRef,
-}: {
-  project: (typeof projects)[number];
-  index: number;
-  openProjectRef: MutableRefObject<string | null>;
-}) {
-  const detailsRef = useRef<HTMLDetailsElement>(null);
-
+function CaseStudies() {
   return (
-    <m.article
-      className="project-card"
-      {...fadeUp}
-      viewport={viewport}
-      transition={{ delay: index * 0.06, duration: 0.55 }}
-    >
-      <details
-        ref={detailsRef}
-        className="project-details-root"
-        onToggle={(event) => {
-          const el = event.currentTarget;
-          if (!el.open) {
-            if (openProjectRef.current === project.title) {
-              openProjectRef.current = null;
-            }
-            return;
-          }
-          if (openProjectRef.current && openProjectRef.current !== project.title) {
-            document
-              .querySelectorAll<HTMLDetailsElement>("details.project-details-root[open]")
-              .forEach((other) => {
-                if (other !== el) {
-                  other.open = false;
-                }
-              });
-          }
-          openProjectRef.current = project.title;
-        }}
-      >
-        <summary aria-label={`Toggle details for ${project.title}`}>
-          <div className="project-meta">
-            <span className="tag">{project.status}</span>
-            <span>{project.title.slice(0, 2)}</span>
-          </div>
-          <h3>{project.title}</h3>
-          <p>{project.subtitle}</p>
-          <p>{project.description}</p>
-          <p className="project-teaser">{project.teaser}</p>
-          <span className="details-hint" data-open-label="View less" data-closed-label="View details" />
-        </summary>
-        <div className="project-details">
-          <dl className="detail-grid">
-            {project.details.map((block) => (
-              <div className="detail-block" key={block.label}>
-                <dt>{block.label}</dt>
-                <dd>{block.body}</dd>
+    <section className="section" id="case-studies">
+      <SectionIntro
+        eyebrow="Case study framework"
+        title="Before-and-after stories built for proof, not vague portfolio theater."
+        body="These are publish-ready templates. Replace targets with verified outcomes once client permission and measurement are in place."
+      />
+      <div className="case-grid">
+        {caseStudies.map((study, index) => (
+          <m.article
+            className="case-card"
+            key={study.title}
+            {...fadeUp}
+            viewport={viewport}
+            transition={{ ...baseTransition, delay: index * 0.06 }}
+          >
+            <span className="metric">{study.metric}</span>
+            <h3>{study.title}</h3>
+            <div className="before-after">
+              <div>
+                <p className="mini-label">Before</p>
+                <p>{study.before}</p>
               </div>
-            ))}
-          </dl>
-          <div className="chip-row">
-            {project.tech.map((tech) => (
-              <span className="chip" key={tech}>
-                {tech}
-              </span>
-            ))}
-          </div>
-        </div>
-      </details>
+              <div>
+                <p className="mini-label">After</p>
+                <p>{study.after}</p>
+              </div>
+            </div>
+          </m.article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Process() {
+  return (
+    <section className="section process-section">
+      <SectionIntro
+        eyebrow="Operating model"
+        title="Full lifecycle means discovery, build, deployment, and handoff stay connected."
+      />
+      <div className="process-rail">
+        {processSteps.map((step, index) => (
+          <m.article
+            className="process-card"
+            key={step.title}
+            {...fadeUp}
+            viewport={viewport}
+            transition={{ duration: 0.45, delay: index * 0.05 }}
+          >
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <h3>{step.title}</h3>
+            <p>{step.body}</p>
+          </m.article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function SpecReview() {
+  return (
+    <section className="section spec-review" aria-labelledby="spec-review-title">
+      <m.div {...fadeUp} viewport={viewport} transition={baseTransition}>
+        <p className="eyebrow">Spec validation</p>
+        <h2 id="spec-review-title">The supplied brief is good. Here is how it was tightened.</h2>
+      </m.div>
+      <div className="review-grid">
+        <ReviewColumn title="What works" items={specReview.strengths} />
+        <ReviewColumn title="Improvements made" items={specReview.improvementsMade} />
+        <ReviewColumn title="Launch risks to manage" items={specReview.launchRisks} />
+      </div>
+    </section>
+  );
+}
+
+function ReviewColumn({ title, items }: { title: string; items: string[] }) {
+  return (
+    <m.article className="review-card" {...fadeUp} viewport={viewport} transition={baseTransition}>
+      <h3>{title}</h3>
+      <ul>
+        {items.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
     </m.article>
   );
 }
 
-function Experience() {
-  return (
-    <section className="section" id="experience">
-      <SectionIntro
-        eyebrow="Experience"
-        title="Roles and outcomes—most recent first."
-      />
-      <div className="timeline">
-        {experiences.map((role, index) => (
-          <m.article
-            className="timeline-item"
-            key={`${role.company}-${role.role}`}
-            {...fadeUp}
-            viewport={viewport}
-            transition={{ delay: index * 0.05, duration: 0.55 }}
-          >
-            <div className="timeline-top">
-              <div>
-                <h3>{role.role}</h3>
-                <span>{role.company}</span>
-              </div>
-              <time>{role.dates}</time>
-            </div>
-            <p>{role.summary}</p>
-            <div className="chip-row">
-              {role.tags.map((tag) => (
-                <span className="chip" key={tag}>
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <div className="project-details">
-              <ul>
-                {role.bullets.map((bullet) => (
-                  <li key={bullet}>{bullet}</li>
-                ))}
-              </ul>
-            </div>
-          </m.article>
-        ))}
-      </div>
-    </section>
+function IntakePortal() {
+  const [selectedId, setSelectedId] = useState<IntakeOptionId>("modernize");
+  const selected = useMemo(
+    () => intakeOptions.find((option) => option.id === selectedId) ?? intakeOptions[0],
+    [selectedId],
   );
-}
 
-function Travel() {
-  const regionCount = travelRegions.length;
-  const countryCount = travelRegions.reduce((sum, r) => sum + r.countries.length, 0);
-  const spotCount = travelRegions.reduce(
-    (sum, r) => sum + r.countries.reduce((s, c) => s + c.spots.length, 0),
-    0,
+  const mailSubject = encodeURIComponent(`Cloutsites intake: ${selected.recommendedTrack}`);
+  const mailBody = encodeURIComponent(
+    `Selected path: ${selected.label}\nRecommended track: ${selected.recommendedTrack}\n\nProject context:\n`,
   );
 
   return (
-    <section className="section travel-section" id="travel">
+    <section className="section intake-section" id="intake" aria-labelledby="intake-title">
       <SectionIntro
-        eyebrow={travelSectionIntro.eyebrow}
-        title={travelSectionIntro.title}
-        body={travelSectionIntro.body}
+        eyebrow="Client intake portal"
+        titleId="intake-title"
+        title="Tell us whether the job is modernization, product build, or outcome discovery."
+        body="This front-end portal qualifies leads now and is ready to connect to a CRM, email automation, or authenticated client area later."
       />
-      <div className="travel-layout">
-        <aside className="passport-panel" aria-label="Travel overview">
-          <div className="passport-panel-inner">
-            <span className="stamp">{passportSidebarCopy.stampLabel}</span>
-            <h3 className="passport-title">{passportSidebarCopy.sidebarTitle}</h3>
-            <p className="passport-lede">{passportSidebarCopy.sidebarLede}</p>
-
-            <div className="passport-stats" aria-label="Travel section stats">
-              <div>
-                <strong>{regionCount}</strong>
-                <span>regions</span>
-              </div>
-              <div>
-                <strong>{countryCount}</strong>
-                <span>countries</span>
-              </div>
-              <div>
-                <strong>{spotCount}</strong>
-                <span>stops</span>
-              </div>
-            </div>
-
-            <div className="passport-divider" aria-hidden="true" />
-
-            <p className="passport-kicker">{passportSidebarCopy.jumpLabel}</p>
-            <nav className="passport-nav" aria-label="Jump to travel regions">
-              {travelRegions.map((region) => (
-                <a key={region.id} className="passport-nav-link" href={`#travel-region-${region.id}`}>
-                  <span className="passport-nav-dot" style={{ background: region.accent }} aria-hidden="true" />
-                  {region.title}
-                </a>
-              ))}
-            </nav>
-
-            <div className="passport-divider" aria-hidden="true" />
-
-            <div className="passport-foot">
-              <p className="passport-kicker">{passportSidebarCopy.homeBaseLabel}</p>
-              <p className="passport-footline">{profile.location}</p>
-              <p className="passport-note">{passportSidebarCopy.photoNote}</p>
-            </div>
-
-            <div className="route-line" aria-hidden="true" />
-          </div>
-        </aside>
-        <div className="travel-region-stack">
-          {travelRegions.map((region) => (
-            <section
-              className="travel-region"
-              id={`travel-region-${region.id}`}
-              key={region.id}
-              style={{ borderTop: `3px solid ${region.accent}` }}
+      <div className="intake-layout">
+        <m.div className="intake-options" {...fadeUp} viewport={viewport} transition={baseTransition}>
+          {intakeOptions.map((option) => (
+            <button
+              className="intake-option"
+              key={option.id}
+              type="button"
+              aria-pressed={selectedId === option.id}
+              onClick={() => setSelectedId(option.id)}
             >
-              <header className="travel-region-head">
-                <span className="tag">{region.label}</span>
-                <h3>{region.title}</h3>
-                <p>{region.intro}</p>
-              </header>
-              <div className="travel-country-stack">
-                {region.countries.map((country) => (
-                  <div className="travel-country" key={country.id}>
-                    <h4 className="travel-country-title">
-                      {country.flag ? <span aria-hidden="true">{country.flag} </span> : null}
-                      {country.name}
-                      {country.when ? <span className="travel-when"> · {country.when}</span> : null}
-                    </h4>
-                    {country.intro ? <p className="travel-country-intro">{country.intro}</p> : null}
-                    <div className="travel-spot-grid">
-                      {country.spots.map((spot) => (
-                        <article className="travel-spot-card" key={spot.id}>
-                          <div className="travel-spot-head">
-                            <h5>{spot.name}</h5>
-                            {spot.when ? <span className="travel-when">{spot.when}</span> : null}
-                          </div>
-                          <p>{spot.story}</p>
-                          {spot.highlights?.length ? (
-                            <>
-                              <p className="travel-highlights-label">Highlights</p>
-                              <ul className="travel-highlight-list">
-                                {spot.highlights.map((h) => (
-                                  <li key={h}>{h}</li>
-                                ))}
-                              </ul>
-                            </>
-                          ) : null}
-                          <div className="chip-row">
-                            {spot.tags.map((tag) => (
-                              <span className="chip" key={tag}>
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                          <div className="photo-masonry" aria-label="Travel photo placeholders">
-                            {spot.images.map((img) => (
-                              <figure className="photo-placeholder" key={img.label}>
-                                <figcaption>{img.label}</figcaption>
-                                <span aria-hidden="true">Photo soon</span>
-                                <span className="sr-only">{img.alt}</span>
-                              </figure>
-                            ))}
-                          </div>
-                        </article>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
+              <span>{option.label}</span>
+              <small>{option.description}</small>
+            </button>
           ))}
-        </div>
+        </m.div>
+        <m.form
+          className="intake-form"
+          {...fadeUp}
+          viewport={viewport}
+          transition={{ ...baseTransition, delay: 0.1 }}
+          onSubmit={(event) => event.preventDefault()}
+        >
+          <div className="selected-track">
+            <span>Recommended path</span>
+            <strong>{selected.recommendedTrack}</strong>
+            <p>{selected.description}</p>
+          </div>
+          <label>
+            Name
+            <input name="name" placeholder="Your name" autoComplete="name" />
+          </label>
+          <label>
+            Work email
+            <input name="email" type="email" placeholder="you@company.com" autoComplete="email" />
+          </label>
+          <label>
+            What needs to change?
+            <textarea
+              name="context"
+              rows={5}
+              placeholder="Describe the system, product, deadline pressure, risk, or opportunity."
+            />
+          </label>
+          <div className="form-actions">
+            <a className="button primary" href={`mailto:${company.email}?subject=${mailSubject}&body=${mailBody}`}>
+              Email Cloutsites
+            </a>
+            <p>
+              Front-end only for launch. Add server-side validation, spam protection, and CRM routing
+              before collecting production leads.
+            </p>
+          </div>
+        </m.form>
       </div>
     </section>
   );
 }
 
-function Beyond() {
+function Footer() {
   return (
-    <section className="section" id="beyond">
-      <SectionIntro eyebrow="Beyond the code" title="What rounds out the engineer behind the résumé." />
-      <div className="interest-grid">
-        {interests.map((interest, index) => (
-          <m.article
-            className="interest-card"
-            key={interest.title}
-            {...fadeUp}
-            viewport={viewport}
-            transition={{ delay: index * 0.04, duration: 0.5 }}
-          >
-            <h3>{interest.title}</h3>
-            <p>{interest.detail}</p>
-          </m.article>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function Contact() {
-  return (
-    <m.section
-      className="section contact-panel"
-      id="contact"
-      {...fadeUp}
-      viewport={viewport}
-      transition={baseTransition}
-    >
-      <div className="contact-copy">
-        <p className="eyebrow">Contact</p>
-        <h2>Open to conversation about roles, collaborations, or ideas worth a reply.</h2>
-        <p>
-          I am most interested in conversations with people building useful products,
-          sharp tools, weird experiments, or teams where curiosity is part of the work.
-          If there is a role, project, collaboration, or idea worth kicking around,
-          send it my way.
-        </p>
-      </div>
-      <div className="contact-action-card">
-        <p className="contact-action-label">Best starting points</p>
-        <div className="hero-actions">
-          <a className="button primary" href={`mailto:${profile.email}?subject=Interesting%20opportunity`}>
-            Email me
-          </a>
-          <a className="button secondary" href={profile.links.find((link) => link.label === "LinkedIn")?.href}>
-            LinkedIn
-          </a>
-          <a className="button ghost" href="#projects">
-            See projects
-          </a>
-        </div>
-        <div className="chip-row" aria-label="Opportunity interests">
-          <span className="chip">Product-minded engineering</span>
-          <span className="chip">Full-stack work</span>
-          <span className="chip">Data-heavy ideas</span>
-          <span className="chip">Unusual problems</span>
-        </div>
-      </div>
-    </m.section>
+    <footer className="footer">
+      <span>
+        {company.name} - {company.descriptor} - {company.location}
+      </span>
+      <span className="footer-meta">
+        <a href="/privacy.html">Privacy</a>
+        <span aria-hidden="true">/</span>
+        <a href="#intake">Start a project</a>
+      </span>
+    </footer>
   );
 }
 
 function SectionIntro({
   eyebrow,
+  titleId,
   title,
   body,
 }: {
   eyebrow: string;
+  titleId?: string;
   title: string;
   body?: string;
 }) {
   return (
-    <m.div
-      className="section-heading"
-      {...fadeUp}
-      viewport={viewport}
-      transition={baseTransition}
-    >
+    <m.div className="section-heading" {...fadeUp} viewport={viewport} transition={baseTransition}>
       <div>
         <p className="eyebrow">{eyebrow}</p>
-        <h2>{title}</h2>
+        <h2 id={titleId}>{title}</h2>
       </div>
       {body ? <p>{body}</p> : null}
     </m.div>
