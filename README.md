@@ -1,65 +1,81 @@
-# Mason Potter — Personal Website
+# Cloutsites
 
-This repository powers **masonpotter.dev** (and the Vercel deployment behind it): a personal website that works as both a **recruiter-ready portfolio** and a **more human “digital passport”**—projects, experience, skills, travel, and interests in one place.
+Premium marketing site for **Cloutsites - Full-Lifecycle Digital Systems**, a business website positioned around enterprise modernization, cloud consulting, automated QA, and high-performance web application development for Oklahoma companies.
 
-If you are a **recruiter or hiring manager**, start with the live site (linked from the GitHub repo description or your deployment URL). This README explains what you are looking at in the codebase and how the content is maintained.
+> Repository note: this project is scaffolded in the current Cursor workspace and named `cloutsites` in `package.json`. Creating a separate GitHub repository named `cloutsites` requires GitHub write access outside this agent's read-only `gh` permissions; the code is ready to move or push into that repo once it exists.
 
----
+## What the site communicates
 
-## What this site is
+- **Hero:** "Engineering the Future of Oklahoma Business."
+- **Dual-track services:**
+  - Enterprise Modernization for legacy systems, Docker/Kubernetes migration, Datadog observability, and technical debt reduction.
+  - Digital Growth & Product for React apps, PHP/Laravel builds, Vercel deployment, and conversion-focused product funnels.
+- **Reliability:** Selenium-driven end-to-end testing, release checklists, performance budgets, and production observability.
+- **Stack visualization:** lightweight, fast-loading grid for React, PHP/Laravel, C#, SQL, Docker, Kubernetes, Datadog, Selenium, and Vercel.
+- **Case study framework:** before/after templates that can be replaced with approved client proof.
+- **Client intake portal:** accessible front-end lead qualifier for "old system", "new product", or "unclear path" inquiries.
 
-A single-page **React** experience that presents:
+## Spec review
 
-- **Professional identity** — role history, skills, and resume-backed highlights  
-- **Projects** — expandable case-study style cards (problem, approach, outcomes where appropriate)  
-- **Experience** — timeline of roles with concrete bullets  
-- **Travel log** — region → country → place cards (stories, tags, photo placeholders); main heading and sidebar copy live next to travel data in `siteContent.ts`  
-- **Curiosities** — short “what / why” cards for topics Mason is exploring outside day-to-day work  
-- **Contact** — email and LinkedIn; resume PDF download  
+The supplied spec is strong and strategically coherent. The implementation keeps the industrial-tech direction and improves the technical scope by:
 
-The tone is intentionally **credible for hiring** while still feeling **personal** enough to share with friends.
+1. Treating sub-1s performance as a static-site target supported by bundle discipline, optimized assets, and minimal third-party scripts.
+2. Keeping the lead form front-end only for launch while documenting the production requirements for CRM/email routing.
+3. Avoiding unsupported hard metrics in case studies until there is client permission and measurement proof.
+4. Adding explicit accessibility and reduced-motion support so animation does not weaken usability.
+5. Expanding the documented stack to include the operational tools promised in the copy: Datadog, Selenium, Vercel, and Laravel.
 
----
+See:
 
-## Why it is built this way (for technical readers)
-
-- **Content-driven:** most copy and structure live in one module so updates do not require hunting through UI files.  
-- **Fast to ship:** static output, modern tooling, minimal backend surface area.  
-- **Deploy-friendly:** Vercel + Vite, with sensible defaults for SPA routing and static assets.
-
----
+- [`docs/cloutsites-spec-review.md`](docs/cloutsites-spec-review.md)
+- [`docs/technical-spec.md`](docs/technical-spec.md)
 
 ## Tech stack
 
 | Layer | Choice |
 | --- | --- |
-| UI | React 18 |
+| UI | React |
 | Language | TypeScript |
 | Build | Vite |
-| Motion | Framer Motion |
-| Styling | Plain CSS (design tokens + responsive layout) |
-| Hosting | Vercel (recommended) |
-| Analytics | Vercel Web Analytics (`@vercel/analytics`) when enabled in the Vercel project |
+| Motion | Framer Motion with reduced-motion CSS fallback |
+| Styling | Plain CSS design tokens |
+| Testing | Vitest + Testing Library + jsdom |
+| Deployment | Vercel-ready static build |
 
-**Runtime:** Node **22.x** (see `package.json` `engines`).
+Runtime: Node `22.x`.
 
----
+## Local development
 
-## Repository layout (where to look)
+```bash
+npm install
+npm run dev
+```
 
-| Path | Purpose |
-| --- | --- |
-| `src/App.tsx` | Page sections, layout, interactions |
-| `src/data/siteContent.ts` | **Primary content source** — profile, experience, projects, travel, interests, plus `travelSectionIntro` / `passportSidebarCopy` for travel headings |
-| `src/styles.css` | Global styles and responsive rules |
-| `public/resume.pdf` | Downloadable resume (replace this file to update) |
-| `public/privacy.html` | Short privacy note (linked from footer) |
-| `public/og-image.png`, `public/favicon.png` | Social preview + favicon (replace with branded assets when ready) |
-| `vercel.json` | SPA fallback rewrite + security headers |
-| `vite.config.ts` | Build-time HTML injection for SEO when `VITE_SITE_URL` is set; generates `public/sitemap.xml` at build |
+## Verification
 
----
+```bash
+npm run typecheck
+npm run test
+npm run build
+```
 
-## License
+`npm run build` runs TypeScript first and then produces the static Vite output.
 
-This project is intended for personal use. If you fork or reuse portions, respect the original author’s content and branding.
+## SEO and metadata
+
+`index.html` and `vite.config.ts` include metadata and JSON-LD for:
+
+- OKC Custom Software
+- Oklahoma Cloud Consulting
+- Full-Stack Development Oklahoma City
+- Legacy system modernization
+- React application development
+
+Set `VITE_SITE_URL` in the deployment environment to generate canonical URLs, Open Graph image URLs, and a populated sitemap.
+
+## Launch notes
+
+- Replace placeholder contact email in `src/data/cloutsitesContent.ts` when the final inbox is known.
+- Replace `/public/favicon.png` and `/public/og-image.png` with branded Cloutsites assets.
+- Connect the intake flow to server-side validation, spam protection, CRM routing, and email automation before using it as a production form.
+- Add approved real case studies only after validating metrics and anonymization requirements.
