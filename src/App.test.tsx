@@ -14,7 +14,7 @@ describe("Cloutsites homepage", () => {
     expect(screen.getByText(/we don't just build sites; we build systems/i)).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /enterprise modernization/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /digital growth & product/i })).toBeInTheDocument();
-    expect(screen.getByText(/selenium-driven end-to-end testing/i)).toBeInTheDocument();
+    expect(screen.getByText(/selenium tests cover critical paths/i)).toBeInTheDocument();
   });
 
   it("updates the intake recommendation when a buyer path is selected", () => {
