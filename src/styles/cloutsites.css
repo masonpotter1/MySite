@@ -694,6 +694,10 @@ textarea {
   margin: 0;
 }
 
+.app:has(.site-nav-section-wrap) .page-cloutsites .hero {
+  padding-top: calc(10.25rem + env(safe-area-inset-top));
+}
+
 @media (max-width: 960px) {
   .hero,
   .section-heading,
@@ -704,6 +708,10 @@ textarea {
 
   .hero {
     padding-top: calc(8rem + env(safe-area-inset-top));
+  }
+
+  .app:has(.site-nav-section-wrap) .page-cloutsites .hero {
+    padding-top: calc(10.25rem + env(safe-area-inset-top));
   }
 
   .stack-grid,

@@ -35,7 +35,9 @@
   gap: 2rem;
   grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
   min-height: 100vh;
-  padding-top: 7rem;
+  padding-top: calc(7rem + env(safe-area-inset-top));
+}.app:has(.site-nav-section-wrap) .page-mason .hero {
+  padding-top: calc(10.25rem + env(safe-area-inset-top));
 }.page-mason .eyebrow {
   color: var(--gold-strong);
   font-size: 0.78rem;
@@ -867,7 +869,7 @@
     position: static;
     top: auto;
   }.page-mason .hero {
-    padding-top: 10rem;
+    padding-top: calc(10.25rem + env(safe-area-inset-top));
   }.page-mason .skills-grid, .page-mason .project-grid, .page-mason .interest-grid, .page-mason .interest-strip, .page-mason .tinkering-grid, .page-mason .travel-spot-grid {
     grid-template-columns: repeat(2, 1fr);
   }}@media (max-width: 680px) {.page-mason .topbar, .page-mason .site-header {
