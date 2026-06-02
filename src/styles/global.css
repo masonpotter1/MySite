@@ -45,22 +45,34 @@ textarea:focus-visible {
 }
 
 .skip-link {
-  background: var(--teal);
-  border-radius: 999px;
-  color: #061015;
-  font-weight: 900;
+  background: var(--panel-strong);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  color: var(--text);
+  font-size: 0.88rem;
+  font-weight: 800;
+  height: 1px;
   left: 1rem;
-  padding: 0.75rem 1rem;
+  overflow: hidden;
+  padding: 0;
   position: fixed;
   text-decoration: none;
-  top: 1rem;
-  transform: translateY(-150%);
-  transition: transform 160ms ease;
-  z-index: 20;
+  top: calc(1rem + env(safe-area-inset-top));
+  white-space: nowrap;
+  width: 1px;
+  z-index: 100;
 }
 
-.skip-link:focus {
-  transform: translateY(0);
+.skip-link:focus-visible {
+  clip: auto;
+  clip-path: none;
+  height: auto;
+  overflow: visible;
+  padding: 0.65rem 1rem;
+  width: auto;
 }
 
 .app {
@@ -70,7 +82,7 @@ textarea:focus-visible {
   position: relative;
 }
 
-.app > :not(.site-backdrop) {
+.app > :not(.site-backdrop, .skip-link) {
   position: relative;
   z-index: 1;
 }
