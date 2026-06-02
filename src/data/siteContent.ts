@@ -172,7 +172,7 @@ export const profile = {
     },
     {
       label: "Experience (on-page)",
-      href: "#experience",
+      href: "/mason#experience",
     },
   ] satisfies Link[],
 } as const;

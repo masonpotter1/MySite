@@ -2,18 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0c141c" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@450;550;650;800;900&family=JetBrains+Mono:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="theme-color" content="#071014" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
     <meta
       name="description"
-      content="Mason Potter—software engineer with enterprise ATS experience at scale (Paycom), independent consulting (CloutSites), healthcare web modernization, and projects across full-stack, data, and mobile. Portfolio, résumé, and travel log."
+      content="Mason Potter — software engineer portfolio, CloutSites business systems, projects, experience, and travel log. One site: Home, CloutSites, and Mason."
     />
-    <meta property="og:title" content="Mason Potter | Software Engineer & Portfolio" />
+    <meta property="og:title" content="Mason Potter | Portfolio & CloutSites" />
     <meta
       property="og:description"
-      content="Portfolio for recruiters and visitors: engineering highlights, projects, experience, skills, interests, and a travel log—built with React and TypeScript."
+      content="Portfolio for recruiters and visitors, plus CloutSites enterprise modernization—React, TypeScript, and Vite."
     />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -24,8 +30,8 @@
     <meta property="og:image" content="<%= VITE_SITE_URL.replace(/\/$/, '') %>/og-image.png" />
     <meta name="twitter:image" content="<%= VITE_SITE_URL.replace(/\/$/, '') %>/og-image.png" />
     <% } %>
-    <script type="application/ld+json"><%- personJsonLd %></script>
-    <title>Mason Potter | Software Engineer · Portfolio</title>
+    <script type="application/ld+json"><%- organizationJsonLd %></script>
+    <title>Mason Potter | Portfolio & CloutSites</title>
   </head>
   <body>
     <div id="root"></div>
