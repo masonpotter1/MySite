@@ -518,10 +518,141 @@ button.button:disabled,
   line-height: 1.7;
 }
 
+.home-recruiter-cta {
+  margin-top: 1.25rem;
+}
+
 .home-card-grid {
   display: grid;
   gap: 1.25rem;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.home-card--featured {
+  border-color: rgba(212, 181, 106, 0.35);
+}
+
+.home-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.recruiter-strip {
+  padding-block: 0 3rem;
+}
+
+.recruiter-strip-inner {
+  background:
+    linear-gradient(145deg, rgba(212, 181, 106, 0.12), rgba(255, 255, 255, 0.03)),
+    var(--panel);
+  border: 1px solid rgba(212, 181, 106, 0.28);
+  border-radius: var(--radius-lg);
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.35rem 1.5rem;
+}
+
+.recruiter-highlight-list {
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+}
+
+.recruiter-highlight-list li::before {
+  color: var(--gold-strong);
+  content: "▸ ";
+}
+
+.recruiter-strip-actions {
+  align-items: start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.page-resume .resume-document {
+  max-width: 780px;
+  padding-top: calc(6.5rem + env(safe-area-inset-top));
+}
+
+.resume-print-hint {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.resume-tagline {
+  color: var(--text);
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+.resume-meta {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.resume-meta a {
+  color: var(--gold-strong);
+}
+
+.resume-screen-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.25rem;
+}
+
+.resume-entry {
+  border-top: 1px solid var(--line);
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+}
+
+.resume-entry-head {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  justify-content: space-between;
+}
+
+.resume-dates {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.82rem;
+}
+
+.resume-skills-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+@media print {
+  .topbar,
+  .resume-print-hint,
+  .resume-screen-actions {
+    display: none !important;
+  }
+
+  .page-resume .resume-document {
+    padding-top: 0;
+  }
+
+  body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+
+  .page-resume,
+  .page-resume * {
+    color: #111 !important;
+  }
 }
 
 .home-card {

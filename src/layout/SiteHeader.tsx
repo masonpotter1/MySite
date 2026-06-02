@@ -13,7 +13,7 @@ function useActiveRoute(): SiteRoute | "other" {
   const { pathname } = useLocation();
   if (pathname === "/") return "/";
   if (pathname.startsWith("/cloutsites")) return "/cloutsites";
-  if (pathname.startsWith("/mason")) return "/mason";
+  if (pathname.startsWith("/mason") || pathname.startsWith("/resume")) return "/mason";
   return "other";
 }
 
@@ -118,8 +118,12 @@ export function SiteHeader() {
           Start intake
         </a>
       ) : route === "/mason" ? (
-        <a className="header-cta" href={`mailto:${profile.email}`} onClick={closeMenu}>
-          Email
+        <a
+          className="header-cta"
+          href={pathname.startsWith("/resume") ? "/mason" : "/resume"}
+          onClick={closeMenu}
+        >
+          {pathname.startsWith("/resume") ? "Portfolio" : "Résumé"}
         </a>
       ) : null}
     </header>

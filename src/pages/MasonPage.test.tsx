@@ -14,9 +14,9 @@ describe("MasonPage", () => {
     expect(document.getElementById("travel")).toBeInTheDocument();
   });
 
-  it("links resume download at site root", () => {
+  it("links résumé page and recruiter strip", () => {
     renderWithRouter(<MasonPage />, { route: "/mason" });
-    const resume = screen.getByRole("link", { name: /resume/i });
-    expect(resume).toHaveAttribute("href", "/resume.pdf");
+    expect(screen.getByRole("heading", { name: /what to scan in under a minute/i })).toBeInTheDocument();
+    expect(screen.getAllByRole("link", { name: /résumé|resume/i }).some((el) => el.getAttribute("href") === "/resume")).toBe(true);
   });
 });

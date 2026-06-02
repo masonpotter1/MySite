@@ -7,10 +7,11 @@ export const siteNav = [
 ] as const;
 
 export const masonSectionNav = [
+  { label: "Résumé", href: "/resume" },
   { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
+  { label: "Projects", href: "#projects" },
+  { label: "Skills", href: "#skills" },
   { label: "Travel log", href: "#travel" },
   { label: "Curiosities", href: "#tinkering" },
   { label: "Contact", href: "#contact" },
@@ -51,9 +52,9 @@ export const pageMeta: Record<
       "Enterprise modernization, cloud-native delivery, high-performance React apps, QA automation, and Datadog observability. Remote-first collaboration.",
   },
   "/mason": {
-    title: "Mason Potter | Software Engineer · Portfolio",
+    title: "Mason Potter | Software Engineer · Résumé & Portfolio",
     description:
-      "Portfolio for recruiters and visitors: engineering highlights, projects, experience, skills, interests, and a travel log.",
+      "Full-stack engineer (PHP, React, Selenium). Paycom ATS scale, CloutSites founder, healthcare web modernization. Résumé, projects, and experience.",
   },
   notFound: {
     title: "Page not found | Cloutsites",

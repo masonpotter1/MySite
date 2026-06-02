@@ -1,5 +1,6 @@
 import { useRef, type MutableRefObject } from "react";
 import { m, type Variants } from "framer-motion";
+import { RecruiterStrip } from "../components/RecruiterStrip";
 import {
   education,
   experiences,
@@ -29,14 +30,15 @@ export function MasonPage() {
       <div className="ambient ambient-two" aria-hidden="true" />
       <main id="main-content" tabIndex={-1}>
         <Hero />
+        <RecruiterStrip />
         <About />
         <Skills />
-        <Projects />
         <Experience />
-        <Travel />
+        <Projects />
+        <Contact />
         <Beyond />
         <Tinkering />
-        <Contact />
+        <Travel />
       </main>
       <footer className="footer">
         <span>Built with React, TypeScript, and Vite · Part of cloutsites.com</span>
@@ -54,7 +56,7 @@ function Hero() {
   return (
     <section className="hero section" id="top">
       <m.div className="hero-copy" {...fadeUp} viewport={viewport} transition={baseTransition}>
-        <p className="eyebrow">Portfolio · engineer · traveler</p>
+        <p className="eyebrow">Software engineer · portfolio</p>
         <div className="hero-edu-badges" aria-label="Education">
           <span className="chip chip-edu-major">{profile.educationMajor}</span>
           <span className="chip chip-edu-minor">{profile.educationMinor}</span>
@@ -67,18 +69,18 @@ function Hero() {
         <p>{profile.headline}</p>
         <div className="hero-cta-stack">
           <div className="hero-actions">
-            <a className="button primary" href={`${masonRoute}#projects`}>
-              View projects
+            <a className="button primary" href="/resume">
+              Résumé
             </a>
-            <a className="button secondary" href={`${masonRoute}#travel`}>
-              Travel log
+            <a className="button secondary" href={`${masonRoute}#experience`}>
+              Experience
             </a>
-            <a className="button ghost" href={`mailto:${profile.email}`}>
-              Email me
+            <a className="button secondary" href={`${masonRoute}#projects`}>
+              Projects
             </a>
           </div>
           <div className="chip-row" aria-label="Professional highlights">
-            {[profile.location, profile.educationSchool, profile.graduation, "Email preferred"].map(
+            {[profile.location, profile.educationSchool, profile.graduation, "Open to roles"].map(
               (highlight) => (
                 <span className="chip" key={highlight}>
                   {highlight}
@@ -88,7 +90,13 @@ function Hero() {
           </div>
           <div className="social-links" aria-label="Contact and profile links">
             {profile.links.map((link) => (
-              <a key={link.label} href={link.href}>
+              <a
+                key={link.label}
+                href={link.href}
+                {...(link.href.startsWith("http")
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+              >
                 {link.label}
               </a>
             ))}
@@ -546,14 +554,19 @@ function Contact() {
       <div className="contact-action-card">
         <p className="contact-action-label">Best starting points</p>
         <div className="hero-actions">
-          <a className="button primary" href={`mailto:${profile.email}?subject=Interesting%20opportunity`}>
-            Email me
+          <a className="button primary" href="/resume">
+            Résumé
           </a>
-          <a className="button secondary" href={profile.links.find((link) => link.label === "LinkedIn")?.href}>
+          <a
+            className="button secondary"
+            href={profile.links.find((link) => link.label === "LinkedIn")?.href}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             LinkedIn
           </a>
-          <a className="button ghost" href={`${masonRoute}#projects`}>
-            See projects
+          <a className="button ghost" href={`mailto:${profile.email}?subject=Role%20conversation%20%E2%80%94%20Mason%20Potter`}>
+            Email me
           </a>
         </div>
         <div className="chip-row" aria-label="Opportunity interests">

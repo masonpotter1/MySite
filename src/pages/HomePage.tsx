@@ -19,12 +19,31 @@ export function HomePage() {
           <p className="eyebrow">Cloutsites · Mason Potter</p>
           <h1>One site. Business systems and personal craft.</h1>
           <p className="home-lead">
-            Choose the door that matches why you are here—enterprise modernization and product delivery, or an
-            engineer portfolio with projects, experience, and a travel log.
+            Hiring manager? Start with the portfolio—résumé, Paycom ATS experience, and projects. Exploring business
+            systems? CloutSites covers modernization and intake.
           </p>
+          <Link className="button primary home-recruiter-cta" to="/mason">
+            Recruiter path → portfolio
+          </Link>
         </m.div>
         <div className="home-card-grid">
-          <m.article className="home-card" {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.08 }}>
+          <m.article className="home-card home-card--featured" {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.06 }}>
+            <p className="eyebrow">For hiring & recruiters</p>
+            <h2>Mason · Portfolio</h2>
+            <p>
+              Résumé, experience (Paycom ATS, CloutSites, healthcare), skills, and projects—optimized for a fast
+              technical screen.
+            </p>
+            <div className="home-card-actions">
+              <Link className="button primary" to="/mason">
+                Open portfolio
+              </Link>
+              <Link className="button secondary" to="/resume">
+                Résumé (print/PDF)
+              </Link>
+            </div>
+          </m.article>
+          <m.article className="home-card" {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }}>
             <p className="eyebrow">For operators & leadership</p>
             <h2>CloutSites</h2>
             <p>
@@ -33,17 +52,6 @@ export function HomePage() {
             </p>
             <Link className="button primary" to="/cloutsites">
               Explore CloutSites
-            </Link>
-          </m.article>
-          <m.article className="home-card" {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.14 }}>
-            <p className="eyebrow">For hiring & curiosity</p>
-            <h2>Mason</h2>
-            <p>
-              Software engineering portfolio: projects, skills, experience, curiosities, and a travel log—credible for
-              recruiters, human enough to share with friends.
-            </p>
-            <Link className="button secondary" to="/mason">
-              View portfolio
             </Link>
           </m.article>
         </div>

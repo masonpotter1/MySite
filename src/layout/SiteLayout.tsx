@@ -8,6 +8,13 @@ import { usePageMeta } from "../hooks/usePageMeta";
 function resolveMeta(pathname: string) {
   if (pathname === "/") return pageMeta["/"];
   if (pathname.startsWith("/cloutsites")) return pageMeta["/cloutsites"];
+  if (pathname.startsWith("/resume")) {
+    return {
+      title: "Mason Potter | Résumé",
+      description:
+        "Print-friendly résumé: Paycom ATS engineering, CloutSites, healthcare web modernization, Kansas State CS.",
+    };
+  }
   if (pathname.startsWith("/mason")) return pageMeta["/mason"];
   return pageMeta.notFound;
 }

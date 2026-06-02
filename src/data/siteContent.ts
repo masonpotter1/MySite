@@ -96,11 +96,12 @@ export const profile = {
   educationMajor: "B.S. Computer Science",
   educationMinor: "Minor in Entrepreneurship",
   graduation: "December 2022",
-  statusLine: "Building, learning, traveling—at an intentional pace",
+  statusLine: "Open to software engineering roles · Oklahoma City · remote-friendly",
   headline:
-    "Full-stack engineer with enterprise-scale delivery experience; currently focused on personal projects, lightweight quantitative finance exploration, and travel.",
+    "Full-stack engineer with enterprise ATS delivery at scale (Paycom), founder experience through CloutSites, and a track record modernizing complex web systems for real businesses.",
   intro:
-    "I care about systems that scale, interfaces that feel intentional, and engineering tied to real business outcomes. I am taking time away from a traditional schedule—still coding, still curious, and open to the right conversation when it aligns.",
+    "I care about systems that scale, interfaces that feel intentional, and engineering tied to measurable outcomes. I am between full-time roles by choice—still building, still interviewing, and prioritizing teams where curiosity and craft matter.",
+  github: "https://github.com/masonpotter1",
   tinkeringItems: [
     {
       id: "sec-parse",
@@ -167,14 +168,31 @@ export const profile = {
       href: "https://www.linkedin.com/in/masonpotter-43/",
     },
     {
-      label: "Resume (PDF)",
-      href: "/resume.pdf",
+      label: "Resume",
+      href: "/resume",
+    },
+    {
+      label: "GitHub",
+      href: "https://github.com/masonpotter1",
     },
     {
       label: "Experience (on-page)",
       href: "/mason#experience",
     },
   ] satisfies Link[],
+} as const;
+
+/** Recruiter-first snapshot — shown near top of /mason */
+export const recruiter = {
+  eyebrow: "For recruiters & hiring managers",
+  title: "What to scan in under a minute",
+  summary:
+    "Most recent enterprise work: Paycom ATS (PHP/React, ~1.6M documents/week, Selenium regression). Before that: CloutSites founder delivery and a 100+ page healthcare modernization. Open to full-stack and platform-facing roles.",
+  highlights: [
+    "Paycom · Software Developer III · ATS",
+    "PHP · React · Selenium · SQL",
+    "Kansas State · B.S. Computer Science · Dec 2022",
+  ],
 } as const;
 
 export const stats = [
@@ -188,7 +206,7 @@ export const travelSectionIntro = {
   eyebrow: "Travel log",
   title: "Places that shaped perspective—study abroad, cities, and trails.",
   body:
-    "For recruiters: quick proof of adaptability, curiosity, and follow-through outside the office. For everyone else: stories behind the stamps.",
+    "Optional context—adaptability and follow-through outside the office. Skip if you are short on time; experience and projects above are the hiring signal.",
 } as const;
 
 export const passportSidebarCopy = {
@@ -198,7 +216,7 @@ export const passportSidebarCopy = {
     "Broad regions first, then countries and stops. Each card blends notes with photo placeholders you can replace anytime.",
   jumpLabel: "Jump to a region",
   homeBaseLabel: "Home base",
-  photoNote: "Photos are placeholders—swap them in when you curate the set.",
+  photoNote: "Photo placeholders—curated travel notes, not required for hiring review.",
 } as const;
 
 export const skillGroups: SkillGroup[] = [
@@ -231,18 +249,6 @@ export const skillGroups: SkillGroup[] = [
 ];
 
 export const experiences: Experience[] = [
-  {
-    company: "Independent",
-    role: "Independent projects",
-    dates: "March 2026 – Present",
-    summary:
-      "Dedicated stretch for independent builds, travel, and structured learning—not a second full-time job.",
-    bullets: [
-      "Exploring document parsing and data pipelines as an engineering exercise (FinSignal Engine—personal).",
-      "Shipping and refining this portfolio as a living codebase for UI craft and maintainable content.",
-    ],
-    tags: ["Side projects", "Travel", "Learning"],
-  },
   {
     company: "Paycom Payroll LLC",
     role: "Software Developer III - ATS Team",
@@ -295,6 +301,18 @@ export const experiences: Experience[] = [
       "Researched and presented funds, ETFs, and assets using Morningstar, WealthScape, and Orion platforms.",
     ],
     tags: ["Finance", "JavaScript", "CRM", "Marketing", "Research"],
+  },
+  {
+    company: "Independent",
+    role: "Independent projects",
+    dates: "March 2026 – Present",
+    summary:
+      "Focused stretch for portfolio work, structured learning, and selective conversations—not concurrent full-time employment.",
+    bullets: [
+      "Exploring document parsing and data pipelines as an engineering exercise (FinSignal Engine—personal).",
+      "Shipping and refining this portfolio as a living codebase (React, TypeScript, Vitest, Vercel).",
+    ],
+    tags: ["Side projects", "Learning", "Open to roles"],
   },
 ];
 

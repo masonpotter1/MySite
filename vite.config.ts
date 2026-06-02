@@ -19,7 +19,7 @@ function normalizeSiteUrl(url: string): string {
 function writeSitemap(siteUrl: string) {
   const outDir = path.resolve(process.cwd(), "public");
   const base = siteUrl ? siteUrl.replace(/\/$/, "") : "";
-  const paths = ["/", "/cloutsites", "/mason"];
+  const paths = ["/", "/cloutsites", "/mason", "/resume"];
   const urls = base
     ? paths
         .map(

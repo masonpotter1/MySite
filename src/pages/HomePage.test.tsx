@@ -4,10 +4,12 @@ import { renderWithRouter } from "../test/renderWithRouter";
 import { HomePage } from "./HomePage";
 
 describe("HomePage", () => {
-  it("links to CloutSites and Mason sections", () => {
+  it("links recruiters to portfolio and résumé", () => {
     renderWithRouter(<HomePage />, { route: "/" });
 
+    expect(screen.getByRole("link", { name: /recruiter path/i })).toHaveAttribute("href", "/mason");
+    expect(screen.getByRole("link", { name: /open portfolio/i })).toHaveAttribute("href", "/mason");
+    expect(screen.getByRole("link", { name: /résumé/i })).toHaveAttribute("href", "/resume");
     expect(screen.getByRole("link", { name: /explore cloutsites/i })).toHaveAttribute("href", "/cloutsites");
-    expect(screen.getByRole("link", { name: /view portfolio/i })).toHaveAttribute("href", "/mason");
   });
 });

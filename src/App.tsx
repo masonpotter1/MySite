@@ -4,6 +4,7 @@ import { CloutSitesPage } from "./pages/CloutSitesPage";
 import { HomePage } from "./pages/HomePage";
 import { MasonPage } from "./pages/MasonPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
+import { ResumePage } from "./pages/ResumePage";
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
         <Route index element={<HomePage />} />
         <Route path="cloutsites" element={<CloutSitesPage />} />
         <Route path="mason" element={<MasonPage />} />
+        <Route path="resume" element={<ResumePage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
