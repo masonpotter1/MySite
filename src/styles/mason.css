@@ -35,7 +35,7 @@
   gap: 2rem;
   grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
   min-height: calc(100dvh - var(--site-header-offset));
-  padding-top: 1.25rem;
+  padding-top: 0;
 }.page-mason .eyebrow {
   color: var(--gold-strong);
   font-size: 0.78rem;
@@ -893,7 +893,7 @@
     min-height: auto;
     padding-bottom: 5rem;
     padding-inline: 1rem;
-    padding-top: 1.25rem;
+    padding-top: 0;
   }.page-mason h1 {
     font-size: clamp(3.1rem, 18vw, 4.8rem);
   }.page-mason .metric-grid, .page-mason .stat-grid, .page-mason .skills-grid, .page-mason .project-grid, .page-mason .interest-grid, .page-mason .interest-strip, .page-mason .tinkering-grid, .page-mason .travel-spot-grid {

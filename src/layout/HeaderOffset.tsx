@@ -12,7 +12,7 @@ export function HeaderOffset() {
 
     const update = () => {
       const { bottom } = header.getBoundingClientRect();
-      document.documentElement.style.setProperty("--site-header-offset", `${Math.ceil(bottom + 16)}px`);
+      document.documentElement.style.setProperty("--site-header-offset", `${Math.ceil(bottom + 6)}px`);
     };
 
     update();
