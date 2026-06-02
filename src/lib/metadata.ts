@@ -59,7 +59,7 @@ export function organizationJsonLd() {
       url: `${siteUrl}/mason`,
     },
     description:
-      "Web and tech consulting for growing businesses: reliable sites, modernized operations, and credible web products. Remote-first delivery across the United States.",
+      "Web and tech consulting for growing businesses: reliable sites, modernized operations, and credible web products. In-person or remote delivery across the United States.",
     areaServed: { "@type": "Country", name: "United States" },
     address: {
       "@type": "PostalAddress",

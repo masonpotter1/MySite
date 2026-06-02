@@ -4,7 +4,7 @@ export const company = {
   name: "CloutSites",
   descriptor: "Web & Tech Consulting LLC",
   /** Shown in footer; HQ optional when you work nationally or remotely */
-  location: "Remote-first · Oklahoma City, OK",
+  location: "Oklahoma City, OK · In person or remote",
   email: "hello@cloutsites.com",
   phone: "",
   heroEyebrow: "Web & tech consulting · founded by Mason Potter",
@@ -12,13 +12,13 @@ export const company = {
   valueProposition:
     "We fix what slows your business down: broken checkouts, slow pages, messy updates, and software your team is afraid to touch.",
   heroSubtitle:
-    "CloutSites is a consulting team for apparel brands, local businesses, and startups that need a credible web presence, reliable operations, and honest guidance—not a jargon-heavy slide deck. We work remote-first with clear checkpoints over video, chat, and shared project spaces.",
+    "CloutSites is a consulting team for apparel brands, local businesses, and startups that need a credible web presence, reliable operations, and honest guidance—not a jargon-heavy slide deck. We meet in person when it helps, work remote when it does not, and keep clear checkpoints either way.",
   seoKeywords: [
     "Website redesign for small business",
     "E-commerce and booking fixes",
     "Reliable business websites",
     "Web consulting Oklahoma",
-    "Remote web development team",
+    "Oklahoma web consulting team",
     "Shop and brand site help",
   ],
 };
@@ -35,11 +35,11 @@ export const plainEnglishBridge = {
     "You do not need to be technical to work with us. Most projects come down to protecting revenue you already have while making the site or system easier to run—or launching something new that looks credible on day one.",
   bullets: [
     "If critical workflows depend on aging software or messy hosting—we stabilize first, then modernize in controlled steps so deadlines and compliance don't slip.",
-    "If you need a new site, portal, or internal tool—we design and ship it to stay fast, accessible, and maintainable—remote collaboration included.",
+    "If you need a new site, portal, or internal tool—we design and ship it to stay fast, accessible, and maintainable—in person or remote.",
     "If you're unsure where to start—we run a focused discovery so scope, risk, and sequencing match your reality—not a generic roadmap.",
   ],
   footer:
-    "Below you'll see how we prove releases and which tools we use. Expand any \"technical detail\" section when you want depth—or skim the headlines.",
+    "Below you'll see how we prove releases and which tools we use. Open any stack tile or technical detail section when you want depth—or skim the headlines.",
 };
 
 /** Truthful vendor signals for procurement-minded buyers—edit items as your practice evolves */
@@ -47,7 +47,7 @@ export const credibilityStrip = {
   eyebrow: "For leadership & procurement",
   title: "How we engage, without theatre",
   subtitle:
-    "Remote-first delivery with clear checkpoints. Everything here is honest positioning you can align with questionnaires and security reviews.",
+    "In-person or remote delivery with clear checkpoints. Everything here is honest positioning you can align with questionnaires and security reviews.",
   items: [
     {
       title: "Discovery-led",

@@ -1,8 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState, type MutableRefObject } from "react";
 import { m } from "framer-motion";
-import { TechStackGlyph, type TechStackIconId } from "@/components/TechIcons";
+import { TechStackGlyph } from "@/components/TechIcons";
 import { Disclosure } from "@/components/Disclosure";
 import { fadeUp, viewport, baseTransition } from "@/lib/motion";
 import {
@@ -214,61 +214,83 @@ function Reliability() {
 }
 
 function TechStack() {
-  const [activeId, setActiveId] = useState<TechStackIconId>(techStack[0].id);
-  const active = useMemo(() => techStack.find((tech) => tech.id === activeId) ?? techStack[0], [activeId]);
+  const openStackRef = useRef<string | null>(null);
 
   return (
     <section className="section" id="stack" aria-labelledby="stack-title">
       <SectionIntro
         eyebrow="Interactive stack map"
         titleId="stack-title"
-        title="Our stack—pick a tile for depth."
-        body="Lightweight icons keep the page fast. Expand the focus panel below on mobile, or leave it open on larger screens."
+        title="Our stack—open a tile for depth."
+        body="Same pattern as the portfolio project cards: skim the grid, expand one tile for focus areas, collapse when you're done."
       />
       <div className="stack-grid">
-        {techStack.map((tech, index) => {
-          const selected = tech.id === activeId;
-          return (
-            <m.button
-              type="button"
-              className={`stack-card${selected ? " stack-card--active" : ""}`}
-              key={tech.id}
-              aria-pressed={selected}
-              aria-label={`${tech.name}: ${tech.category}`}
-              onClick={() => setActiveId(tech.id)}
-              {...fadeUp}
-              viewport={viewport}
-              transition={{ duration: 0.45, delay: index * 0.035 }}
-            >
-              <TechStackGlyph id={tech.id} className="stack-icon" />
-              <span>{tech.category}</span>
-              <h3>{tech.name}</h3>
-              <p>{tech.description}</p>
-            </m.button>
-          );
-        })}
-      </div>
-      <div className="stack-detail-wrap">
-        <Disclosure summary="Technical detail: focus areas for the selected technology">
-          <m.div
-            className="stack-detail"
-            key={active.id}
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
-          >
-            <p className="eyebrow">Focus areas</p>
-            <h3 className="stack-detail-title">{active.name}</h3>
-            <ul className="stack-focus">
-              {active.focus.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </m.div>
-        </Disclosure>
+        {techStack.map((tech, index) => (
+          <StackCard key={tech.id} tech={tech} index={index} openStackRef={openStackRef} />
+        ))}
       </div>
     </section>
+  );
+}
+
+function StackCard({
+  tech,
+  index,
+  openStackRef,
+}: {
+  tech: (typeof techStack)[number];
+  index: number;
+  openStackRef: MutableRefObject<string | null>;
+}) {
+  const detailsRef = useRef<HTMLDetailsElement>(null);
+
+  return (
+    <m.article
+      className="stack-card"
+      {...fadeUp}
+      viewport={viewport}
+      transition={{ duration: 0.45, delay: index * 0.035 }}
+    >
+      <details
+        ref={detailsRef}
+        className="stack-details-root"
+        onToggle={(event) => {
+          const el = event.currentTarget;
+          if (!el.open) {
+            if (openStackRef.current === tech.id) {
+              openStackRef.current = null;
+            }
+            return;
+          }
+          if (openStackRef.current && openStackRef.current !== tech.id) {
+            document
+              .querySelectorAll<HTMLDetailsElement>("details.stack-details-root[open]")
+              .forEach((other) => {
+                if (other !== el) {
+                  other.open = false;
+                }
+              });
+          }
+          openStackRef.current = tech.id;
+        }}
+      >
+        <summary aria-label={`Toggle focus areas for ${tech.name}`}>
+          <TechStackGlyph id={tech.id} className="stack-icon" />
+          <span className="stack-card-category">{tech.category}</span>
+          <h3>{tech.name}</h3>
+          <p className="stack-card-lede">{tech.description}</p>
+          <span className="details-hint" data-open-label="View less" data-closed-label="View focus areas" />
+        </summary>
+        <div className="stack-card-details">
+          <p className="eyebrow">Focus areas</p>
+          <ul className="stack-focus">
+            {tech.focus.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </details>
+    </m.article>
   );
 }
 

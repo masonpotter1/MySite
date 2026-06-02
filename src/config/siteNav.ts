@@ -49,7 +49,7 @@ export const pageMeta: Record<
   "/cloutsites": {
     title: "CloutSites | Web & Tech Consulting for Growing Businesses",
     description:
-      "CloutSites LLC helps apparel brands, local businesses, and startups fix unreliable sites, ship credible web products, and modernize operations—remote-first, plain-language discovery.",
+      "CloutSites LLC helps apparel brands, local businesses, and startups fix unreliable sites, ship credible web products, and modernize operations—in person or remote.",
   },
   "/mason": {
     title: "Mason Potter | Software Engineer · Résumé & Portfolio",

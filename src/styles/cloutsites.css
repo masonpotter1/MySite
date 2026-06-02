@@ -322,14 +322,6 @@
   min-width: 0;
 }
 
-.stack-detail-wrap {
-  margin-top: 1rem;
-}
-
-.stack-detail-wrap .stack-detail {
-  margin-top: 0;
-}
-
 .spec-review .disclosure {
   margin-top: 0.5rem;
 }
@@ -424,26 +416,71 @@
 .stack-card {
   border-radius: var(--radius-md);
   color: inherit;
-  cursor: pointer;
-  min-height: 13.5rem;
-  padding: 1rem;
+  overflow: hidden;
+  padding: 0;
   text-align: left;
   transition:
     border-color 160ms ease,
-    transform 160ms ease,
-    background 160ms ease;
-  width: 100%;
+    transform 160ms ease;
 }
 
 .stack-card:hover {
-  background: rgba(57, 245, 211, 0.08);
   border-color: rgba(57, 245, 211, 0.42);
   transform: translateY(-3px);
 }
 
-.stack-card--active {
-  background: rgba(57, 245, 211, 0.1);
+.stack-card:has(.stack-details-root[open]) {
+  background: rgba(57, 245, 211, 0.08);
   border-color: rgba(57, 245, 211, 0.55);
+}
+
+.stack-details-root {
+  height: 100%;
+}
+
+.stack-card summary {
+  cursor: pointer;
+  list-style: none;
+  min-height: 13.5rem;
+  padding: 1rem;
+}
+
+.stack-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.stack-card-lede {
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.stack-card-details {
+  border-top: 1px solid var(--line);
+  padding: 1rem 1rem 1.15rem;
+}
+
+.stack-card-details .eyebrow {
+  margin-bottom: 0.65rem;
+}
+
+.page-cloutsites .stack-card .details-hint {
+  color: var(--teal);
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  margin-top: 0.5rem;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.page-cloutsites .stack-card .details-hint::after {
+  content: attr(data-closed-label);
+}
+
+.page-cloutsites .stack-details-root[open] > summary .details-hint::after {
+  content: attr(data-open-label);
 }
 
 .stack-icon {
@@ -452,21 +489,6 @@
   height: 2.25rem;
   margin-bottom: 0.75rem;
   width: 2.25rem;
-}
-
-.stack-detail {
-  background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
-    rgba(5, 11, 15, 0.55);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-xl);
-  margin-top: 1.25rem;
-  padding: 1.35rem 1.5rem;
-}
-
-.stack-detail-title {
-  font-size: clamp(1.25rem, 2.4vw, 1.65rem);
-  margin-bottom: 0.75rem;
 }
 
 .stack-focus {
@@ -483,7 +505,7 @@
   padding-left: 0.85rem;
 }
 
-.stack-card span,
+.stack-card-category,
 .metric {
   color: var(--teal);
   display: inline-block;

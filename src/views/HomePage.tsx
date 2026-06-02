@@ -61,7 +61,7 @@ export function HomePage() {
         </div>
       </main>
       <footer className="footer">
-        <span>Cloutsites · Remote-first · Oklahoma City, OK</span>
+        <span>CloutSites · Oklahoma City, OK · In person or remote</span>
         <span className="footer-meta">
           <a href="/privacy.html">Privacy</a>
         </span>
