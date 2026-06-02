@@ -86,9 +86,12 @@ export const profile = {
   pronouns: "He/Him",
   /** Short line under name in the top bar */
   title: "Software engineer",
-  /** Credential line for recruiters */
+  /** Shown in hero—company name lives in Experience / résumé only */
   lastRoleTitle: "Software Developer III",
-  lastRoleCompany: "Paycom",
+  credentialLine: "Previously Software Developer III · PHP · React · Full Stack · Enterprise ATS",
+  /** At-a-glance card beside hero metrics */
+  atAGlance:
+    "Enterprise ATS delivery at serious throughput, founder of CloutSites LLC, and projects spanning mobile, data, the web, and this portfolio.",
   specialty: "PHP · React · Full Stack · Enterprise ATS",
   location: "Oklahoma City, Oklahoma",
   email: "masonpotter1@gmail.com",
@@ -98,7 +101,7 @@ export const profile = {
   graduation: "December 2022",
   statusLine: "Oklahoma City · Building products & systems · remote-friendly",
   headline:
-    "Full-stack engineer with enterprise ATS delivery at scale (Paycom), founder of CloutSites LLC, and a track record modernizing complex web systems for real businesses.",
+    "Full-stack engineer with enterprise ATS delivery at scale, founder of CloutSites LLC, and a track record modernizing complex web systems for real businesses.",
   intro:
     "I care about systems that scale, interfaces that feel intentional, and engineering tied to measurable outcomes. Right now I am shipping portfolio work, structured learning, and growing CloutSites—the consulting company I founded—while staying close to teams that value craft and curiosity.",
   github: "https://github.com/masonpotter1",
@@ -148,8 +151,8 @@ export const profile = {
       text: "I am based in Oklahoma City. My background blends enterprise software, independent consulting, healthcare web operations, and hands-on projects across mobile, databases, and the web.",
     },
     {
-      id: "about-paycom",
-      text: "Most recently, I spent time at Paycom on applicant tracking systems work at serious scale: co-developing web applications that handled on the order of 1.6M documents per week, and tightening automated regression coverage with Selenium until test runs dropped from hours to minutes.",
+      id: "about-enterprise",
+      text: "Most recently I shipped applicant tracking systems work at enterprise scale—details and employer are in Experience below. The short version: high-throughput document workflows, full-stack delivery, and Selenium regression suites cut from hours to minutes.",
     },
     {
       id: "about-cloutsites",
@@ -189,17 +192,17 @@ export const recruiter = {
   eyebrow: "For recruiters & hiring managers",
   title: "What to scan in under a minute",
   summary:
-    "Most recent enterprise work: Paycom ATS (PHP/React, ~1.6M documents/week, Selenium regression cut from hours to minutes). Founded CloutSites LLC (consulting delivery). Healthcare web modernization across 100+ pages with measurable traffic and revenue lift.",
+    "Enterprise ATS delivery (PHP/React, ~1.6M documents/week, Selenium regression cut from hours to minutes). Founded CloutSites LLC (consulting delivery). Healthcare web modernization across 100+ pages with measurable traffic and revenue lift.",
   highlights: [
-    "Paycom · Software Developer III · ATS",
+    "Software Developer III · Enterprise ATS",
     "PHP · React · Selenium · SQL",
     "Kansas State · B.S. Computer Science · Dec 2022",
   ],
 } as const;
 
 export const stats = [
-  { value: "1.6M", label: "weekly documents processed in ATS apps at Paycom" },
-  { value: "Hours → min", label: "Selenium regression runs shortened at Paycom" },
+  { value: "1.6M", label: "weekly documents processed in enterprise ATS apps" },
+  { value: "Hours → min", label: "Selenium regression runs shortened (enterprise ATS)" },
   { value: "100+", label: "healthcare site pages modernized" },
 ];
 

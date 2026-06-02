@@ -16,7 +16,7 @@ export function HomePage() {
           <h1>Two doors in: the company, and the engineer behind it.</h1>
           <p className="home-lead">
             Need a team for your business site or systems? CloutSites LLC is web and tech consulting—we deliver. Want
-            Mason&apos;s résumé, Paycom ATS work, and projects? Start with the portfolio.
+            Mason&apos;s résumé, enterprise ATS work, and projects? Start with the portfolio.
           </p>
           <Link className="button primary home-recruiter-cta" href="/mason">
             Recruiter path → portfolio
@@ -31,7 +31,7 @@ export function HomePage() {
             <p className="eyebrow">For hiring & recruiters</p>
             <h2>Mason · Portfolio</h2>
             <p>
-              Résumé, experience (Paycom ATS, CloutSites, healthcare), skills, and projects—optimized for a fast
+              Résumé, experience (enterprise ATS, CloutSites, healthcare), skills, and projects—optimized for a fast
               technical screen.
             </p>
             <div className="home-card-actions">

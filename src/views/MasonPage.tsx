@@ -61,9 +61,7 @@ function Hero() {
         </div>
         <h1>{profile.name}</h1>
         <p className="hero-subtitle">{profile.statusLine}</p>
-        <p className="hero-credential">
-          Previously {profile.lastRoleTitle} @ {profile.lastRoleCompany} · {profile.specialty}
-        </p>
+        <p className="hero-credential">{profile.credentialLine}</p>
         <p>{profile.headline}</p>
         <div className="hero-cta-stack">
           <div className="hero-actions">
@@ -116,10 +114,7 @@ function Hero() {
           <div className="profile-card-content">
             <p className="eyebrow">At a glance</p>
             <h2>Enterprise-scale delivery, founder-led consulting</h2>
-            <p>
-              Paycom ATS work at serious throughput, founder of CloutSites LLC, and projects
-              spanning mobile, data, the web, and this portfolio.
-            </p>
+            <p>{profile.atAGlance}</p>
           </div>
         </div>
         <div className="metric-grid">

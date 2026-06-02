@@ -54,7 +54,7 @@ export const pageMeta: Record<
   "/mason": {
     title: "Mason Potter | Software Engineer · Résumé & Portfolio",
     description:
-      "Full-stack engineer (PHP, React, Selenium). Paycom ATS scale at ~1.6M documents/week, founder of CloutSites LLC, healthcare web modernization. Résumé, projects, and experience.",
+      "Full-stack engineer (PHP, React, Selenium). Enterprise ATS scale at ~1.6M documents/week, founder of CloutSites LLC, healthcare web modernization. Résumé, projects, and experience.",
   },
   notFound: {
     title: "Page not found | Cloutsites",
