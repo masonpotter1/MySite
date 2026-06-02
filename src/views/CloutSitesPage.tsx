@@ -41,7 +41,7 @@ export function CloutSitesPage() {
         <IntakePortal />
         <p className="founder-link-wrap section">
           <a className="button ghost" href="/mason">
-            Meet Mason Potter — founder & engineer
+            About the founder — Mason Potter
           </a>
         </p>
       </main>

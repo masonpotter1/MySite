@@ -9,12 +9,12 @@ describe("CloutSitesPage", () => {
 
     expect(
       screen.getByRole("heading", {
-        name: /engineering systems built for real operations/i,
+        name: /websites and systems that earn trust/i,
       }),
     ).toBeInTheDocument();
-    expect(screen.getByText(/we don't just build sites; we build systems/i)).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /enterprise modernization/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /digital growth & product/i })).toBeInTheDocument();
+    expect(screen.getByText(/broken checkouts, slow pages/i)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /fix & modernize what you already run/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /launch & grow a credible web presence/i })).toBeInTheDocument();
     expect(screen.getByText(/selenium tests cover critical paths/i)).toBeInTheDocument();
     expect(screen.getByText(/production ready/i)).toBeInTheDocument();
   });
@@ -40,11 +40,11 @@ describe("CloutSitesPage", () => {
     fireEvent.click(buildOption);
 
     expect(buildOption).toHaveAttribute("aria-pressed", "true");
-    expect(within(intake).getByText("Digital Growth & Product")).toBeInTheDocument();
+    expect(within(intake).getByText("Launch & grow")).toBeInTheDocument();
   });
 
   it("links to the Mason portfolio", () => {
     renderWithSite(<CloutSitesPage />, { route: "/cloutsites" });
-    expect(screen.getByRole("link", { name: /meet mason potter/i })).toHaveAttribute("href", "/mason");
+    expect(screen.getByRole("link", { name: /about the founder/i })).toHaveAttribute("href", "/mason");
   });
 });

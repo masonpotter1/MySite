@@ -51,10 +51,15 @@ export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    name: "Cloutsites",
-    url: siteUrl,
+    name: "CloutSites",
+    url: `${siteUrl}/cloutsites`,
+    founder: {
+      "@type": "Person",
+      name: "Mason Potter",
+      url: `${siteUrl}/mason`,
+    },
     description:
-      "Enterprise modernization, cloud consulting, legacy system modernization, and high-performance web application development. Remote-first delivery across the United States.",
+      "Web and tech consulting for growing businesses: reliable sites, modernized operations, and credible web products. Remote-first delivery across the United States.",
     areaServed: { "@type": "Country", name: "United States" },
     address: {
       "@type": "PostalAddress",

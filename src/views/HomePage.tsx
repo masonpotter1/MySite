@@ -12,11 +12,11 @@ export function HomePage() {
       <div className="glow glow-orange" aria-hidden="true" />
       <main id="main-content" className="home-main section" tabIndex={-1}>
         <m.div className="home-hero" {...homeFadeUp}>
-          <p className="eyebrow">Cloutsites · Mason Potter</p>
-          <h1>One site. Business systems and personal craft.</h1>
+          <p className="eyebrow">CloutSites · Mason Potter</p>
+          <h1>Two doors in: the company, and the engineer behind it.</h1>
           <p className="home-lead">
-            Hiring manager? Start with the portfolio—résumé, Paycom ATS experience, and projects. Exploring business
-            systems? CloutSites covers modernization and intake.
+            Need a team for your business site or systems? CloutSites LLC is web and tech consulting—we deliver. Want
+            Mason&apos;s résumé, Paycom ATS work, and projects? Start with the portfolio.
           </p>
           <Link className="button primary home-recruiter-cta" href="/mason">
             Recruiter path → portfolio
@@ -51,8 +51,8 @@ export function HomePage() {
             <p className="eyebrow">For operators & leadership</p>
             <h2>CloutSites</h2>
             <p>
-              Enterprise modernization, cloud-native delivery, reliability practices, and a structured client intake—built
-              for teams that need systems, not slide decks.
+              Web and tech consulting for growing businesses—reliable sites, clearer operations, and a structured intake.
+              We are the company; Mason is the founder.
             </p>
             <Link className="button primary" href="/cloutsites">
               Explore CloutSites

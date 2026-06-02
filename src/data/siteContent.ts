@@ -89,18 +89,18 @@ export const profile = {
   /** Credential line for recruiters */
   lastRoleTitle: "Software Developer III",
   lastRoleCompany: "Paycom",
-  specialty: "PHP | React | Full Stack | ATS (past)",
+  specialty: "PHP · React · Full Stack · Enterprise ATS",
   location: "Oklahoma City, Oklahoma",
   email: "masonpotter1@gmail.com",
   educationSchool: "Kansas State University",
   educationMajor: "B.S. Computer Science",
   educationMinor: "Minor in Entrepreneurship",
   graduation: "December 2022",
-  statusLine: "Open to software engineering roles · Oklahoma City · remote-friendly",
+  statusLine: "Oklahoma City · Building products & systems · remote-friendly",
   headline:
-    "Full-stack engineer with enterprise ATS delivery at scale (Paycom), founder experience through CloutSites, and a track record modernizing complex web systems for real businesses.",
+    "Full-stack engineer with enterprise ATS delivery at scale (Paycom), founder of CloutSites LLC, and a track record modernizing complex web systems for real businesses.",
   intro:
-    "I care about systems that scale, interfaces that feel intentional, and engineering tied to measurable outcomes. I am between full-time roles by choice—still building, still interviewing, and prioritizing teams where curiosity and craft matter.",
+    "I care about systems that scale, interfaces that feel intentional, and engineering tied to measurable outcomes. Right now I am shipping portfolio work, structured learning, and growing CloutSites—the consulting company I founded—while staying close to teams that value craft and curiosity.",
   github: "https://github.com/masonpotter1",
   /** Served from public/; synced from GitHub profile (masonpotter1) */
   avatarSrc: "/avatar.png",
@@ -153,7 +153,7 @@ export const profile = {
     },
     {
       id: "about-cloutsites",
-      text: "Before that, I founded CloutSites LLC and led end-to-end client work—everything from UI and content systems to integrations, analytics, and the unglamorous IT glue that keeps a business running. Client work is paused while I focus on independent projects.",
+      text: "I founded CloutSites LLC, a web and tech consulting company. Our team handles discovery through delivery—sites, integrations, analytics, and the operational glue that keeps a business running online. CloutSites is the company; this page is my personal engineering story.",
     },
     {
       id: "about-personal",
@@ -189,7 +189,7 @@ export const recruiter = {
   eyebrow: "For recruiters & hiring managers",
   title: "What to scan in under a minute",
   summary:
-    "Most recent enterprise work: Paycom ATS (PHP/React, ~1.6M documents/week, Selenium regression). Before that: CloutSites founder delivery and a 100+ page healthcare modernization. Open to full-stack and platform-facing roles.",
+    "Most recent enterprise work: Paycom ATS (PHP/React, ~1.6M documents/week, Selenium regression cut from hours to minutes). Founded CloutSites LLC (consulting delivery). Healthcare web modernization across 100+ pages with measurable traffic and revenue lift.",
   highlights: [
     "Paycom · Software Developer III · ATS",
     "PHP · React · Selenium · SQL",
@@ -198,17 +198,47 @@ export const recruiter = {
 } as const;
 
 export const stats = [
-  { value: "1.6M", label: "weekly documents processed (ATS apps, past role)" },
-  { value: "Hours → min", label: "Selenium regression runs shortened (past)" },
-  { value: "100+", label: "healthcare site pages modernized (past)" },
+  { value: "1.6M", label: "weekly documents processed in ATS apps at Paycom" },
+  { value: "Hours → min", label: "Selenium regression runs shortened at Paycom" },
+  { value: "100+", label: "healthcare site pages modernized" },
 ];
+
+/** Punchy section headings on /mason — titles carry energy; body optional */
+export const sectionIntros = {
+  about: {
+    eyebrow: "About",
+    title: "Enterprise scale, founder grit, and work that ships.",
+  },
+  skills: {
+    eyebrow: "Technical skills",
+    title: "Stacks pushed to production—not slide-deck fluency.",
+  },
+  projects: {
+    eyebrow: "Featured projects",
+    title: "Products, pipelines, and sites worth opening the hood on.",
+  },
+  experience: {
+    eyebrow: "Experience",
+    title: "Impact first—timeline second.",
+  },
+  beyond: {
+    eyebrow: "Beyond the code",
+    title: "Curiosity that shows up in hardware, trails, and design.",
+  },
+  contact: {
+    eyebrow: "Contact",
+    title: "Worth a conversation: products, hard problems, and sharp collaborators.",
+    body:
+      "I am most interested in people building useful products, sharp tools, or teams where curiosity is part of the work. For business systems and client engagements, start with CloutSites—the company handles delivery.",
+  },
+} as const;
 
 /** Travel section headings + sidebar—edit here to match README tone */
 export const travelSectionIntro = {
   eyebrow: "Travel log",
-  title: "Places that shaped perspective—study abroad, cities, and trails.",
+  title: "Places that sharpen perspective—study abroad, cities, and trails.",
   body:
-    "Optional context—adaptability and follow-through outside the office. Skip if you are short on time; experience and projects above are the hiring signal.",
+    "Optional color on adaptability outside the office. If you are short on time, experience and projects above are the signal.",
 } as const;
 
 export const passportSidebarCopy = {
@@ -256,7 +286,7 @@ export const experiences: Experience[] = [
     role: "Software Developer III - ATS Team",
     dates: "May 2025 – March 2026",
     summary:
-      "Past role: enterprise applicant tracking software focused on complex hiring workflows and high-throughput document systems.",
+      "Enterprise applicant tracking software focused on complex hiring workflows and high-throughput document systems.",
     bullets: [
       "Co-developed web applications supporting weekly throughput on the order of 1.6M documents.",
       "Optimized and expanded Selenium regression suites, reducing total testing time from hours to minutes.",
@@ -267,14 +297,15 @@ export const experiences: Experience[] = [
   {
     company: "CloutSites LLC",
     role: "Founder",
-    dates: "July 2021 – May 2025",
+    dates: "July 2021 – Present",
     summary:
-      "Independent consulting and end-to-end web work for businesses. Client work is paused and not accepting new clients while I focus on independent projects.",
+      "Founded and lead CloutSites LLC—a web and tech consulting company serving growing businesses with sites, integrations, and operational systems.",
     bullets: [
-      "Owned delivery from discovery to deployment: UI, content, integrations, hosting, and support.",
-      "Built practical systems for marketing, operations, and day-to-day business workflows.",
+      "Built the company delivery model: discovery, architecture, build, hardening, and handoff with plain-language stakeholder updates.",
+      "Shipped client work across UI, content systems, hosting, analytics, and day-to-day business workflows.",
+      "CloutSites is the company; client intake and engagements live at cloutsites.com.",
     ],
-    tags: ["Consulting", "Founder", "Paused"],
+    tags: ["Consulting", "Founder", "LLC"],
   },
   {
     company: "Hays Medical Spa",
@@ -306,15 +337,15 @@ export const experiences: Experience[] = [
   },
   {
     company: "Independent",
-    role: "Independent projects",
+    role: "Building & learning",
     dates: "March 2026 – Present",
     summary:
-      "Focused stretch for portfolio work, structured learning, and selective conversations—not concurrent full-time employment.",
+      "Focused stretch for portfolio work, structured learning, and product experiments alongside CloutSites.",
     bullets: [
       "Exploring document parsing and data pipelines as an engineering exercise (FinSignal Engine—personal).",
-      "Shipping and refining this portfolio as a living codebase (React, TypeScript, Vitest, Vercel).",
+      "Shipping and refining this portfolio as a living codebase (Next.js, React, TypeScript, Vitest, Vercel).",
     ],
-    tags: ["Side projects", "Learning", "Open to roles"],
+    tags: ["Side projects", "Learning", "Shipping"],
   },
 ];
 
@@ -440,14 +471,14 @@ export const projects: Project[] = [
       },
       {
         label: "Engineering choices",
-        body: "React + TypeScript + Vite, content centralized in one module, production build checks, and responsive layout tuned for real phones.",
+        body: "Next.js + React + TypeScript, content centralized in data modules, production build checks, and responsive layout tuned for real phones.",
       },
       {
         label: "What it optimizes for",
         body: "Fast iteration: travel chapters, project case studies, and career updates should be editable without rewiring the layout.",
       },
     ],
-    tech: ["React", "TypeScript", "Vite", "CSS"],
+    tech: ["Next.js", "React", "TypeScript", "CSS"],
     status: "Living Project",
   },
 ];

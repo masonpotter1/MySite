@@ -32,12 +32,12 @@ describe("Cloutsites content contracts", () => {
 
     expect(ids.size).toBe(intakeOptions.length);
     expect(recommendations).toEqual(
-      new Set(["Enterprise Modernization", "Digital Growth & Product", "Discovery Sprint"]),
+      new Set(["Fix & modernize", "Launch & grow", "Discovery Sprint"]),
     );
   });
 
   it("documents engineering standards and case study guardrails", () => {
-    expect(engineeringStandards.title.toLowerCase()).toContain("technical debt");
+    expect(engineeringStandards.title.toLowerCase()).toContain("engineering");
     expect(engineeringStandards.columns.length).toBe(3);
     expect(engineeringStandards.columns.every((col) => col.items.length >= 2)).toBe(true);
     expect(caseStudies.every((study) => study.before && study.after && study.metric)).toBe(true);

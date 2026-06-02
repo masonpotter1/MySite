@@ -2,8 +2,8 @@ import { navigation as cloutSectionNav } from "../data/cloutsitesContent";
 
 export const siteNav = [
   { label: "Home", to: "/" },
-  { label: "CloutSites", to: "/cloutsites" },
   { label: "Mason", to: "/mason" },
+  { label: "CloutSites", to: "/cloutsites" },
 ] as const;
 
 export const masonSectionNav = [
@@ -44,17 +44,17 @@ export const pageMeta: Record<
   "/": {
     title: "Cloutsites | Home",
     description:
-      "Cloutsites enterprise software systems and Mason Potter's engineering portfolio—one site, two doors in.",
+      "CloutSites web and tech consulting for growing businesses—and Mason Potter's engineering portfolio. Two doors in: hire the company or meet the founder.",
   },
   "/cloutsites": {
-    title: "Cloutsites | Enterprise Modernization & High-Performance Web Apps",
+    title: "CloutSites | Web & Tech Consulting for Growing Businesses",
     description:
-      "Enterprise modernization, cloud-native delivery, high-performance React apps, QA automation, and Datadog observability. Remote-first collaboration.",
+      "CloutSites LLC helps apparel brands, local businesses, and startups fix unreliable sites, ship credible web products, and modernize operations—remote-first, plain-language discovery.",
   },
   "/mason": {
     title: "Mason Potter | Software Engineer · Résumé & Portfolio",
     description:
-      "Full-stack engineer (PHP, React, Selenium). Paycom ATS scale, CloutSites founder, healthcare web modernization. Résumé, projects, and experience.",
+      "Full-stack engineer (PHP, React, Selenium). Paycom ATS scale at ~1.6M documents/week, founder of CloutSites LLC, healthcare web modernization. Résumé, projects, and experience.",
   },
   notFound: {
     title: "Page not found | Cloutsites",

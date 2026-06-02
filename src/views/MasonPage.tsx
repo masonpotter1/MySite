@@ -12,6 +12,7 @@ import {
   passportSidebarCopy,
   profile,
   projects,
+  sectionIntros,
   skillGroups,
   stats,
   travelRegions,
@@ -77,7 +78,7 @@ function Hero() {
             </a>
           </div>
           <div className="chip-row" aria-label="Professional highlights">
-            {[profile.location, profile.educationSchool, profile.graduation, "Open to roles"].map(
+            {[profile.location, profile.educationSchool, profile.graduation, "Building & shipping"].map(
               (highlight) => (
                 <span className="chip" key={highlight}>
                   {highlight}
@@ -114,11 +115,10 @@ function Hero() {
           </div>
           <div className="profile-card-content">
             <p className="eyebrow">At a glance</p>
-            <h2>Enterprise-scale delivery, independent streak</h2>
+            <h2>Enterprise-scale delivery, founder-led consulting</h2>
             <p>
-              Recent applicant-tracking systems work at serious throughput, years of
-              end-to-end consulting through CloutSites, and projects spanning mobile,
-              data, the web, and this portfolio.
+              Paycom ATS work at serious throughput, founder of CloutSites LLC, and projects
+              spanning mobile, data, the web, and this portfolio.
             </p>
           </div>
         </div>
@@ -169,8 +169,8 @@ function About() {
   return (
     <section className="section" id="about">
       <SectionIntro
-        eyebrow="About"
-        title="Background recruiters care about—plus the human context."
+        eyebrow={sectionIntros.about.eyebrow}
+        title={sectionIntros.about.title}
         body={profile.intro}
       />
       <m.div
@@ -209,8 +209,8 @@ function Skills() {
   return (
     <section className="section" id="skills">
       <SectionIntro
-        eyebrow="Technical skills"
-        title="Languages, stacks, and practices from shipped work."
+        eyebrow={sectionIntros.skills.eyebrow}
+        title={sectionIntros.skills.title}
       />
       <div className="card-grid skills-grid">
         {skillGroups.map((group, index) => (
@@ -241,8 +241,8 @@ function Projects() {
   return (
     <section className="section" id="projects">
       <SectionIntro
-        eyebrow="Featured projects"
-        title="Selected work—pipelines, products, and production sites."
+        eyebrow={sectionIntros.projects.eyebrow}
+        title={sectionIntros.projects.title}
       />
       <div className="card-grid project-grid">
         {projects.map((project, index) => (
@@ -336,8 +336,8 @@ function Experience() {
   return (
     <section className="section" id="experience">
       <SectionIntro
-        eyebrow="Experience"
-        title="Roles and outcomes—most recent first."
+        eyebrow={sectionIntros.experience.eyebrow}
+        title={sectionIntros.experience.title}
       />
       <div className="timeline">
         {experiences.map((role, index) => (
@@ -510,7 +510,10 @@ function Travel() {
 function Beyond() {
   return (
     <section className="section" id="beyond">
-      <SectionIntro eyebrow="Beyond the code" title="What rounds out the engineer behind the résumé." />
+      <SectionIntro
+        eyebrow={sectionIntros.beyond.eyebrow}
+        title={sectionIntros.beyond.title}
+      />
       <div className="interest-grid">
         {interests.map((interest, index) => (
           <m.article
@@ -539,14 +542,9 @@ function Contact() {
       transition={baseTransition}
     >
       <div className="contact-copy">
-        <p className="eyebrow">Contact</p>
-        <h2>Open to conversation about roles, collaborations, or ideas worth a reply.</h2>
-        <p>
-          I am most interested in conversations with people building useful products,
-          sharp tools, weird experiments, or teams where curiosity is part of the work.
-          If there is a role, project, collaboration, or idea worth kicking around,
-          send it my way.
-        </p>
+        <p className="eyebrow">{sectionIntros.contact.eyebrow}</p>
+        <h2>{sectionIntros.contact.title}</h2>
+        <p>{sectionIntros.contact.body}</p>
       </div>
       <div className="contact-action-card">
         <p className="contact-action-label">Best starting points</p>
@@ -562,8 +560,11 @@ function Contact() {
           >
             LinkedIn
           </a>
-          <a className="button ghost" href={`mailto:${profile.email}?subject=Role%20conversation%20%E2%80%94%20Mason%20Potter`}>
+          <a className="button ghost" href={`mailto:${profile.email}?subject=Hello%20%E2%80%94%20Mason%20Potter`}>
             Email me
+          </a>
+          <a className="button ghost" href="/cloutsites">
+            CloutSites (company)
           </a>
         </div>
         <div className="chip-row" aria-label="Opportunity interests">

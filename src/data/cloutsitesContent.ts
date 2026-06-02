@@ -1,25 +1,25 @@
 import type { TechStackIconId } from "../components/TechIcons";
 
 export const company = {
-  name: "Cloutsites",
-  descriptor: "Full-Lifecycle Digital Systems",
+  name: "CloutSites",
+  descriptor: "Web & Tech Consulting LLC",
   /** Shown in footer; HQ optional when you work nationally or remotely */
   location: "Remote-first · Oklahoma City, OK",
   email: "hello@cloutsites.com",
   phone: "",
-  heroEyebrow: "Remote-first · enterprise software systems studio",
-  tagline: "Engineering Systems Built for Real Operations.",
+  heroEyebrow: "Web & tech consulting · founded by Mason Potter",
+  tagline: "Websites and systems that earn trust—and keep working after launch.",
   valueProposition:
-    "We don't just build sites; we build systems. We optimize your backend so your frontend can fly.",
+    "We fix what slows your business down: broken checkouts, slow pages, messy updates, and software your team is afraid to touch.",
   heroSubtitle:
-    "From legacy modernization to high-velocity web applications, we build digital infrastructure that scales. Enterprise-grade software and cloud-native delivery—with collaborative workflows over Zoom, Slack, and shared repos so distance is not a constraint.",
+    "CloutSites is a consulting team for apparel brands, local businesses, and startups that need a credible web presence, reliable operations, and honest guidance—not a jargon-heavy slide deck. We work remote-first with clear checkpoints over video, chat, and shared project spaces.",
   seoKeywords: [
-    "Enterprise software modernization",
-    "Cloud-native consulting",
-    "Full-stack web application development",
-    "Legacy system modernization",
-    "React development services",
-    "Remote software engineering team",
+    "Website redesign for small business",
+    "E-commerce and booking fixes",
+    "Reliable business websites",
+    "Web consulting Oklahoma",
+    "Remote web development team",
+    "Shop and brand site help",
   ],
 };
 
@@ -32,7 +32,7 @@ export const plainEnglishBridge = {
   eyebrow: "In plain English",
   title: "What we actually do for your business",
   lead:
-    "You don't need to speak our stack to work with us. Most engagements boil down to protecting what already earns revenue while upgrading how it runs—or shipping a credible web product on a sane timeline.",
+    "You do not need to be technical to work with us. Most projects come down to protecting revenue you already have while making the site or system easier to run—or launching something new that looks credible on day one.",
   bullets: [
     "If critical workflows depend on aging software or messy hosting—we stabilize first, then modernize in controlled steps so deadlines and compliance don't slip.",
     "If you need a new site, portal, or internal tool—we design and ship it to stay fast, accessible, and maintainable—remote collaboration included.",
@@ -100,9 +100,9 @@ export const serviceTracks = [
   {
     id: "modernization",
     eyebrow: "Track A",
-    title: "Enterprise Modernization",
+    title: "Fix & modernize what you already run",
     summary:
-      "For teams that have valuable software trapped in brittle deployments, slow release cycles, or aging architecture.",
+      "For businesses whose site, tools, or workflows feel fragile—slow updates, scary deploys, or systems nobody wants to touch.",
     outcomes: [
       "Refactor monoliths into clearer service boundaries without breaking revenue-critical workflows.",
       "Move on-prem or pet-server workloads toward Docker, Kubernetes, and repeatable CI/CD.",
@@ -114,9 +114,9 @@ export const serviceTracks = [
   {
     id: "growth",
     eyebrow: "Track B",
-    title: "Digital Growth & Product",
+    title: "Launch & grow a credible web presence",
     summary:
-      "For founders and operators who need a fast, credible web application that can evolve past launch day.",
+      "For owners who need a fast, trustworthy site or customer-facing product that still works after the launch party.",
     outcomes: [
       "Build high-performance React interfaces with content and component systems that are easy to extend.",
       "Ship custom PHP/Laravel backends where business workflows require more than a landing page.",
@@ -256,20 +256,20 @@ export const intakeOptions = [
     label: "I need to fix an old system",
     description:
       "Legacy code, unreliable deploys, infrastructure drift, slow databases, or missing observability.",
-    recommendedTrack: "Enterprise Modernization",
+    recommendedTrack: "Fix & modernize",
   },
   {
     id: "build",
     label: "I need to build a new product",
     description:
       "A new website, app, portal, internal tool, MVP, customer workflow, or scalable marketing funnel.",
-    recommendedTrack: "Digital Growth & Product",
+    recommendedTrack: "Launch & grow",
   },
   {
     id: "unsure",
     label: "I know the outcome, not the technical path",
     description:
-      "Bring the business goal and constraints. Cloutsites can translate it into a practical build plan.",
+      "Bring the business goal and constraints. We translate it into a practical build plan.",
     recommendedTrack: "Discovery Sprint",
   },
 ] as const;
@@ -278,10 +278,9 @@ export type IntakeOptionId = (typeof intakeOptions)[number]["id"];
 
 export const engineeringStandards = {
   eyebrow: "How we think",
-  title:
-    "Technical debt reduction, architectural integrity, and scalable infrastructure—without the agency fluff.",
+  title: "Solid engineering—explained in outcomes, not buzzwords.",
   intro:
-    "Cloutsites is built for operators who need proof: measurable releases, honest tradeoffs, and systems that stay understandable after handoff.",
+    "CloutSites is built for operators who need proof: measurable releases, honest tradeoffs, and systems your team can understand after handoff.",
   columns: [
     {
       title: "Outcomes we engineer for",
