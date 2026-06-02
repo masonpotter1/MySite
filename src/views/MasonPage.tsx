@@ -24,8 +24,6 @@ const masonRoute = "/mason";
 export function MasonPage() {
   return (
     <div className="page-mason">
-      <div className="ambient ambient-one" aria-hidden="true" />
-      <div className="ambient ambient-two" aria-hidden="true" />
       <main id="main-content" tabIndex={-1}>
         <Hero />
         <RecruiterStrip />

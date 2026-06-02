@@ -7,9 +7,6 @@ import { homeFadeUp } from "@/lib/motion";
 export function HomePage() {
   return (
     <div className="page-home">
-      <div className="industrial-grid" aria-hidden="true" />
-      <div className="glow glow-teal" aria-hidden="true" />
-      <div className="glow glow-orange" aria-hidden="true" />
       <main id="main-content" className="home-main section" tabIndex={-1}>
         <m.div className="home-hero" {...homeFadeUp}>
           <p className="eyebrow">CloutSites · Mason Potter</p>

@@ -26,9 +26,6 @@ const cloutTransition = { ...baseTransition, duration: 0.58 };
 export function CloutSitesPage() {
   return (
     <div className="page-cloutsites">
-      <div className="industrial-grid" aria-hidden="true" />
-      <div className="glow glow-teal" aria-hidden="true" />
-      <div className="glow glow-orange" aria-hidden="true" />
       <main id="main-content" tabIndex={-1}>
         <Hero />
         <HowWeWork />

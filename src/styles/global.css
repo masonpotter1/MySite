@@ -10,10 +10,15 @@ html {
 body {
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
-  background:
-    radial-gradient(circle at 10% 10%, rgba(57, 245, 211, 0.16), transparent 26rem),
-    radial-gradient(circle at 88% 16%, rgba(255, 122, 26, 0.17), transparent 28rem),
-    linear-gradient(135deg, #05090c 0%, var(--bg) 50%, #111820 100%);
+  background-color: #05090c;
+  background-image:
+    radial-gradient(ellipse 90% 55% at 50% -8%, rgba(57, 245, 211, 0.14), transparent 55%),
+    radial-gradient(circle at 12% 22%, rgba(57, 245, 211, 0.12), transparent 22rem),
+    radial-gradient(circle at 88% 18%, rgba(255, 122, 26, 0.14), transparent 26rem),
+    radial-gradient(circle at 72% 62%, rgba(255, 122, 26, 0.07), transparent 24rem),
+    radial-gradient(circle at 18% 78%, rgba(57, 245, 211, 0.09), transparent 28rem),
+    radial-gradient(ellipse 120% 40% at 50% 100%, rgba(20, 35, 43, 0.9), transparent 55%),
+    linear-gradient(180deg, #05090c 0%, var(--bg) 42%, #0a1319 72%, #060b0f 100%);
   color: var(--text);
   margin: 0;
   min-width: 320px;
@@ -59,44 +64,128 @@ textarea:focus-visible {
 }
 
 .app {
+  isolation: isolate;
   min-height: 100vh;
   overflow-x: clip;
   position: relative;
 }
 
-.industrial-grid {
+.app > :not(.site-backdrop) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Full-viewport atmosphere — replaces per-page grid/glow divs */
+.site-backdrop {
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: fixed;
+  z-index: 0;
+}
+
+.site-backdrop__mesh {
+  background:
+    radial-gradient(ellipse 70% 45% at 20% 30%, rgba(57, 245, 211, 0.11), transparent 60%),
+    radial-gradient(ellipse 55% 40% at 80% 55%, rgba(255, 122, 26, 0.1), transparent 58%),
+    radial-gradient(ellipse 80% 35% at 50% 92%, rgba(57, 245, 211, 0.06), transparent 65%);
+  inset: 0;
+  position: absolute;
+}
+
+.site-backdrop__grid {
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
   background-size: 62px 62px;
   inset: 0;
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.72), transparent 78%);
-  pointer-events: none;
-  position: fixed;
+  mask-image:
+    radial-gradient(ellipse 95% 85% at 50% 45%, black 15%, transparent 72%),
+    linear-gradient(to bottom, black 0%, rgba(0, 0, 0, 0.55) 55%, rgba(0, 0, 0, 0.25) 100%);
+  position: absolute;
 }
 
-.glow {
+.site-backdrop__glow {
   border-radius: 999px;
-  filter: blur(14px);
-  opacity: 0.75;
-  pointer-events: none;
-  position: fixed;
+  filter: blur(72px);
+  opacity: 0.85;
+  position: absolute;
 }
 
-.glow-teal {
-  background: var(--teal-soft);
-  height: 24rem;
-  left: -10rem;
-  top: 8rem;
-  width: 24rem;
+.site-backdrop__glow--tl {
+  background: rgba(57, 245, 211, 0.22);
+  height: min(28rem, 52vw);
+  left: -12%;
+  top: 6%;
+  width: min(28rem, 52vw);
 }
 
-.glow-orange {
-  background: var(--orange-soft);
-  bottom: 10rem;
-  height: 26rem;
-  right: -11rem;
-  width: 26rem;
+.site-backdrop__glow--tr {
+  background: rgba(255, 122, 26, 0.2);
+  height: min(30rem, 54vw);
+  right: -14%;
+  top: 12%;
+  width: min(30rem, 54vw);
+}
+
+.site-backdrop__glow--mid {
+  background: rgba(57, 245, 211, 0.1);
+  height: min(26rem, 48vw);
+  left: 55%;
+  top: 48%;
+  width: min(32rem, 58vw);
+}
+
+.site-backdrop__glow--bl {
+  background: rgba(255, 122, 26, 0.12);
+  bottom: -8%;
+  height: min(24rem, 46vw);
+  left: -6%;
+  width: min(26rem, 48vw);
+}
+
+.site-backdrop__noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  inset: 0;
+  mix-blend-mode: soft-light;
+  opacity: 0.045;
+  position: absolute;
+}
+
+.app:has(.page-mason) .site-backdrop__mesh {
+  background:
+    radial-gradient(ellipse 70% 45% at 20% 30%, rgba(212, 181, 106, 0.12), transparent 60%),
+    radial-gradient(ellipse 55% 40% at 80% 55%, rgba(143, 166, 191, 0.1), transparent 58%),
+    radial-gradient(ellipse 80% 35% at 50% 92%, rgba(212, 181, 106, 0.07), transparent 65%);
+}
+
+.app:has(.page-mason) .site-backdrop__grid {
+  background-image:
+    linear-gradient(rgba(212, 181, 106, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212, 181, 106, 0.045) 1px, transparent 1px);
+}
+
+.app:has(.page-mason) .site-backdrop__glow--tl {
+  background: rgba(212, 181, 106, 0.18);
+}
+
+.app:has(.page-mason) .site-backdrop__glow--tr {
+  background: rgba(143, 166, 191, 0.14);
+}
+
+.app:has(.page-mason) .site-backdrop__glow--mid {
+  background: rgba(212, 181, 106, 0.09);
+}
+
+.app:has(.page-mason) .site-backdrop__glow--bl {
+  background: rgba(244, 212, 123, 0.1);
+}
+
+.page-home,
+.page-cloutsites,
+.page-mason,
+.page-resume {
+  min-height: calc(100vh - var(--site-header-offset));
 }
 
 .topbar {
@@ -807,5 +896,10 @@ button.button:disabled,
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .site-backdrop__glow {
+    filter: blur(48px);
+    opacity: 0.65;
   }
 }
