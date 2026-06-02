@@ -714,6 +714,10 @@ textarea {
 }
 
 @media (max-width: 700px) {
+  .page-cloutsites .hero {
+    padding-top: calc(8.5rem + env(safe-area-inset-top));
+  }
+
   .topbar {
     border-radius: 24px;
     flex-wrap: wrap;
