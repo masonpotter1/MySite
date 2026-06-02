@@ -1,7 +1,10 @@
+"use client";
+
 import { useMemo, useState } from "react";
-import { m, type Variants } from "framer-motion";
-import { TechStackGlyph, type TechStackIconId } from "../components/TechIcons";
-import { Disclosure } from "../components/Disclosure";
+import { m } from "framer-motion";
+import { TechStackGlyph, type TechStackIconId } from "@/components/TechIcons";
+import { Disclosure } from "@/components/Disclosure";
+import { fadeUp, viewport, baseTransition } from "@/lib/motion";
 import {
   caseStudies,
   company,
@@ -16,15 +19,9 @@ import {
   serviceTracks,
   techStack,
   type IntakeOptionId,
-} from "../data/cloutsitesContent";
+} from "@/data/cloutsitesContent";
 
-const fadeUp: Variants = {
-  initial: { opacity: 0, y: 28 },
-  whileInView: { opacity: 1, y: 0 },
-};
-
-const viewport = { once: true, amount: 0.2 };
-const baseTransition = { duration: 0.58, ease: "easeOut" as const };
+const cloutTransition = { ...baseTransition, duration: 0.58 };
 
 export function CloutSitesPage() {
   return (
@@ -56,7 +53,7 @@ export function CloutSitesPage() {
 function Hero() {
   return (
     <section className="hero section" id="top">
-      <m.div className="hero-copy" {...fadeUp} viewport={viewport} transition={baseTransition}>
+      <m.div className="hero-copy" {...fadeUp} viewport={viewport} transition={cloutTransition}>
         <p className="eyebrow">{company.heroEyebrow}</p>
         <h1>{company.tagline}</h1>
         <p className="hero-subtitle">{company.heroSubtitle}</p>
@@ -83,7 +80,7 @@ function Hero() {
         aria-label="Cloutsites delivery telemetry"
         {...fadeUp}
         viewport={viewport}
-        transition={{ ...baseTransition, delay: 0.12 }}
+        transition={{ ...cloutTransition, delay: 0.12 }}
       >
         <div className="terminal-bar">
           <span />
@@ -115,7 +112,7 @@ function Hero() {
 function HowWeWork() {
   return (
     <section className="section how-we-work" id="how-we-work" aria-labelledby="how-we-work-title">
-      <m.div className="plain-english" {...fadeUp} viewport={viewport} transition={baseTransition}>
+      <m.div className="plain-english" {...fadeUp} viewport={viewport} transition={cloutTransition}>
         <p className="eyebrow">{plainEnglishBridge.eyebrow}</p>
         <h2 id="how-we-work-title">{plainEnglishBridge.title}</h2>
         <p className="plain-lead">{plainEnglishBridge.lead}</p>
@@ -126,7 +123,7 @@ function HowWeWork() {
         </ul>
         <p className="plain-footer">{plainEnglishBridge.footer}</p>
       </m.div>
-      <m.div className="credibility-strip" {...fadeUp} viewport={viewport} transition={baseTransition}>
+      <m.div className="credibility-strip" {...fadeUp} viewport={viewport} transition={cloutTransition}>
         <p className="eyebrow">{credibilityStrip.eyebrow}</p>
         <h3 className="credibility-heading">{credibilityStrip.title}</h3>
         <p className="credibility-sub">{credibilityStrip.subtitle}</p>
@@ -158,7 +155,7 @@ function Services() {
             key={track.id}
             {...fadeUp}
             viewport={viewport}
-            transition={{ ...baseTransition, delay: index * 0.08 }}
+            transition={{ ...cloutTransition, delay: index * 0.08 }}
           >
             <p className="track-eyebrow">{track.eyebrow}</p>
             <h3>{track.title}</h3>
@@ -185,7 +182,7 @@ function Services() {
 function Reliability() {
   return (
     <section className="section reliability-panel" id="reliability">
-      <m.div className="reliability-copy" {...fadeUp} viewport={viewport} transition={baseTransition}>
+      <m.div className="reliability-copy" {...fadeUp} viewport={viewport} transition={cloutTransition}>
         <p className="eyebrow">Automated quality assurance</p>
         <h2>Production-ready is a release system, not a slogan.</h2>
         <p>
@@ -199,7 +196,7 @@ function Reliability() {
         className="release-checklist-wrap"
         {...fadeUp}
         viewport={viewport}
-        transition={{ ...baseTransition, delay: 0.1 }}
+        transition={{ ...cloutTransition, delay: 0.1 }}
       >
         <Disclosure summary='Technical detail: what goes into a "production-ready" release checklist'>
           <div className="release-checklist">
@@ -290,7 +287,7 @@ function CaseStudies() {
             key={study.title}
             {...fadeUp}
             viewport={viewport}
-            transition={{ ...baseTransition, delay: index * 0.06 }}
+            transition={{ ...cloutTransition, delay: index * 0.06 }}
           >
             <span className="metric">{study.metric}</span>
             <h3>{study.title}</h3>
@@ -340,7 +337,7 @@ function Process() {
 function EngineeringStandards() {
   return (
     <section className="section spec-review" id="standards" aria-labelledby="standards-title">
-      <m.div className="section-heading section-heading--solo" {...fadeUp} viewport={viewport} transition={baseTransition}>
+      <m.div className="section-heading section-heading--solo" {...fadeUp} viewport={viewport} transition={cloutTransition}>
         <div>
           <p className="eyebrow">{engineeringStandards.eyebrow}</p>
           <h2 id="standards-title">{engineeringStandards.title}</h2>
@@ -360,7 +357,7 @@ function EngineeringStandards() {
 
 function ReviewColumn({ title, items }: { title: string; items: string[] }) {
   return (
-    <m.article className="review-card" {...fadeUp} viewport={viewport} transition={baseTransition}>
+    <m.article className="review-card" {...fadeUp} viewport={viewport} transition={cloutTransition}>
       <h3>{title}</h3>
       <ul>
         {items.map((item) => (
@@ -437,7 +434,7 @@ function IntakePortal() {
             className="intake-options intake-options--wide"
             {...fadeUp}
             viewport={viewport}
-            transition={baseTransition}
+            transition={cloutTransition}
           >
             {intakeOptions.map((option) => (
               <button
@@ -468,7 +465,7 @@ function IntakePortal() {
         ) : null}
 
         {stepIndex === 1 ? (
-          <m.div className="intake-panel" {...fadeUp} viewport={viewport} transition={baseTransition}>
+          <m.div className="intake-panel" {...fadeUp} viewport={viewport} transition={cloutTransition}>
             <div className="selected-track">
               <span>Selected path</span>
               <strong>{selected.label}</strong>
@@ -509,7 +506,7 @@ function IntakePortal() {
             className="intake-form intake-form--solo"
             {...fadeUp}
             viewport={viewport}
-            transition={{ ...baseTransition, delay: 0.05 }}
+            transition={{ ...cloutTransition, delay: 0.05 }}
             onSubmit={(event) => event.preventDefault()}
           >
             <label>
@@ -585,7 +582,7 @@ function SectionIntro({
   body?: string;
 }) {
   return (
-    <m.div className="section-heading" {...fadeUp} viewport={viewport} transition={baseTransition}>
+    <m.div className="section-heading" {...fadeUp} viewport={viewport} transition={cloutTransition}>
       <div>
         <p className="eyebrow">{eyebrow}</p>
         <h2 id={titleId}>{title}</h2>

@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import {
   education,
   experiences,
   profile,
   skillGroups,
-} from "../data/siteContent";
+} from "@/data/siteContent";
 
 export function ResumePage() {
   return (
@@ -27,7 +29,7 @@ export function ResumePage() {
             <button type="button" className="button primary" onClick={() => window.print()}>
               Print / Save PDF
             </button>
-            <Link className="button secondary" to="/mason">
+            <Link className="button secondary" href="/mason">
               Full portfolio
             </Link>
           </div>

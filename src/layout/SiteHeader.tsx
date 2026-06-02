@@ -1,16 +1,19 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
-import { company } from "../data/cloutsitesContent";
-import { profile } from "../data/siteContent";
+import { company } from "@/data/cloutsitesContent";
+import { profile } from "@/data/siteContent";
 import {
   cloutsitesSectionNav,
   masonSectionNavPrefixed,
   siteNav,
   type SiteRoute,
-} from "../config/siteNav";
+} from "@/config/siteNav";
 
 function useActiveRoute(): SiteRoute | "other" {
-  const { pathname } = useLocation();
+  const pathname = usePathname();
   if (pathname === "/") return "/";
   if (pathname.startsWith("/cloutsites")) return "/cloutsites";
   if (pathname.startsWith("/mason") || pathname.startsWith("/resume")) return "/mason";
@@ -18,7 +21,7 @@ function useActiveRoute(): SiteRoute | "other" {
 }
 
 export function SiteHeader() {
-  const { pathname } = useLocation();
+  const pathname = usePathname();
   const route = useActiveRoute();
   const [menuOpen, setMenuOpen] = useState(false);
   const [sectionOpen, setSectionOpen] = useState(false);
@@ -53,13 +56,13 @@ export function SiteHeader() {
 
   return (
     <header className="topbar site-header">
-      <NavLink className="brand" to={brand.to} aria-label={brand.label} onClick={closeMenu}>
+      <Link className="brand" href={brand.to} aria-label={brand.label} onClick={closeMenu}>
         <span className="brand-mark">{brand.mark}</span>
         <span>
           <span className="brand-name">{brand.name}</span>
           <span className="brand-role">{brand.role}</span>
         </span>
-      </NavLink>
+      </Link>
 
       <button
         type="button"
@@ -77,15 +80,14 @@ export function SiteHeader() {
       >
         <nav className="site-nav-global" aria-label="Site sections">
           {siteNav.map((item) => (
-            <NavLink
+            <Link
               key={item.to}
-              to={item.to}
-              className={({ isActive }) => (isActive ? "site-nav-link site-nav-link--active" : "site-nav-link")}
+              href={item.to}
+              className={route === item.to ? "site-nav-link site-nav-link--active" : "site-nav-link"}
               onClick={closeMenu}
-              end={item.to === "/"}
             >
               {item.label}
-            </NavLink>
+            </Link>
           ))}
         </nav>
 

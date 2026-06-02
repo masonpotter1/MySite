@@ -1,46 +1,55 @@
-# Mason Potter — Personal Website (multi-site)
+# Cloutsites · Mason Potter
 
-This repo powers a **multi-route React app** with three sections:
+Multi-route site on **[cloutsites.com](https://cloutsites.com)** — business marketing, portfolio, and print-friendly résumé.
 
 | Route | Content |
 |-------|---------|
 | `/` | Home hub |
-| `/cloutsites` | [CloutSites](https://cloutsites.com) business marketing |
-| `/mason` | Personal portfolio (recruiter-first layout) |
+| `/cloutsites` | CloutSites business marketing |
+| `/mason` | Personal portfolio (recruiter-first) |
 | `/resume` | Print-friendly résumé (browser → Save as PDF) |
 
-**Live deploy:** [personal-site-tau-mocha.vercel.app](https://personal-site-tau-mocha.vercel.app) (set `VITE_SITE_URL` in Vercel for canonical URLs and sitemap).
+**Source of truth:** [masonpotter1/MySite](https://github.com/masonpotter1/MySite) — deploy via Vercel from `main`.
 
 ## Tech stack
 
-React · TypeScript · Vite · React Router · Framer Motion · Vitest · Vercel
+Next.js 15 (App Router) · React · TypeScript · Framer Motion · Vitest · Vercel
 
-## Where to edit
+## Environment
 
-| Path | Purpose |
-|------|---------|
-| `src/data/siteContent.ts` | Portfolio copy, projects, travel |
-| `src/data/cloutsitesContent.ts` | Business copy, intake, services |
-| `src/pages/MasonPage.tsx` | Portfolio layout |
-| `src/pages/CloutSitesPage.tsx` | Business layout |
-| `src/config/siteNav.ts` | Global nav + page meta titles |
-| `src/styles/` | `tokens`, `global`, `cloutsites`, `mason` CSS |
+Set in Vercel Production (and Preview if you want correct OG URLs on previews):
 
-## Recruiter checklist
+```bash
+SITE_URL=https://cloutsites.com
+```
 
-- [ ] Replace travel photo placeholders when ready (optional—not required for hiring review).
-- [ ] Add `public/og-image.png` (1200×630) for richer link previews on LinkedIn.
-- [ ] Optional: export a static `public/resume.pdf` and add a second link alongside `/resume`.
-- [ ] Set `VITE_SITE_URL` in Vercel to your production domain.
+See [`.env.example`](.env.example).
 
 ## Commands
 
 ```bash
 npm install
-npm run dev
+npm run dev      # http://localhost:3000
 npm test
-npm run build
+npm run build    # generates sitemap via postbuild
 ```
+
+## Where to edit (steady state)
+
+| Path | Purpose |
+|------|---------|
+| [`src/data/siteContent.ts`](src/data/siteContent.ts) | Portfolio copy, projects, travel |
+| [`src/data/cloutsitesContent.ts`](src/data/cloutsitesContent.ts) | Business copy, intake, services |
+| [`src/views/MasonPage.tsx`](src/views/MasonPage.tsx) | Portfolio layout |
+| [`src/views/CloutSitesPage.tsx`](src/views/CloutSitesPage.tsx) | Business layout |
+| [`src/config/siteNav.ts`](src/config/siteNav.ts) | Global nav + page meta titles |
+| [`src/styles/`](src/styles/) | Design tokens and page CSS |
+
+## Recruiter checklist
+
+- [ ] Add `public/og-image.png` (1200×630) for richer LinkedIn previews
+- [ ] Optional: `public/resume.pdf` alongside `/resume`
+- [ ] Submit `https://cloutsites.com/sitemap.xml` in Google Search Console
 
 ## License
 

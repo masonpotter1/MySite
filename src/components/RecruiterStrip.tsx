@@ -1,5 +1,7 @@
-import { Link } from "react-router-dom";
-import { profile, recruiter } from "../data/siteContent";
+"use client";
+
+import Link from "next/link";
+import { profile, recruiter } from "@/data/siteContent";
 
 const masonRoute = "/mason";
 
@@ -18,7 +20,7 @@ export function RecruiterStrip() {
           </ul>
         </div>
         <div className="recruiter-strip-actions">
-          <Link className="button primary" to="/resume">
+          <Link className="button primary" href="/resume">
             View résumé
           </Link>
           <a className="button secondary" href={`${masonRoute}#experience`}>

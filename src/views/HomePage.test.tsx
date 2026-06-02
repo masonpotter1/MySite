@@ -1,11 +1,11 @@
 import { screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { renderWithRouter } from "../test/renderWithRouter";
+import { renderWithSite } from "@/test/renderWithSite";
 import { HomePage } from "./HomePage";
 
 describe("HomePage", () => {
   it("links recruiters to portfolio and résumé", () => {
-    renderWithRouter(<HomePage />, { route: "/" });
+    renderWithSite(<HomePage />, { route: "/" });
 
     expect(screen.getByRole("link", { name: /recruiter path/i })).toHaveAttribute("href", "/mason");
     expect(screen.getByRole("link", { name: /open portfolio/i })).toHaveAttribute("href", "/mason");

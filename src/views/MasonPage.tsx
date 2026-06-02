@@ -1,6 +1,9 @@
+"use client";
+
 import { useRef, type MutableRefObject } from "react";
-import { m, type Variants } from "framer-motion";
-import { RecruiterStrip } from "../components/RecruiterStrip";
+import { m } from "framer-motion";
+import { RecruiterStrip } from "@/components/RecruiterStrip";
+import { fadeUp, viewport, baseTransition } from "@/lib/motion";
 import {
   education,
   experiences,
@@ -12,15 +15,8 @@ import {
   stats,
   travelRegions,
   travelSectionIntro,
-} from "../data/siteContent";
+} from "@/data/siteContent";
 
-const fadeUp: Variants = {
-  initial: { opacity: 0, y: 28 },
-  whileInView: { opacity: 1, y: 0 },
-};
-
-const viewport = { once: true, amount: 0.2 };
-const baseTransition = { duration: 0.6, ease: "easeOut" as const };
 const masonRoute = "/mason";
 
 export function MasonPage() {
@@ -41,7 +37,7 @@ export function MasonPage() {
         <Travel />
       </main>
       <footer className="footer">
-        <span>Built with React, TypeScript, and Vite · Part of cloutsites.com</span>
+        <span>Built with React, TypeScript, and Next.js · cloutsites.com</span>
         <span className="footer-meta">
           <a href="/privacy.html">Privacy</a>
           <span aria-hidden="true">·</span>

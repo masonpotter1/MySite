@@ -1,4 +1,5 @@
 import "@testing-library/jest-dom/vitest";
+import "./next-navigation-mock";
 
 Object.defineProperty(window, "matchMedia", {
   writable: true,

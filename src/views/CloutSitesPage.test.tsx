@@ -1,11 +1,11 @@
 import { fireEvent, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { renderWithRouter } from "../test/renderWithRouter";
+import { renderWithSite } from "@/test/renderWithSite";
 import { CloutSitesPage } from "./CloutSitesPage";
 
 describe("CloutSitesPage", () => {
   it("renders the core positioning and service tracks", () => {
-    renderWithRouter(<CloutSitesPage />, { route: "/cloutsites" });
+    renderWithSite(<CloutSitesPage />, { route: "/cloutsites" });
 
     expect(
       screen.getByRole("heading", {
@@ -20,7 +20,7 @@ describe("CloutSitesPage", () => {
   });
 
   it("renders the plain-English bridge and credibility section", () => {
-    renderWithRouter(<CloutSitesPage />, { route: "/cloutsites" });
+    renderWithSite(<CloutSitesPage />, { route: "/cloutsites" });
     expect(
       screen.getByRole("heading", { name: /what we actually do for your business/i }),
     ).toBeInTheDocument();
@@ -28,7 +28,7 @@ describe("CloutSitesPage", () => {
   });
 
   it("updates the intake recommendation when a buyer path is selected", () => {
-    renderWithRouter(<CloutSitesPage />, { route: "/cloutsites" });
+    renderWithSite(<CloutSitesPage />, { route: "/cloutsites" });
 
     const intake = screen.getByRole("region", {
       name: /tell us whether the job is modernization/i,
@@ -44,7 +44,7 @@ describe("CloutSitesPage", () => {
   });
 
   it("links to the Mason portfolio", () => {
-    renderWithRouter(<CloutSitesPage />, { route: "/cloutsites" });
+    renderWithSite(<CloutSitesPage />, { route: "/cloutsites" });
     expect(screen.getByRole("link", { name: /meet mason potter/i })).toHaveAttribute("href", "/mason");
   });
 });

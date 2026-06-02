@@ -1,24 +1,26 @@
 {
   "name": "mason-potter-personal-site",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
-  "type": "module",
   "engines": {
     "node": "22.x"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "tsc --noEmit && vite build",
-    "preview": "vite preview",
+    "dev": "next dev",
+    "build": "next build",
+    "postbuild": "next-sitemap",
+    "start": "next start",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "lint": "next lint"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
     "framer-motion": "latest",
+    "next": "^15.5.19",
+    "next-sitemap": "^4.2.3",
     "react": "latest",
-    "react-dom": "latest",
-    "react-router-dom": "^7.16.0"
+    "react-dom": "latest"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.9.1",
@@ -27,10 +29,10 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "@vitejs/plugin-react": "latest",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^15.5.19",
     "jsdom": "^29.1.1",
     "typescript": "latest",
-    "vite": "latest",
-    "vite-plugin-html": "^3.2.2",
     "vitest": "^4.1.6"
   }
 }

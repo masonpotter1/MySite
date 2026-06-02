@@ -1,8 +1,12 @@
 node_modules/
+.next/
+out/
 dist/
 .env
 .env.local
 npm-debug.log*
 
-# Generated at build time from VITE_SITE_URL (see vite.config.ts)
+# Generated on `npm run build` (next-sitemap postbuild)
 public/sitemap.xml
+public/sitemap-*.xml
+public/robots.txt
