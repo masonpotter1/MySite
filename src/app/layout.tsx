@@ -31,8 +31,9 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   icons: {
-    icon: "/favicon.svg",
-    apple: "/favicon.svg",
+    icon: [{ url: "/avatar.png", sizes: "192x192", type: "image/png" }],
+    apple: "/avatar.png",
+    shortcut: "/avatar.png",
   },
 };
 

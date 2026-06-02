@@ -89,7 +89,8 @@ export function personJsonLd() {
     "@type": "Person",
     name: "Mason Potter",
     url: `${siteUrl}/mason`,
+    image: `${siteUrl}/avatar.png`,
     jobTitle: "Software Engineer",
-    sameAs: ["https://www.linkedin.com/in/masonpotter-43/"],
+    sameAs: ["https://www.linkedin.com/in/masonpotter-43/", "https://github.com/masonpotter1"],
   };
 }

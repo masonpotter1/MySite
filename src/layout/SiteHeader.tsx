@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
@@ -39,15 +40,24 @@ export function SiteHeader() {
 
   const brand =
     route === "/cloutsites"
-      ? { mark: "CS", name: company.name, role: company.descriptor, to: "/cloutsites", label: "Cloutsites home" }
+      ? { name: company.name, role: company.descriptor, to: "/cloutsites", label: "Cloutsites home" }
       : route === "/mason"
-        ? { mark: "MP", name: profile.name, role: profile.title, to: "/mason", label: "Mason Potter home" }
-        : { mark: "CS", name: "Cloutsites", role: "Home", to: "/", label: "Cloutsites home" };
+        ? { name: profile.name, role: profile.title, to: "/mason", label: "Mason Potter home" }
+        : { name: "Cloutsites", role: "Home", to: "/", label: "Cloutsites home" };
 
   return (
     <header className="topbar site-header">
       <Link className="brand" href={brand.to} aria-label={brand.label} onClick={closeMenu}>
-        <span className="brand-mark">{brand.mark}</span>
+        <span className="brand-mark brand-mark--photo">
+          <Image
+            src={profile.avatarSrc}
+            alt=""
+            width={40}
+            height={40}
+            sizes="40px"
+            priority
+          />
+        </span>
         <span>
           <span className="brand-name">{brand.name}</span>
           <span className="brand-role">{brand.role}</span>

@@ -216,10 +216,19 @@
   font-weight: 900;
   height: 6.5rem;
   left: 1.5rem;
+  overflow: hidden;
   place-items: center;
   position: absolute;
   top: 5.1rem;
   width: 6.5rem;
+}.page-mason .avatar--photo {
+  background: #17232d;
+  padding: 0;
+}.page-mason .avatar--photo img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
 }.page-mason .profile-card-content {
   padding: 3.8rem 0.6rem 0.5rem;
 }.page-mason .profile-card h2 {

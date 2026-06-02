@@ -102,6 +102,8 @@ export const profile = {
   intro:
     "I care about systems that scale, interfaces that feel intentional, and engineering tied to measurable outcomes. I am between full-time roles by choice—still building, still interviewing, and prioritizing teams where curiosity and craft matter.",
   github: "https://github.com/masonpotter1",
+  /** Served from public/; synced from GitHub profile (masonpotter1) */
+  avatarSrc: "/avatar.png",
   tinkeringItems: [
     {
       id: "sec-parse",

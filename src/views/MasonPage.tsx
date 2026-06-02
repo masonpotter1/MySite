@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRef, type MutableRefObject } from "react";
 import { m } from "framer-motion";
 import { RecruiterStrip } from "@/components/RecruiterStrip";
@@ -108,8 +109,8 @@ function Hero() {
       >
         <div className="profile-card">
           <div className="profile-banner" />
-          <div className="avatar" aria-hidden="true">
-            MP
+          <div className="avatar avatar--photo">
+            <Image src={profile.avatarSrc} alt="" width={88} height={88} sizes="88px" />
           </div>
           <div className="profile-card-content">
             <p className="eyebrow">At a glance</p>
