@@ -31,7 +31,7 @@ See [`.env.example`](.env.example).
 npm install
 npm run dev      # http://localhost:3000
 npm test
-npm run build    # generates sitemap via postbuild
+npm run build    # emits /sitemap.xml and /robots.txt via App Router
 ```
 
 ## Where to edit (steady state)
