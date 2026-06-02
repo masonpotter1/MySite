@@ -34,10 +34,8 @@
   display: grid;
   gap: 2rem;
   grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
-  min-height: 100vh;
-  padding-top: calc(7rem + env(safe-area-inset-top));
-}.app:has(.site-nav-section-wrap) .page-mason .hero {
-  padding-top: calc(10.25rem + env(safe-area-inset-top));
+  min-height: calc(100dvh - var(--site-header-offset));
+  padding-top: 1.25rem;
 }.page-mason .eyebrow {
   color: var(--gold-strong);
   font-size: 0.78rem;
@@ -868,8 +866,6 @@
   }.page-mason .passport-panel {
     position: static;
     top: auto;
-  }.page-mason .hero {
-    padding-top: calc(10.25rem + env(safe-area-inset-top));
   }.page-mason .skills-grid, .page-mason .project-grid, .page-mason .interest-grid, .page-mason .interest-strip, .page-mason .tinkering-grid, .page-mason .travel-spot-grid {
     grid-template-columns: repeat(2, 1fr);
   }}@media (max-width: 680px) {.page-mason .topbar, .page-mason .site-header {
@@ -897,7 +893,7 @@
     min-height: auto;
     padding-bottom: 5rem;
     padding-inline: 1rem;
-    padding-top: calc(8.5rem + env(safe-area-inset-top));
+    padding-top: 1.25rem;
   }.page-mason h1 {
     font-size: clamp(3.1rem, 18vw, 4.8rem);
   }.page-mason .metric-grid, .page-mason .stat-grid, .page-mason .skills-grid, .page-mason .project-grid, .page-mason .interest-grid, .page-mason .interest-strip, .page-mason .tinkering-grid, .page-mason .travel-spot-grid {

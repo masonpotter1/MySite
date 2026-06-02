@@ -214,20 +214,26 @@ textarea:focus-visible {
   position: relative;
 }
 
+.site-header-offset {
+  flex-shrink: 0;
+  height: var(--site-header-offset);
+  pointer-events: none;
+  width: 100%;
+}
+
 .hero {
   align-items: center;
   display: grid;
   gap: 2rem;
   grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.98fr);
-  min-height: 100vh;
-  min-height: 100dvh;
-  padding-top: calc(7rem + env(safe-area-inset-top));
-  scroll-margin-top: calc(5.5rem + env(safe-area-inset-top));
+  min-height: calc(100dvh - var(--site-header-offset));
+  padding-top: 1.25rem;
+  scroll-margin-top: var(--site-header-offset);
 }
 
 .section {
   padding-block: 6rem;
-  scroll-margin-top: calc(5.5rem + env(safe-area-inset-top));
+  scroll-margin-top: var(--site-header-offset);
 }
 
 .eyebrow,
@@ -471,9 +477,8 @@ button.button:disabled,
     flex-wrap: nowrap;
   }
 
-  .hero,
-  .home-main {
-    padding-top: calc(9.75rem + env(safe-area-inset-top));
+  .brand-role {
+    display: none;
   }
 }
 
@@ -550,15 +555,11 @@ button.button:disabled,
   padding: 0.5rem 0.85rem;
 }
 
-/* Taller fixed header when section nav is present (mason / cloutsites) */
-.app:has(.site-nav-section-wrap) .hero,
-.app:has(.site-nav-section-wrap) .home-main,
-.app:has(.site-nav-section-wrap) .page-resume .resume-document {
-  padding-top: calc(10.25rem + env(safe-area-inset-top));
-  scroll-margin-top: calc(7rem + env(safe-area-inset-top));
-}
-
 @media (min-width: 961px) {
+  .brand-role {
+    display: block;
+  }
+
   .site-header {
     flex-wrap: nowrap;
   }
@@ -581,8 +582,8 @@ button.button:disabled,
 }
 
 .home-main {
-  min-height: calc(100vh - 8rem);
-  padding-top: calc(7rem + env(safe-area-inset-top));
+  min-height: calc(100dvh - var(--site-header-offset));
+  padding-top: 1.25rem;
 }
 
 .home-hero {
@@ -655,7 +656,7 @@ button.button:disabled,
 
 .page-resume .resume-document {
   max-width: 780px;
-  padding-top: calc(6.5rem + env(safe-area-inset-top));
+  padding-top: 1.25rem;
 }
 
 .resume-print-hint {
@@ -786,30 +787,8 @@ button.button:disabled,
 }
 
 @media (max-width: 600px) {
-  .hero {
-    padding-top: calc(10rem + env(safe-area-inset-top));
-  }
-
-  .home-main {
-    padding-top: calc(10rem + env(safe-area-inset-top));
-  }
-
-  .app:has(.site-nav-section-wrap) .hero,
-  .app:has(.site-nav-section-wrap) .home-main {
-    padding-top: calc(10.75rem + env(safe-area-inset-top));
-  }
-
-  .page-resume .resume-document {
-    padding-top: calc(8rem + env(safe-area-inset-top));
-  }
-
   .section {
-    padding-block-start: 7rem;
-  }
-
-  .hero,
-  .section {
-    scroll-margin-top: calc(6rem + env(safe-area-inset-top));
+    padding-block-start: 4rem;
   }
 }
 

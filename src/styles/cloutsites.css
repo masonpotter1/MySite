@@ -694,24 +694,12 @@ textarea {
   margin: 0;
 }
 
-.app:has(.site-nav-section-wrap) .page-cloutsites .hero {
-  padding-top: calc(10.25rem + env(safe-area-inset-top));
-}
-
 @media (max-width: 960px) {
   .hero,
   .section-heading,
   .reliability-panel,
   .intake-layout {
     grid-template-columns: 1fr;
-  }
-
-  .hero {
-    padding-top: calc(8rem + env(safe-area-inset-top));
-  }
-
-  .app:has(.site-nav-section-wrap) .page-cloutsites .hero {
-    padding-top: calc(10.25rem + env(safe-area-inset-top));
   }
 
   .stack-grid,
@@ -722,10 +710,6 @@ textarea {
 }
 
 @media (max-width: 700px) {
-  .page-cloutsites .hero {
-    padding-top: calc(8.5rem + env(safe-area-inset-top));
-  }
-
   .topbar {
     border-radius: 24px;
     flex-wrap: wrap;

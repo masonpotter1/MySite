@@ -1,4 +1,5 @@
 :root {
+  --site-header-offset: calc(7.5rem + env(safe-area-inset-top));
   color-scheme: dark;
   --bg: #071014;
   --bg-soft: #0c171d;
