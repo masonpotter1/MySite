@@ -741,6 +741,37 @@ textarea {
 }
 
 @media (max-width: 960px) {
+  .page-cloutsites .hero {
+    align-items: stretch;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding-block: 1.25rem 2.5rem;
+  }
+
+  .page-cloutsites .hero-copy h1 {
+    max-width: none;
+  }
+
+  .page-cloutsites .hero-subtitle {
+    font-size: 1.05rem;
+    line-height: 1.65;
+  }
+
+  .page-cloutsites .signal-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-cloutsites .section-heading {
+    align-items: start;
+    gap: 0.85rem;
+    grid-template-columns: 1fr;
+  }
+
+  .page-cloutsites .section-heading > p {
+    max-width: none;
+  }
+
   .hero,
   .section-heading,
   .reliability-panel,
@@ -773,6 +804,79 @@ textarea {
     padding-block: 4.25rem;
   }
 
+  .page-cloutsites .section {
+    padding-block: 3.5rem;
+  }
+
+  .page-cloutsites .hero {
+    gap: 1.25rem;
+    padding-block: 0.75rem 2rem;
+  }
+
+  .page-cloutsites .hero-copy h1 {
+    font-size: clamp(1.75rem, 7vw, 2.35rem);
+  }
+
+  .page-cloutsites .hero-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .page-cloutsites .hero-actions .button {
+    width: 100%;
+  }
+
+  .page-cloutsites .chip-row {
+    gap: 0.45rem;
+  }
+
+  .page-cloutsites .chip-row .chip {
+    font-size: 0.72rem;
+    line-height: 1.35;
+    padding: 0.4rem 0.65rem;
+  }
+
+  .page-cloutsites .code-stream {
+    gap: 0.55rem;
+    padding: 1rem;
+  }
+
+  .page-cloutsites .code-stream code {
+    font-size: 0.72rem;
+    overflow-wrap: anywhere;
+    padding: 0.65rem 0.75rem;
+    white-space: normal;
+  }
+
+  .page-cloutsites .signal-card strong {
+    font-size: 1.65rem;
+  }
+
+  .page-cloutsites .signal-card p {
+    font-size: 0.82rem;
+  }
+
+  .page-cloutsites .reliability-copy {
+    padding: 1.35rem;
+  }
+
+  .page-cloutsites .how-we-work {
+    gap: 2rem;
+  }
+
+  .page-cloutsites .selected-track strong {
+    font-size: 1.25rem;
+  }
+
+  .page-cloutsites .intake-nav {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .page-cloutsites .intake-nav .button {
+    width: 100%;
+  }
+
   .track-grid,
   .case-grid,
   .stack-grid,
@@ -786,5 +890,26 @@ textarea {
 
   .hero-terminal {
     min-width: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .app:has(.page-cloutsites) .site-header .header-cta {
+    display: none;
+  }
+
+  .page-cloutsites .hero .chip-row {
+    display: none;
+  }
+
+  .page-cloutsites .value-prop {
+    font-size: 0.98rem;
+    margin-block: 1rem;
+  }
+
+  .page-cloutsites .eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    line-height: 1.45;
   }
 }

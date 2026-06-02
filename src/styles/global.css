@@ -616,6 +616,21 @@ button.button:disabled,
   .brand-role {
     display: none;
   }
+
+  .site-header .brand {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .site-header .brand > span:last-child {
+    min-width: 0;
+  }
+
+  .site-header .brand-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 
 .site-header {
