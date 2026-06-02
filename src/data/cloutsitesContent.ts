@@ -5,7 +5,7 @@ export const company = {
   descriptor: "Web & Tech Consulting LLC",
   /** Shown in footer; HQ optional when you work nationally or remotely */
   location: "Oklahoma City, OK · In person or remote",
-  email: "hello@cloutsites.com",
+  email: "masonpotter1@gmail.com",
   phone: "",
   heroEyebrow: "Web & tech consulting · founded by Mason Potter",
   tagline: "Websites that earn trust and keep working after launch.",
