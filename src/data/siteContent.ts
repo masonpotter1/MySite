@@ -210,7 +210,7 @@ export const stats = [
 export const sectionIntros = {
   about: {
     eyebrow: "About",
-    title: "Enterprise scale, founder grit, and work that ships.",
+    title: "Enterprise scale, founder grit, work that ships.",
   },
   skills: {
     eyebrow: "Technical skills",
@@ -218,7 +218,7 @@ export const sectionIntros = {
   },
   projects: {
     eyebrow: "Featured projects",
-    title: "Products, pipelines, and sites worth opening the hood on.",
+    title: "Products and sites worth opening the hood on.",
   },
   experience: {
     eyebrow: "Experience",
@@ -230,7 +230,7 @@ export const sectionIntros = {
   },
   contact: {
     eyebrow: "Contact",
-    title: "Worth a conversation: products, hard problems, and sharp collaborators.",
+    title: "Worth a conversation about products and hard problems.",
     body:
       "I am most interested in people building useful products, sharp tools, or teams where curiosity is part of the work. For business systems and client engagements, start with CloutSites—the company handles delivery.",
   },
@@ -239,7 +239,7 @@ export const sectionIntros = {
 /** Travel section headings + sidebar—edit here to match README tone */
 export const travelSectionIntro = {
   eyebrow: "Travel log",
-  title: "Places that sharpen perspective—study abroad, cities, and trails.",
+  title: "Places that sharpen perspective: study abroad, cities, and trails.",
   body:
     "Optional color on adaptability outside the office. If you are short on time, experience and projects above are the signal.",
 } as const;

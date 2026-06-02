@@ -9,7 +9,7 @@ describe("CloutSitesPage", () => {
 
     expect(
       screen.getByRole("heading", {
-        name: /websites and systems that earn trust/i,
+        name: /websites that earn trust and keep working/i,
       }),
     ).toBeInTheDocument();
     expect(screen.getByText(/broken checkouts, slow pages/i)).toBeInTheDocument();
@@ -24,14 +24,14 @@ describe("CloutSitesPage", () => {
     expect(
       screen.getByRole("heading", { name: /what we actually do for your business/i }),
     ).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /how we engage—without theatre/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /how we engage, without theatre/i })).toBeInTheDocument();
   });
 
   it("updates the intake recommendation when a buyer path is selected", () => {
     renderWithSite(<CloutSitesPage />, { route: "/cloutsites" });
 
     const intake = screen.getByRole("region", {
-      name: /tell us whether the job is modernization/i,
+      name: /start with the job: fix, build, or discover/i,
     });
 
     const buildOption = within(intake).getByRole("button", {

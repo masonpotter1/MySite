@@ -232,8 +232,11 @@
 }.page-mason .profile-card-content {
   padding: 3.8rem 0.6rem 0.5rem;
 }.page-mason .profile-card h2 {
-  font-size: 2.2rem;
-  margin-bottom: 0.2rem;
+  font-size: clamp(1.25rem, 1.6vw + 0.65rem, 1.55rem);
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin-bottom: 0.35rem;
+  text-wrap: balance;
 }.page-mason .profile-card p {
   color: var(--muted);
   line-height: 1.6;
@@ -263,10 +266,12 @@
   grid-template-columns: minmax(0, 0.76fr) minmax(260px, 0.44fr);
   margin-bottom: 1.6rem;
 }.page-mason .section-heading h2, .page-mason .section-intro h2, .page-mason .split h2 {
-  font-size: clamp(2.2rem, 5vw, 4.5rem);
-  letter-spacing: -0.06em;
-  line-height: 0.95;
+  font-size: clamp(1.65rem, 2.2vw + 0.75rem, 2.65rem);
+  letter-spacing: -0.04em;
+  line-height: 1.14;
   margin-bottom: 0;
+  max-width: 22em;
+  text-wrap: balance;
 }.page-mason .section-heading p, .page-mason .section-intro p, .page-mason .copy-stack p {
   color: var(--muted);
   line-height: 1.7;

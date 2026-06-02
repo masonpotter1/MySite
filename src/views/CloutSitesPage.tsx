@@ -145,8 +145,8 @@ function Services() {
     <section className="section" id="services">
       <SectionIntro
         eyebrow="Dual-track services"
-        title="One partner for old systems that need discipline and new products that need speed."
-        body="Whether you're fixing something fragile or shipping something new, we separate discovery, risk, and proof—you don't need every buzzword on day one. Scroll on for the technical depth when you're ready."
+        title="Fix what you run. Ship what you need next."
+        body="Whether you're stabilizing something fragile or launching something new, we separate discovery, risk, and proof—you don't need every buzzword on day one. Scroll on for technical depth when you're ready."
       />
       <div className="track-grid">
         {serviceTracks.map((track, index) => (
@@ -222,7 +222,7 @@ function TechStack() {
       <SectionIntro
         eyebrow="Interactive stack map"
         titleId="stack-title"
-        title="Core competencies—pick a tile for depth, or skim the grid."
+        title="Our stack—pick a tile for depth."
         body="Lightweight icons keep the page fast. Expand the focus panel below on mobile, or leave it open on larger screens."
       />
       <div className="stack-grid">
@@ -277,7 +277,7 @@ function CaseStudies() {
     <section className="section" id="case-studies">
       <SectionIntro
         eyebrow="Case study framework"
-        title="Before-and-after stories built for proof, not vague portfolio theater."
+        title="Before-and-after stories built for proof."
         body="These are publish-ready templates. Replace targets with verified outcomes once client permission and measurement are in place."
       />
       <div className="case-grid">
@@ -313,7 +313,7 @@ function Process() {
     <section className="section process-section">
       <SectionIntro
         eyebrow="Operating model"
-        title="Full lifecycle means discovery, build, deployment, and handoff stay connected."
+        title="Discovery through handoff, connected."
       />
       <div className="process-rail">
         {processSteps.map((step, index) => (
@@ -416,7 +416,7 @@ function IntakePortal() {
       <SectionIntro
         eyebrow="Client intake portal"
         titleId="intake-title"
-        title="Tell us whether the job is modernization, product build, or outcome discovery."
+        title="Start with the job: fix, build, or discover."
         body="Three short steps categorize the lead, capture scope, and send a structured brief via email. For production volume, connect this flow to a backend or CRM (see note below)."
       />
       <ol className="intake-steps" aria-label="Intake progress">

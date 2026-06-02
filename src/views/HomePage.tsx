@@ -13,7 +13,7 @@ export function HomePage() {
       <main id="main-content" className="home-main section" tabIndex={-1}>
         <m.div className="home-hero" {...homeFadeUp}>
           <p className="eyebrow">CloutSites · Mason Potter</p>
-          <h1>Two doors in: the company, and the engineer behind it.</h1>
+          <h1>Hire the team. Meet the engineer.</h1>
           <p className="home-lead">
             Need a team for your business site or systems? CloutSites LLC is web and tech consulting—we deliver. Want
             Mason&apos;s résumé, enterprise ATS work, and projects? Start with the portfolio.

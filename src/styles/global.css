@@ -284,6 +284,15 @@ h1 {
   margin-bottom: 1.25rem;
 }
 
+.hero-copy h1 {
+  font-size: clamp(2.1rem, 2.4vw + 1rem, 3.35rem);
+  letter-spacing: -0.035em;
+  line-height: 1.14;
+  margin-bottom: 1rem;
+  max-width: 18em;
+  text-wrap: balance;
+}
+
 h2 {
   font-size: clamp(2.2rem, 5vw, 4.25rem);
   margin-bottom: 1rem;
@@ -591,6 +600,13 @@ button.button:disabled,
 .home-hero {
   margin-bottom: 2.5rem;
   max-width: 720px;
+}
+
+.page-home .home-hero h1 {
+  font-size: clamp(2rem, 2.2vw + 1rem, 3rem);
+  line-height: 1.14;
+  max-width: 16em;
+  text-wrap: balance;
 }
 
 .home-lead {

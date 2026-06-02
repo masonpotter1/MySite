@@ -1,3 +1,27 @@
+.page-cloutsites .hero {
+  grid-template-columns: minmax(0, 1.12fr) minmax(300px, 0.88fr);
+}
+
+.page-cloutsites .hero-copy h1 {
+  max-width: 15em;
+}
+
+.page-cloutsites .section-heading h2,
+.page-cloutsites .plain-english > h2,
+.page-cloutsites .reliability-copy h2,
+.page-cloutsites .spec-review h2 {
+  font-size: clamp(1.65rem, 1.8vw + 0.85rem, 2.5rem);
+  letter-spacing: -0.03em;
+  line-height: 1.16;
+  max-width: 22em;
+  text-wrap: balance;
+}
+
+.page-cloutsites .credibility-heading {
+  font-size: clamp(1.35rem, 1.4vw + 0.75rem, 1.85rem);
+  line-height: 1.2;
+  text-wrap: balance;
+}
 
 .hero-terminal,
 .track-card,

@@ -8,7 +8,7 @@ export const company = {
   email: "hello@cloutsites.com",
   phone: "",
   heroEyebrow: "Web & tech consulting · founded by Mason Potter",
-  tagline: "Websites and systems that earn trust—and keep working after launch.",
+  tagline: "Websites that earn trust and keep working after launch.",
   valueProposition:
     "We fix what slows your business down: broken checkouts, slow pages, messy updates, and software your team is afraid to touch.",
   heroSubtitle:
@@ -45,7 +45,7 @@ export const plainEnglishBridge = {
 /** Truthful vendor signals for procurement-minded buyers—edit items as your practice evolves */
 export const credibilityStrip = {
   eyebrow: "For leadership & procurement",
-  title: "How we engage—without theatre",
+  title: "How we engage, without theatre",
   subtitle:
     "Remote-first delivery with clear checkpoints. Everything here is honest positioning you can align with questionnaires and security reviews.",
   items: [
@@ -278,7 +278,7 @@ export type IntakeOptionId = (typeof intakeOptions)[number]["id"];
 
 export const engineeringStandards = {
   eyebrow: "How we think",
-  title: "Solid engineering—explained in outcomes, not buzzwords.",
+  title: "Solid engineering, explained in outcomes—not buzzwords.",
   intro:
     "CloutSites is built for operators who need proof: measurable releases, honest tradeoffs, and systems your team can understand after handoff.",
   columns: [
