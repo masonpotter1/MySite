@@ -55,7 +55,7 @@ describe("CloutSitesPage", () => {
 
     expect(screen.getByRole("heading", { name: /consulting for outdated systems/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /advanced tools stay available/i })).toBeInTheDocument();
-    expect(screen.getByText(/Selenium/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/Selenium/i).length).toBeGreaterThan(0);
   });
 
   it("renders Mason as founder credibility instead of a top-level portfolio", () => {

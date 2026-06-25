@@ -352,7 +352,7 @@
   margin-bottom: 0.8rem;
   padding: 0.35rem 0.55rem;
 }.page-mason .project-grid {
-  align-items: start;
+  align-items: flex-start;
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -476,7 +476,7 @@
   top: 1.45rem;
   width: 0.9rem;
 }.page-mason .timeline-top {
-  align-items: start;
+  align-items: flex-start;
   display: flex;
   gap: 1rem;
   justify-content: space-between;
@@ -486,7 +486,7 @@
 }.page-mason .timeline-top span, .page-mason .timeline-top time {
   color: var(--muted);
 }.page-mason .travel-layout, .page-mason .passport-shell {
-  align-items: start;
+  align-items: flex-start;
   display: grid;
   gap: 1rem;
   grid-template-columns: 0.78fr 1.22fr;
@@ -496,7 +496,7 @@
 }.page-mason .travel-section {
   content-visibility: visible;
 }.page-mason .passport-panel {
-  align-self: start;
+  align-self: flex-start;
   position: sticky;
   top: 6.5rem;
 }.page-mason .passport-panel-inner {

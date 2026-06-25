@@ -384,7 +384,7 @@
 }
 
 .check-row {
-  align-items: start;
+  align-items: flex-start;
   border-bottom: 1px solid var(--line);
   display: grid;
   gap: 1rem;
@@ -763,7 +763,7 @@ textarea {
   }
 
   .page-cloutsites .section-heading {
-    align-items: start;
+    align-items: flex-start;
     gap: 0.85rem;
     grid-template-columns: 1fr;
   }

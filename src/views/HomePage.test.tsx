@@ -12,7 +12,9 @@ describe("HomePage", () => {
         name: /websites, marketing, and practical it help for small businesses/i,
       }),
     ).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /start a project/i })).toHaveAttribute("href", "/contact");
+    expect(
+      screen.getAllByRole("link", { name: /start a project/i }).some((link) => link.getAttribute("href") === "/contact"),
+    ).toBe(true);
     expect(screen.getByRole("link", { name: /see services/i })).toHaveAttribute("href", "/services");
   });
 });

@@ -4,26 +4,6 @@ import path from "node:path";
 const root = path.resolve(import.meta.dirname, "..");
 const input = fs.readFileSync(path.join(root, "..", "MySite", "src", "styles.css"), "utf8");
 
-/** Prefix selectors inside a rule block (not @-rules). */
-function prefixBlock(block) {
-  return block.replace(/(^|})(\s*)([^@{}][^{]*)\{/g, (match, brace, space, selectors) => {
-    const trimmed = selectors.trim();
-    if (!trimmed || trimmed.startsWith("@")) return match;
-    const prefixed = trimmed
-      .split(",")
-      .map((sel) => {
-        sel = sel.trim();
-        if (!sel || sel === ":root") return sel === ":root" ? "" : sel;
-        if (sel.startsWith(".page-mason")) return sel;
-        return `.page-mason ${sel}`;
-      })
-      .filter(Boolean)
-      .join(", ");
-    if (!prefixed) return match;
-    return `${brace}${space}${prefixed} {`;
-  });
-}
-
 function prefixCss(css) {
   let out = "";
   let i = 0;

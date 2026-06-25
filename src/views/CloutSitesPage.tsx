@@ -794,7 +794,7 @@ function TechnicalDepth() {
           body="This stack supports deeper systems consulting, modernization, QA, and deployment work."
         />
         <div className="stack-grid">
-          {techStack.map((tech, index) => (
+          {techStack.map((tech) => (
             <article className="stack-card technical-stack-card" key={tech.id}>
               <TechStackGlyph id={tech.id} className="stack-icon" />
               <span className="stack-card-category">{tech.category}</span>
