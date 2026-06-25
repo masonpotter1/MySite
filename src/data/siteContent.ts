@@ -181,13 +181,13 @@ export const profile = {
       href: "https://github.com/masonpotter1",
     },
     {
-      label: "Experience (on-page)",
-      href: "/mason#experience",
+      label: "Founder profile",
+      href: "/about/mason-potter",
     },
   ] satisfies Link[],
 } as const;
 
-/** Recruiter-first snapshot — shown near top of /mason */
+/** Recruiter-first snapshot — retained for résumé/founder source data */
 export const recruiter = {
   eyebrow: "For recruiters & hiring managers",
   title: "What to scan in under a minute",
@@ -206,7 +206,7 @@ export const stats = [
   { value: "100+", label: "healthcare site pages modernized" },
 ];
 
-/** Punchy section headings on /mason — titles carry energy; body optional */
+/** Founder/resume source section headings; titles carry energy; body optional */
 export const sectionIntros = {
   about: {
     eyebrow: "About",

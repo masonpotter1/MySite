@@ -5,7 +5,7 @@ import { getSiteUrl } from "@/lib/site-url";
 const resumeMeta = {
   title: "Mason Potter | Résumé",
   description:
-    "Print-friendly résumé: Paycom ATS engineering, CloutSites, healthcare web modernization, Kansas State CS.",
+    "Print-friendly résumé for Mason Potter: enterprise ATS engineering, Cloutsites, healthcare web modernization, and Kansas State CS.",
 };
 
 export function buildPageMetadata(
@@ -52,14 +52,14 @@ export function organizationJsonLd() {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     name: "CloutSites",
-    url: `${siteUrl}/cloutsites`,
+    url: siteUrl,
     founder: {
       "@type": "Person",
       name: "Mason Potter",
-      url: `${siteUrl}/mason`,
+      url: `${siteUrl}/about/mason-potter`,
     },
     description:
-      "Web and tech consulting for growing businesses: reliable sites, modernized operations, and credible web products. In-person or remote delivery across the United States.",
+      "Websites, marketing, business IT setup, and systems consulting for small businesses, family-owned companies, local operators, and early-stage founders.",
     areaServed: { "@type": "Country", name: "United States" },
     address: {
       "@type": "PostalAddress",
@@ -68,21 +68,23 @@ export function organizationJsonLd() {
       addressCountry: "US",
     },
     knowsAbout: [
-      "Enterprise software modernization",
-      "Cloud-native consulting",
-      "Full-stack web application development",
-      "Legacy system modernization",
-      "React application development",
-      "Docker",
-      "Kubernetes",
-      "Datadog",
-      "Selenium",
+      "Small business website design",
+      "Website rebuilds",
+      "Social media advertising",
+      "Search engine optimization",
+      "Microsoft 365 setup",
+      "Business email setup",
+      "Domain and DNS cleanup",
+      "Workflow modernization",
+      "Systems consulting",
     ],
     serviceType: [
-      "Enterprise modernization",
-      "Cloud-native software development",
-      "React web application development",
-      "Automated quality assurance",
+      "Website design",
+      "Website maintenance",
+      "Social media and advertising support",
+      "Business IT setup",
+      "Microsoft account setup",
+      "Systems consulting",
     ],
   };
 }
@@ -93,9 +95,9 @@ export function personJsonLd() {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Mason Potter",
-    url: `${siteUrl}/mason`,
+    url: `${siteUrl}/about/mason-potter`,
     image: `${siteUrl}/avatar.png`,
-    jobTitle: "Software Engineer",
+    jobTitle: "Founder and Software Engineer",
     sameAs: ["https://www.linkedin.com/in/masonpotter-43/", "https://github.com/masonpotter1"],
   };
 }

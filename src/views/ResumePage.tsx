@@ -29,8 +29,8 @@ export function ResumePage() {
             <button type="button" className="button primary" onClick={() => window.print()}>
               Print / Save PDF
             </button>
-            <Link className="button secondary" href="/mason">
-              Full portfolio
+            <Link className="button secondary" href="/about/mason-potter">
+              Founder profile
             </Link>
           </div>
         </header>

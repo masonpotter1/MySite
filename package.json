@@ -11,7 +11,7 @@
     "start": "next start",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

@@ -1,50 +1,68 @@
 import { fireEvent, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { renderWithSite } from "@/test/renderWithSite";
-import { CloutSitesPage } from "./CloutSitesPage";
+import {
+  CloutSitesPage,
+  ContactPage,
+  FounderPage,
+  ServiceDetailPage,
+  ServicesPage,
+} from "./CloutSitesPage";
 
 describe("CloutSitesPage", () => {
-  it("renders the core positioning and service tracks", () => {
-    renderWithSite(<CloutSitesPage />, { route: "/cloutsites" });
+  it("renders the small-business positioning and service cards", () => {
+    renderWithSite(<CloutSitesPage />, { route: "/" });
 
     expect(
       screen.getByRole("heading", {
-        name: /websites that earn trust and keep working/i,
+        name: /websites, marketing, and practical it help for small businesses/i,
       }),
     ).toBeInTheDocument();
-    expect(screen.getByText(/broken checkouts, slow pages/i)).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /fix & modernize what you already run/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /launch & grow a credible web presence/i })).toBeInTheDocument();
-    expect(screen.getByText(/selenium tests cover critical paths/i)).toBeInTheDocument();
-    expect(screen.getByText(/production ready/i)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /websites that make the business look real/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /social media, ads, and content support/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /business it setup without the confusion/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /systems consulting for messy workflows/i })).toBeInTheDocument();
   });
 
-  it("renders the plain-English bridge and credibility section", () => {
-    renderWithSite(<CloutSitesPage />, { route: "/cloutsites" });
-    expect(
-      screen.getByRole("heading", { name: /what we actually do for your business/i }),
-    ).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /how we engage, without theatre/i })).toBeInTheDocument();
+  it("renders the services overview with buying paths", () => {
+    renderWithSite(<ServicesPage />, { route: "/services" });
+
+    expect(screen.getByRole("heading", { name: /practical digital help/i })).toBeInTheDocument();
+    expect(screen.getByRole("table", { name: /service comparison/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Websites" })).toHaveAttribute("href", "/services/websites");
   });
 
   it("updates the intake recommendation when a buyer path is selected", () => {
-    renderWithSite(<CloutSitesPage />, { route: "/cloutsites" });
+    renderWithSite(<ContactPage />, { route: "/contact" });
 
     const intake = screen.getByRole("region", {
-      name: /start with the job: fix, build, or discover/i,
+      name: /start with the service path that sounds closest/i,
     });
 
-    const buildOption = within(intake).getByRole("button", {
-      name: /i need to build a new product/i,
+    const marketingOption = within(intake).getByRole("button", {
+      name: /i need marketing help/i,
     });
-    fireEvent.click(buildOption);
+    fireEvent.click(marketingOption);
 
-    expect(buildOption).toHaveAttribute("aria-pressed", "true");
-    expect(within(intake).getByText("Launch & grow")).toBeInTheDocument();
+    expect(marketingOption).toHaveAttribute("aria-pressed", "true");
+    expect(within(intake).getByText("Marketing")).toBeInTheDocument();
   });
 
-  it("links to the Mason portfolio", () => {
-    renderWithSite(<CloutSitesPage />, { route: "/cloutsites" });
-    expect(screen.getByRole("link", { name: /about the founder/i })).toHaveAttribute("href", "/mason");
+  it("keeps advanced technical language on the systems consulting page", () => {
+    renderWithSite(<ServiceDetailPage serviceId="systems-consulting" />, {
+      route: "/services/systems-consulting",
+    });
+
+    expect(screen.getByRole("heading", { name: /consulting for outdated systems/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /advanced tools stay available/i })).toBeInTheDocument();
+    expect(screen.getAllByText(/Selenium/i).length).toBeGreaterThan(0);
+  });
+
+  it("renders Mason as founder credibility instead of a top-level portfolio", () => {
+    renderWithSite(<FounderPage />, { route: "/about/mason-potter" });
+
+    expect(screen.getByRole("heading", { name: /mason potter, founder/i })).toBeInTheDocument();
+    expect(screen.getByText(/supports the company/i)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /contact cloutsites/i })).toHaveAttribute("href", "/contact");
   });
 });
